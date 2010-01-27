@@ -103,8 +103,7 @@ namespace MvcPaging
 		{
 			var pageLinkValueDictionary = new RouteValueDictionary(this.linkWithoutPageValuesDictionary);
 			pageLinkValueDictionary.Add("page", pageNumber);
-			//var virtualPathData = this.viewContext.RouteData.Route.GetVirtualPath(this.viewContext, pageLinkValueDictionary);
-			var virtualPathData = RouteTable.Routes.GetVirtualPath(this.viewContext.RequestContext, pageLinkValueDictionary);
+			var virtualPathData = RouteTable.Routes.GetVirtualPathForArea(this.viewContext.RequestContext, pageLinkValueDictionary);
 
 			if (virtualPathData != null)
 			{
