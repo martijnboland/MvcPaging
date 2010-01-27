@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IPagedList<Product>>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<IPagedList<Product>>" %>
 <%@ Import Namespace="MvcPaging.Demo.Models"%>
 <%@ Import Namespace="MvcPaging"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -9,9 +9,9 @@
 		<input type="submit" value="Browse" />
 	</p>
 	<% } %>
-	<% if (ViewData.Model.Count > 0) { %>
+	<% if (Model.Count > 0) { %>
 	<p>
-		Found <%= ViewData.Model.TotalItemCount %> items.
+		Found <%= Model.TotalItemCount %> items.
 	</p>
 	<table class="grid">
 		<thead>
@@ -21,7 +21,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% foreach (var product in ViewData.Model) { %>
+			<% foreach (var product in Model) { %>
 				<tr>
 					<td><%= product.Name%></td>
 					<td><%= product.Category%></td>
@@ -30,7 +30,7 @@
 		</tbody>
 	</table>
 	<div class="pager">
-		<%= Html.Pager(ViewData.Model.PageSize, ViewData.Model.PageNumber, ViewData.Model.TotalItemCount, new { categoryname = ViewData["CategoryDisplayName"] } )%>
+		<%= Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new { categoryname = ViewData["CategoryDisplayName"] } )%>
 	</div>
 	<% } %>
 </asp:Content>

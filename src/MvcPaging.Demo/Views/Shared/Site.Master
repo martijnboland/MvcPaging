@@ -35,8 +35,8 @@
             <div id="menucontainer">
             
                 <ul id="menu">              
-                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%= Html.ActionLink("About Us", "About", "Home")%></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/Home/About">About us</a></li>
                 </ul>
             
             </div>

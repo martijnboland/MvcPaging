@@ -12,10 +12,12 @@ namespace MvcPaging.Demo
 		public static void RegisterRoutes(RouteCollection routes)
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+			AreaRegistration.RegisterAllAreas();
 			routes.MapRoute(
 				"Default",                                              // Route name
 				"{controller}/{action}/{id}",                           // URL with parameters
-				new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
+				new { controller = "Home", action = "Index", id = "" },  // Parameter defaults
+				new[] { "MvcPaging.Demo.Controllers" } 
 			);
 
 		}

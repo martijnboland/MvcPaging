@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IPagedList<Product>>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<IPagedList<Product>>" %>
 <%@ Import Namespace="MvcPaging"%>
 <%@ Import Namespace="MvcPaging.Demo.Models"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -11,7 +11,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% foreach (var product in ViewData.Model) { %>
+			<% foreach (var product in Model) { %>
 				<tr>
 					<td><%= product.Name %></td>
 					<td><%= product.Category %></td>
@@ -20,6 +20,6 @@
 		</tbody>
 	</table>
 	<div class="pager">
-		<%= Html.Pager(ViewData.Model.PageSize, ViewData.Model.PageNumber, ViewData.Model.TotalItemCount) %>
+		<%= Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount) %>
 	</div>
 </asp:Content>
