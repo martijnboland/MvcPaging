@@ -18,7 +18,7 @@ namespace MvcPaging.Demo.Areas.Area51
 				"Area51_default",
 				"Area51/{controller}/{action}/{id}",
 				new { action = "Index", id = "" },
-				new [] { "MvcPaging.Demo.Areas.Area51" } 
+				new [] { "MvcPaging.Demo.Areas.Area51.Controllers" } 
 			);
 		}
 	}
