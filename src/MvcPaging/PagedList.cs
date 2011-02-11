@@ -58,7 +58,11 @@ namespace MvcPaging
 			}
 
 			//### set properties
-			if (!totalCount.HasValue)
+			if (totalCount.HasValue)
+			{
+				TotalItemCount = totalCount.Value;
+			}
+			else
 			{
 				TotalItemCount = source.Count();
 			}

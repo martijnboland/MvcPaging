@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -22,7 +23,7 @@ namespace MvcPaging
 			this.linkWithoutPageValuesDictionary = valuesDictionary;
 		}
 
-		public string RenderHtml()
+		public HtmlString RenderHtml()
 		{
 			int pageCount = (int)Math.Ceiling(this.totalItemCount / (double)this.pageSize);
 			int nrOfPagesToDisplay = 10;
@@ -96,7 +97,7 @@ namespace MvcPaging
 			{
 				sb.Append("<span class=\"disabled\">&gt;</span>");
 			}
-			return sb.ToString();
+			return new HtmlString(sb.ToString());
 		}
 
 		private string GeneratePageLink(string linkText, int pageNumber)

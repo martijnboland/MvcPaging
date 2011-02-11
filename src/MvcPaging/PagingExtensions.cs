@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using MvcPaging;
 
 namespace MvcPaging
 {
@@ -11,32 +11,32 @@ namespace MvcPaging
 	{
 		#region HtmlHelper extensions
 
-		public static string Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount)
+		public static HtmlString Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount)
 		{
 			return Pager(htmlHelper, pageSize, currentPage, totalItemCount, null, null);
 		}
 
-		public static string Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, string actionName)
+		public static HtmlString Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, string actionName)
 		{
 			return Pager(htmlHelper, pageSize, currentPage, totalItemCount, actionName, null);
 		}
 
-		public static string Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, object values)
+		public static HtmlString Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, object values)
 		{
 			return Pager(htmlHelper, pageSize, currentPage, totalItemCount, null, new RouteValueDictionary(values));
 		}
 
-		public static string Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, string actionName, object values)
+		public static HtmlString Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, string actionName, object values)
 		{
 			return Pager(htmlHelper, pageSize, currentPage, totalItemCount, actionName, new RouteValueDictionary(values));
 		}
 
-		public static string Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, RouteValueDictionary valuesDictionary)
+		public static HtmlString Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, RouteValueDictionary valuesDictionary)
 		{
 			return Pager(htmlHelper, pageSize, currentPage, totalItemCount, null, valuesDictionary);
 		}
 
-		public static string Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, string actionName, RouteValueDictionary valuesDictionary)
+		public static HtmlString Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, string actionName, RouteValueDictionary valuesDictionary)
 		{
 			if (valuesDictionary == null)
 			{
