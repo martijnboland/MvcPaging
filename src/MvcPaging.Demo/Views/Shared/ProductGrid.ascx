@@ -1,0 +1,21 @@
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IPagedList<MvcPaging.Demo.Models.Product>>" %>
+<%@ Import Namespace="MvcPaging" %>
+	<table class="grid">
+		<thead>
+			<tr>
+				<th>Product name</th>
+				<th>Category</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% foreach (var product in Model) { %>
+				<tr>
+					<td><%= product.Name %></td>
+					<td><%= product.Category %></td>
+				</tr>
+			<% } %>
+		</tbody>
+	</table>
+	<div class="pager">
+		<%= Ajax.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, "AjaxPage", new AjaxOptions { UpdateTargetId = "gridcontainer"}) %>
+	</div>

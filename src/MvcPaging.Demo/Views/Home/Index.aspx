@@ -15,4 +15,8 @@
 		<dt><%= Html.ActionLink("Simple paging in an area", "Index", "Paging", new { Area = "Area51" }, null ) %></dt>
 		<dd>The pager also supports MVC 2 area's</dd>
     </dl>
+    <dl>
+		<dt><%= Html.ActionLink("Paging with AJAX", "IndexAjax", "Paging") %></dt>
+		<dd>The pager supports unobtrusive AJAX via jquery</dd>
+    </dl>
 </asp:Content>

@@ -77,8 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Views\Paging\Index.aspx" />
+    <Content Include="Views\Paging\IndexAjax.aspx" />
     <Content Include="Views\Paging\ProductsByCategory.aspx" />
+    <Content Include="Views\Shared\ProductGrid.ascx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\MicrosoftAjax.js" />

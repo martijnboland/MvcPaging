@@ -53,5 +53,22 @@ namespace MvcPaging.Demo.Controllers
 			ViewData["CategoryDisplayName"] = categoryName;
 			return View("ProductsByCategory", productsByCategory);
 		}
+
+		public ActionResult IndexAjax()
+		{
+			ViewData["Title"] = "Browse all products";
+			int currentPageIndex = 0;
+			var products = this.allProducts.ToPagedList(currentPageIndex, defaultPageSize);
+			return View(products);
+		}
+
+		public ActionResult AjaxPage(int? page)
+		{
+			ViewData["Title"] = "Browse all products";
+			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+			var products = this.allProducts.ToPagedList(currentPageIndex, defaultPageSize);
+			return PartialView("ProductGrid", products);
+		}
+
 	}
 }
