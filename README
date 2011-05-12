@@ -18,7 +18,7 @@ You can also specify an alternative action:
 
 --------------------------------------------------------------------------------------------------------
 
-The library also contains a PagedList class that makes it easy to work with paged data. Use it via an 
+The library contains a PagedList class that makes it easy to work with paged data. Use it via an 
 extension method on IEnumerable<> or IList<>:
 
     myList.ToPagedList(pageIndex, pageSize)
