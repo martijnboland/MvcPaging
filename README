@@ -1,0 +1,35 @@
+The MvcPaging library contains an ASP.NET MVC HTML helper that renders a pager based on given parameters.
+
+Usage (Razor / pseudo code): 
+    
+    @Html.Pager(pageSize, pageNumber, totalItemCount)
+
+Alternatively you can use:
+
+    @Html.Pager(pageSize, pageNumber, totalItemCount, routeValues)
+
+to add extra parameters to the page url's, for example, a with search query:
+
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new { q = Model.SearchQuery })
+
+You can also specify an alternative action:
+
+    @Html.Pager(pageSize, pageNumber, totalItemCount, actionName)
+
+--------------------------------------------------------------------------------------------------------
+
+The library also contains a PagedList class that makes it easy to work with paged data. Use it via an 
+extension method on IEnumerable<> or IList<>:
+
+    myList.ToPagedList(pageIndex, pageSize)
+
+with any unpaged list or 
+
+    myList.ToPagedList(pageIndex, pageSize, totalItemCount)
+
+when the list already only contains the data for the page
+
+--------------------------------------------------------------------------------------------------------
+
+For the source and a demo project, see https://github.com/martijnboland/MvcPaging
+Read more in the following blog post: http://blogs.taiga.nl/martijn/2008/08/27/paging-with-aspnet-mvc/
