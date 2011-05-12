@@ -66,7 +66,6 @@
   <ItemGroup>
     <Compile Include="Areas\Area51\AreaRegistration.cs" />
     <Compile Include="Areas\Area51\Controllers\PagingController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PagingController.cs" />
     <Compile Include="Global.asax.cs">
@@ -85,13 +84,6 @@
     <Content Include="Views\Shared\ProductGrid.ascx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\MicrosoftAjax.js" />
-    <Content Include="Content\MicrosoftAjax.debug.js" />
-    <Content Include="Content\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Views\Account\ChangePassword.aspx" />
-    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
-    <Content Include="Views\Account\Login.aspx" />
-    <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />

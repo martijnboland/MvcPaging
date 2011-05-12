@@ -17,11 +17,7 @@
 				<h1>ASP.NET MVC Paging sample</h1>
 			</div>
 			<div id="logindisplay">
-				<% if (Request.IsAuthenticated) { %>
-				Welcome <b> <%= Html.Encode(Page.User.Identity.Name) %></b>! [<%=Html.ActionLink("Logout", "Logout", "Account") %>]
-				<% } else { %>
-				[<%=Html.ActionLink("Login", "Login", "Account") %>]
-				<% } %>
+                &nbsp;
 			</div>
 			<div id="menucontainer">
 				<ul id="menu">
