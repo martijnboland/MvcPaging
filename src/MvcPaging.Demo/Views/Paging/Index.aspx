@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<IPagedList<Product>>" %>
-<%@ Import Namespace="MvcPaging"%>
-<%@ Import Namespace="MvcPaging.Demo.Models"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 	<table class="grid">

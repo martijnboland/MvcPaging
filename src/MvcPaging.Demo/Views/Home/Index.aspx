@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-<%@ Import Namespace="MvcPaging.Demo.Controllers"%>
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%= Html.Encode(ViewData["Message"]) %></h2>

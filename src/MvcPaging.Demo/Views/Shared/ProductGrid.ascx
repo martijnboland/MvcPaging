@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IPagedList<MvcPaging.Demo.Models.Product>>" %>
-<%@ Import Namespace="MvcPaging" %>
 	<table class="grid">
 		<thead>
 			<tr>

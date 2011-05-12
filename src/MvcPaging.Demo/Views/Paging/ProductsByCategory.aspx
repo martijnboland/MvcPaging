@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<IPagedList<Product>>" %>
-<%@ Import Namespace="MvcPaging.Demo.Models"%>
-<%@ Import Namespace="MvcPaging"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 	<% using (Html.BeginForm("ViewByCategory", "Paging", FormMethod.Get)) { %>
 	<p>
