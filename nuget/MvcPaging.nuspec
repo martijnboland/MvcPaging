@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MvcPaging</id>
+    <version>1.0.1</version>
+    <authors>Martijn Boland, Bart Lenaerts</authors>
+    <owners>Martijn Boland</owners>
+    <licenseUrl>https://github.com/martijnboland/MvcPaging/wiki/License</licenseUrl>
+    <projectUrl>https://github.com/martijnboland/MvcPaging</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A Paging library for ASP.NET MVC.</description>
+    <tags>mvc3 pager asp.net mvc paging</tags>
+  </metadata>
+</package>
