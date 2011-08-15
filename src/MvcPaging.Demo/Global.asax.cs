@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace MvcPaging.Demo
@@ -13,10 +9,19 @@ namespace MvcPaging.Demo
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 			AreaRegistration.RegisterAllAreas();
+
+			routes.MapRoute("Test1", "Test1",
+				new { controller = "Home", action = "About" },
+				new[] { "MvcPaging.Demo.Controllers" });
+
+			routes.MapRoute("SimplePaging", "SimplePaging/{page}",	
+				new { controller = "Paging", action = "Index", page = UrlParameter.Optional },
+				new[] { "MvcPaging.Demo.Controllers" });
+
 			routes.MapRoute(
 				"Default",                                              // Route name
 				"{controller}/{action}/{id}",                           // URL with parameters
-				new { controller = "Home", action = "Index", id = "" },  // Parameter defaults
+				new { controller = "Home", action = "Index", id = UrlParameter.Optional },  // Parameter defaults
 				new[] { "MvcPaging.Demo.Controllers" } 
 			);
 

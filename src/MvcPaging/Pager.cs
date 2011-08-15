@@ -94,6 +94,19 @@ namespace MvcPaging
 		private string GeneratePageLink(string linkText, int pageNumber)
 		{
 			var pageLinkValueDictionary = new RouteValueDictionary(linkWithoutPageValuesDictionary) { { "page", pageNumber } };
+
+			// To be sure we get the right route, ensure the controller and action are specified.
+			var routeDataValues = viewContext.RequestContext.RouteData.Values;
+			if (!pageLinkValueDictionary.ContainsKey("controller") && routeDataValues.ContainsKey("controller"))
+			{
+				pageLinkValueDictionary.Add("controller", routeDataValues["controller"]);
+			}
+			if (!pageLinkValueDictionary.ContainsKey("action") && routeDataValues.ContainsKey("action"))
+			{
+				pageLinkValueDictionary.Add("action", routeDataValues["action"]);
+			}
+
+			// 'Render' virtual path.
 			var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext, pageLinkValueDictionary);
 
 			if (virtualPathForArea == null)
