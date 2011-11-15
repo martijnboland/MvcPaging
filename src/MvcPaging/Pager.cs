@@ -93,10 +93,23 @@ namespace MvcPaging
 
 		private string GeneratePageLink(string linkText, int pageNumber)
 		{
-			var pageLinkValueDictionary = new RouteValueDictionary(linkWithoutPageValuesDictionary) { { "page", pageNumber } };
+			var routeDataValues = viewContext.RequestContext.RouteData.Values;
+			RouteValueDictionary pageLinkValueDictionary;
+			// Avoid canonical errors when page count is equal to 1.
+			if (pageNumber == 1)
+			{
+				pageLinkValueDictionary = new RouteValueDictionary(this.linkWithoutPageValuesDictionary);
+				if (routeDataValues.ContainsKey("page"))
+				{
+					routeDataValues.Remove("page");
+				}
+			}
+			else
+			{
+				pageLinkValueDictionary = new RouteValueDictionary(this.linkWithoutPageValuesDictionary) {{"page", pageNumber}};
+			}
 
 			// To be sure we get the right route, ensure the controller and action are specified.
-			var routeDataValues = viewContext.RequestContext.RouteData.Values;
 			if (!pageLinkValueDictionary.ContainsKey("controller") && routeDataValues.ContainsKey("controller"))
 			{
 				pageLinkValueDictionary.Add("controller", routeDataValues["controller"]);
