@@ -1,0 +1,22 @@
+﻿@model IPagedList<MvcPaging.Demo.Models.Product>
+<h2>Welcome to area 51</h2>
+<p>Don't like the area? @Html.ActionLink("Go back to the root area", "Index", "Home", new { area=String.Empty }, null)</p>
+<table class="grid">
+	<thead>
+		<tr>
+			<th>Product name</th>
+			<th>Category</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var product in Model) {
+			<tr>
+				<td>@product.Name</td>
+				<td>@product.Category</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<div class="pager">
+	@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>

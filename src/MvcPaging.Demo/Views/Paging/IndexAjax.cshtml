@@ -1,0 +1,8 @@
+﻿@model IPagedList<MvcPaging.Demo.Models.Product>
+@{
+	ViewBag.Title = "Browse all products";
+}
+<h2>@ViewBag.Title</h2>
+<div id="gridcontainer">
+	@Html.Partial("_ProductGrid", Model)
+</div>

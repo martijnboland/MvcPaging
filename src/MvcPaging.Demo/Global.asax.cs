@@ -10,10 +10,6 @@ namespace MvcPaging.Demo
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 			AreaRegistration.RegisterAllAreas();
 
-			routes.MapRoute("Test1", "Test1",
-				new { controller = "Home", action = "About" },
-				new[] { "MvcPaging.Demo.Controllers" });
-
 			routes.MapRoute("SimplePaging", "SimplePaging/{page}",	
 				new { controller = "Paging", action = "Index", page = UrlParameter.Optional },
 				new[] { "MvcPaging.Demo.Controllers" });

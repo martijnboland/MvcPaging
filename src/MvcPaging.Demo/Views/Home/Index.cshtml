@@ -1,0 +1,32 @@
+﻿@{
+	ViewBag.Title = "ASP.NET MVC Paging sample - Home";
+}
+
+@section featured {
+	<section class="featured">
+		<div class="content-wrapper">
+			<hgroup class="title">
+				<h2>@ViewBag.Title</h2>
+			</hgroup>
+			<p>
+				
+			</p>
+		</div>
+	</section>
+}
+<dl>
+	<dt>@Html.ActionLink("Simple paging", "Index", "Paging")</dt>
+	<dd>An example of paging a list of products.</dd>
+</dl>
+<dl>
+	<dt>@Html.ActionLink("Paging with filtering", "ViewByCategory", "Paging")</dt>
+	<dd>A list of products that are filtered on the category</dd>
+</dl>
+<dl>
+	<dt>@Html.ActionLink("Simple paging in an area", "Index", "Paging", new { Area = "Area51" }, null )</dt>
+	<dd>The pager also supports area's</dd>
+</dl>
+<dl>
+	<dt>@Html.ActionLink("Paging with AJAX", "IndexAjax", "Paging")</dt>
+	<dd>The pager supports unobtrusive AJAX via jquery</dd>
+</dl>

@@ -36,27 +36,24 @@ namespace MvcPaging.Demo.Controllers
 
 		public ActionResult Index(int? page)
 		{
-			ViewData["Title"] = "Browse all products";
 			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 			return View(this.allProducts.ToPagedList(currentPageIndex, defaultPageSize));
 		}
 
 		public ActionResult ViewByCategory(string categoryName, int? page)
 		{
-			ViewData["Title"] = "Browse products by category";
 			categoryName = categoryName ?? this.categories[0];
 			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
 			var productsByCategory = this.allProducts.Where(p => p.Category.Equals(categoryName)).ToPagedList(currentPageIndex,
 			                                                                                                  defaultPageSize);
-			ViewData["CategoryName"] = new SelectList(this.categories, categoryName);
-			ViewData["CategoryDisplayName"] = categoryName;
+			ViewBag.CategoryName = new SelectList(this.categories, categoryName);
+			ViewBag.CategoryDisplayName = categoryName;
 			return View("ProductsByCategory", productsByCategory);
 		}
 
 		public ActionResult IndexAjax()
 		{
-			ViewData["Title"] = "Browse all products";
 			int currentPageIndex = 0;
 			var products = this.allProducts.ToPagedList(currentPageIndex, defaultPageSize);
 			return View(products);
@@ -64,11 +61,10 @@ namespace MvcPaging.Demo.Controllers
 
 		public ActionResult AjaxPage(int? page)
 		{
-			ViewData["Title"] = "Browse all products";
+			ViewBag.Title = "Browse all products";
 			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 			var products = this.allProducts.ToPagedList(currentPageIndex, defaultPageSize);
-			return PartialView("ProductGrid", products);
+			return PartialView("_ProductGrid", products);
 		}
-
 	}
 }
