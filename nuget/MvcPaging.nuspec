@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>MvcPaging</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <authors>Martijn Boland, Bart Lenaerts</authors>
     <owners>Martijn Boland</owners>
     <licenseUrl>https://github.com/martijnboland/MvcPaging/wiki/License</licenseUrl>
@@ -10,5 +10,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc3 pager asp.net mvc paging</tags>
+    <releaseNotes>
+        Added ItemStart and ItemEnd properties to IPagedList (Displaying items {ItemStart} - {ItemEnd}). 
+        Non-canonical url's for page 1 (https://github.com/martijnboland/MvcPaging/issues/2).
+    </releaseNotes>
   </metadata>
 </package>
