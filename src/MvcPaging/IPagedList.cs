@@ -13,5 +13,7 @@ namespace MvcPaging
 		bool HasNextPage { get; }
 		bool IsFirstPage { get; }
 		bool IsLastPage { get; }
+		int ItemStart { get; }
+		int ItemEnd { get; }
 	}
 }

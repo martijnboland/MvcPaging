@@ -33,6 +33,9 @@ namespace MvcPaging
 			IsFirstPage = (PageIndex <= 0);
 			IsLastPage = (PageIndex >= (PageCount - 1));
 
+			ItemStart = PageIndex*PageSize + 1;
+			ItemEnd = Math.Min(PageIndex*PageSize + PageSize, TotalItemCount);
+
 			if (TotalItemCount <= 0)
 				return;
 
@@ -55,6 +58,8 @@ namespace MvcPaging
 		public bool HasNextPage { get; private set; }
 		public bool IsFirstPage { get; private set; }
 		public bool IsLastPage { get; private set; }
+		public int ItemStart { get; private set; }
+		public int ItemEnd { get; private set; }
 
 		#endregion
 	}

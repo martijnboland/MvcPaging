@@ -13,9 +13,6 @@
 }
 @if (Model.Count > 0)
 {
-	<p>
-		Found @Model.TotalItemCount items.
-	</p>
 	<table class="grid">
 		<thead>
 			<tr>
@@ -35,5 +32,6 @@
 	</table>
 	<div class="pager">
 		@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new { categoryname = ViewBag.CategoryDisplayName } )
+		Displaying @Model.ItemStart - @Model.ItemEnd of @Model.TotalItemCount item(s)
 	</div>
 }

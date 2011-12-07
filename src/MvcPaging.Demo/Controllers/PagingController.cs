@@ -7,9 +7,9 @@ namespace MvcPaging.Demo.Controllers
 {
 	public class PagingController : Controller
 	{
-		private const int defaultPageSize = 10;
+		private const int DefaultPageSize = 10;
 		private IList<Product> allProducts = new List<Product>();
-		private string[] categories = new string[3] {"Shoes", "Electronics", "Food"};
+		private readonly string[] categories = new string[3] {"Shoes", "Electronics", "Food"};
 
 		public PagingController()
 		{
@@ -18,13 +18,13 @@ namespace MvcPaging.Demo.Controllers
 
 		private void InitializeProducts()
 		{
-			// Create a list of 500 products. 250 are in the Shoes category, 125 in the Electronics 
-			// category and 125 in the Food category.
-			for (int i = 0; i < 500; i++)
+			// Create a list of products. 50% of them are in the Shoes category, 25% in the Electronics 
+			// category and 25% in the Food category.
+			for (var i = 0; i < 527; i++)
 			{
 				var product = new Product();
 				product.Name = "Product " + (i + 1);
-				int categoryIndex = i%4;
+				var categoryIndex = i%4;
 				if (categoryIndex > 2)
 				{
 					categoryIndex = categoryIndex - 3;
@@ -37,7 +37,7 @@ namespace MvcPaging.Demo.Controllers
 		public ActionResult Index(int? page)
 		{
 			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
-			return View(this.allProducts.ToPagedList(currentPageIndex, defaultPageSize));
+			return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
 		}
 
 		public ActionResult ViewByCategory(string categoryName, int? page)
@@ -46,7 +46,7 @@ namespace MvcPaging.Demo.Controllers
 			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
 			var productsByCategory = this.allProducts.Where(p => p.Category.Equals(categoryName)).ToPagedList(currentPageIndex,
-			                                                                                                  defaultPageSize);
+			                                                                                                  DefaultPageSize);
 			ViewBag.CategoryName = new SelectList(this.categories, categoryName);
 			ViewBag.CategoryDisplayName = categoryName;
 			return View("ProductsByCategory", productsByCategory);
@@ -55,7 +55,7 @@ namespace MvcPaging.Demo.Controllers
 		public ActionResult IndexAjax()
 		{
 			int currentPageIndex = 0;
-			var products = this.allProducts.ToPagedList(currentPageIndex, defaultPageSize);
+			var products = this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize);
 			return View(products);
 		}
 
@@ -63,7 +63,7 @@ namespace MvcPaging.Demo.Controllers
 		{
 			ViewBag.Title = "Browse all products";
 			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
-			var products = this.allProducts.ToPagedList(currentPageIndex, defaultPageSize);
+			var products = this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize);
 			return PartialView("_ProductGrid", products);
 		}
 	}
