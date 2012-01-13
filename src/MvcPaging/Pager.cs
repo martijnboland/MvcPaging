@@ -53,20 +53,26 @@ namespace MvcPaging
 				else if (above > (pageCount - 4))
 				{
 					above = pageCount;
-					below = (pageCount - nrOfPagesToDisplay);
+					below = (pageCount - nrOfPagesToDisplay + 1);
 				}
 
 				start = below;
 				end = above;
 			}
 
-			if (start > 3)
+			if (start > 1)
 			{
 				sb.Append(GeneratePageLink("1", 1));
-				sb.Append(GeneratePageLink("2", 2));
-				sb.Append("...");
+				if (start > 3)
+				{
+					sb.Append(GeneratePageLink("2", 2));
+				}
+				if (start > 2)
+				{
+					sb.Append("...");
+				}
 			}
-			
+
 			for (var i = start; i <= end; i++)
 			{
 				if (i == currentPage || (currentPage <= 0 && i == 0))
@@ -78,10 +84,16 @@ namespace MvcPaging
 					sb.Append(GeneratePageLink(i.ToString(), i));
 				}
 			}
-			if (end < (pageCount - 3))
+			if (end < pageCount)
 			{
-				sb.Append("...");
-				sb.Append(GeneratePageLink((pageCount - 1).ToString(), pageCount - 1));
+				if (end < pageCount - 1)
+				{
+					sb.Append("...");
+				}
+				if (pageCount - 2 > end)
+				{
+					sb.Append(GeneratePageLink((pageCount - 1).ToString(), pageCount - 1));
+				}
 				sb.Append(GeneratePageLink(pageCount.ToString(), pageCount));
 			}
 
