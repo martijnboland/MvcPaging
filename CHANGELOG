@@ -1,12 +1,15 @@
-1.2 (2011-12-07)
+1.0.3 (2012-03-22)
+- Added non-generic IPagedList interface for convenience.
+
+1.0.2 (2011-12-07)
 - Added ItemStart and ItemEnd properties to IPagedList 
   (Displaying items {ItemStart} - {ItemEnd}).
 - Non-canonical url's for page 1 (https://github.com/martijnboland/MvcPaging/issues/2).
 
-1.1 (2011-08-15)
+1.0.1 (2011-08-15)
 - Added fix for incorrect URL generation in some scenario's where controller
   and/or action are missing in the route values dictionary.
   Thanks to John M. Holliday for the fix.
 
-1.0 (2011-05-12)
+1.0.0 (2011-05-12)
 - Initial release of Pager Helper and IPagedList<T> implementation.

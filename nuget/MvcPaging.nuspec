@@ -11,8 +11,7 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-        Added ItemStart and ItemEnd properties to IPagedList (Displaying items {ItemStart} - {ItemEnd}). 
-        Non-canonical url's for page 1 (https://github.com/martijnboland/MvcPaging/issues/2).
+        Added non-generic IPagedList interface for convenience.
     </releaseNotes>
   </metadata>
 </package>
