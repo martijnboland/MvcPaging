@@ -2,7 +2,7 @@
 
 namespace MvcPaging
 {
-	public interface IPagedList<T> : IList<T>
+	public interface IPagedList
 	{
 		int PageCount { get; }
 		int TotalItemCount { get; }
@@ -14,6 +14,10 @@ namespace MvcPaging
 		bool IsFirstPage { get; }
 		bool IsLastPage { get; }
 		int ItemStart { get; }
-		int ItemEnd { get; }
+		int ItemEnd { get; }		
+	}
+
+	public interface IPagedList<T> : IPagedList, IList<T>
+	{
 	}
 }
