@@ -10,6 +10,8 @@ namespace MvcPaging
 {
     public static class PagingExtensions
     {
+        const int DefaultNumberOfPagesToDisplay = 10;
+
         #region AjaxHelper extensions
 
         public static HtmlString Pager(this AjaxHelper ajaxHelper, int pageSize, int currentPage, int totalItemCount, AjaxOptions ajaxOptions)
@@ -39,6 +41,11 @@ namespace MvcPaging
 
         public static HtmlString Pager(this AjaxHelper ajaxHelper, int pageSize, int currentPage, int totalItemCount, string actionName, RouteValueDictionary valuesDictionary, AjaxOptions ajaxOptions)
         {
+            return Pager(ajaxHelper, pageSize, currentPage, totalItemCount, actionName, valuesDictionary, ajaxOptions, DefaultNumberOfPagesToDisplay);
+        }
+
+        public static HtmlString Pager(this AjaxHelper ajaxHelper, int pageSize, int currentPage, int totalItemCount, string actionName, RouteValueDictionary valuesDictionary, AjaxOptions ajaxOptions, int numberOfPagesToDisplay)
+        {
             if (valuesDictionary == null)
             {
                 valuesDictionary = new RouteValueDictionary();
@@ -51,7 +58,7 @@ namespace MvcPaging
                 }
                 valuesDictionary.Add("action", actionName);
             }
-            var pager = new Pager(ajaxHelper.ViewContext, pageSize, currentPage, totalItemCount, valuesDictionary, ajaxOptions);
+            var pager = new Pager(ajaxHelper.ViewContext, pageSize, currentPage, totalItemCount, valuesDictionary, ajaxOptions, numberOfPagesToDisplay);
             return pager.RenderHtml();
         }
 
@@ -86,6 +93,11 @@ namespace MvcPaging
 
         public static HtmlString Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, string actionName, RouteValueDictionary valuesDictionary)
         {
+            return Pager(htmlHelper, pageSize, currentPage, totalItemCount, actionName, valuesDictionary, DefaultNumberOfPagesToDisplay);
+        }
+
+        public static HtmlString Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, string actionName, RouteValueDictionary valuesDictionary, int numberOfPagesToDisplay)
+        {
             if (valuesDictionary == null)
             {
                 valuesDictionary = new RouteValueDictionary();
@@ -98,7 +110,7 @@ namespace MvcPaging
                 }
                 valuesDictionary.Add("action", actionName);
             }
-            var pager = new Pager(htmlHelper.ViewContext, pageSize, currentPage, totalItemCount, valuesDictionary, null);
+            var pager = new Pager(htmlHelper.ViewContext, pageSize, currentPage, totalItemCount, valuesDictionary, null, numberOfPagesToDisplay);
             return pager.RenderHtml();
         }
 
