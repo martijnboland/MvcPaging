@@ -4,6 +4,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Routing;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MvcPaging
 {
@@ -26,80 +28,114 @@ namespace MvcPaging
 			this.ajaxOptions = ajaxOptions;
 		}
 
-		public HtmlString RenderHtml()
-		{
-			var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
-			const int nrOfPagesToDisplay = 10;
+        public IList<PaginationModel> BuildPaginationModel()
+        {
+            var pages = new List<PaginationModel>();
 
+            var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
+            const int nrOfPagesToDisplay = 10;
+
+            // Previous
+            pages.Add(currentPage > 1 ? new PaginationModel { Active = true, DisplayText = "«", PageIndex = currentPage - 1 } : new PaginationModel { Active = false, DisplayText = "«" });
+
+            var start = 1;
+            var end = pageCount;
+
+            if (pageCount > nrOfPagesToDisplay)
+            {
+                var middle = (int)Math.Ceiling(nrOfPagesToDisplay / 2d) - 1;
+                var below = (currentPage - middle);
+                var above = (currentPage + middle);
+
+                if (below < 4)
+                {
+                    above = nrOfPagesToDisplay;
+                    below = 1;
+                }
+                else if (above > (pageCount - 4))
+                {
+                    above = pageCount;
+                    below = (pageCount - nrOfPagesToDisplay + 1);
+                }
+
+                start = below;
+                end = above;
+            }
+
+            if (start > 1)
+            {
+                pages.Add(new PaginationModel { Active = true, PageIndex = 1, DisplayText = "1" });
+                if (start > 3)
+                {
+                    pages.Add(new PaginationModel { Active = true, PageIndex = 2, DisplayText = "2" });
+                }
+                if (start > 2)
+                {
+                    pages.Add(new PaginationModel { Active = true, DisplayText = "..." });
+                }
+            }
+
+            for (var i = start; i <= end; i++)
+            {
+                if (i == currentPage || (currentPage <= 0 && i == 0))
+                {
+                    pages.Add(new PaginationModel { Active = true, PageIndex = i, IsCurrent = true, DisplayText = i.ToString() });
+                }
+                else
+                {
+                    pages.Add(new PaginationModel { Active = true, PageIndex = i, DisplayText = i.ToString() });
+                }
+            }
+            if (end < pageCount)
+            {
+                if (end < pageCount - 1)
+                {
+                    pages.Add(new PaginationModel { Active = true });
+                }
+                if (pageCount - 2 > end)
+                {
+                    pages.Add(new PaginationModel { Active = true, PageIndex = pageCount - 1, DisplayText = (pageCount - 1).ToString() });
+                }
+
+                pages.Add(new PaginationModel { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString() });
+            }
+
+            // Next
+            pages.Add(currentPage < pageCount ? new PaginationModel { Active = true, PageIndex = currentPage + 1, DisplayText = "»" } : new PaginationModel { Active = false, DisplayText = "»" });
+
+            return pages;
+        }
+
+		public HtmlString RenderHtml()
+		{			
 			var sb = new StringBuilder();
 
-			// Previous
-			sb.Append(currentPage > 1 ? GeneratePageLink("&lt;", currentPage - 1) : "<span class=\"disabled\">&lt;</span>");
+            var pages = BuildPaginationModel();
 
-			var start = 1;
-			var end = pageCount;
+            foreach (var page in pages)
+            {
+                if (page.Active)
+                {
+                    if (page.IsCurrent)
+                    {
+                        sb.AppendFormat("<span class=\"current\">{0}</span>", page.DisplayText);
+                    }
+                    else if (!page.PageIndex.HasValue)
+                    {
+                        sb.AppendFormat(page.DisplayText);
+                    }
+                    else
+                    {
+                        sb.Append(GeneratePageLink(page.DisplayText, page.PageIndex.GetValueOrDefault()));
+                    }
+                }
+                else
+                {
+                    sb.AppendFormat("<span class=\"disabled\">{0}</span>", page.DisplayText);
+                }
+            }
 
-			if (pageCount > nrOfPagesToDisplay)
-			{
-				var middle = (int)Math.Ceiling(nrOfPagesToDisplay / 2d) - 1;
-				var below = (currentPage - middle);
-				var above = (currentPage + middle);
-
-				if (below < 4)
-				{
-					above = nrOfPagesToDisplay;
-					below = 1;
-				}
-				else if (above > (pageCount - 4))
-				{
-					above = pageCount;
-					below = (pageCount - nrOfPagesToDisplay + 1);
-				}
-
-				start = below;
-				end = above;
-			}
-
-			if (start > 1)
-			{
-				sb.Append(GeneratePageLink("1", 1));
-				if (start > 3)
-				{
-					sb.Append(GeneratePageLink("2", 2));
-				}
-				if (start > 2)
-				{
-					sb.Append("...");
-				}
-			}
-
-			for (var i = start; i <= end; i++)
-			{
-				if (i == currentPage || (currentPage <= 0 && i == 0))
-				{
-					sb.AppendFormat("<span class=\"current\">{0}</span>", i);
-				}
-				else
-				{
-					sb.Append(GeneratePageLink(i.ToString(), i));
-				}
-			}
-			if (end < pageCount)
-			{
-				if (end < pageCount - 1)
-				{
-					sb.Append("...");
-				}
-				if (pageCount - 2 > end)
-				{
-					sb.Append(GeneratePageLink((pageCount - 1).ToString(), pageCount - 1));
-				}
-				sb.Append(GeneratePageLink(pageCount.ToString(), pageCount));
-			}
-
-			// Next
-			sb.Append(currentPage < pageCount ? GeneratePageLink("&gt;", (currentPage + 1)) : "<span class=\"disabled\">&gt;</span>");
-
+			
 			return new HtmlString(sb.ToString());
 		}
 

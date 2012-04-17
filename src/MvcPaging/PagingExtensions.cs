@@ -102,6 +102,24 @@ namespace MvcPaging
             return pager.RenderHtml();
         }
 
+        public static IEnumerable<PaginationModel> PagerModel(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, string actionName, RouteValueDictionary valuesDictionary)
+        {
+            if (valuesDictionary == null)
+            {
+                valuesDictionary = new RouteValueDictionary();
+            }
+            if (actionName != null)
+            {
+                if (valuesDictionary.ContainsKey("action"))
+                {
+                    throw new ArgumentException("The valuesDictionary already contains an action.", "actionName");
+                }
+                valuesDictionary.Add("action", actionName);
+            }
+            var pager = new Pager(htmlHelper.ViewContext, pageSize, currentPage, totalItemCount, valuesDictionary, null);
+            return pager.BuildPaginationModel();
+        }
+
         #endregion
 
         #region IQueryable<T> extensions
