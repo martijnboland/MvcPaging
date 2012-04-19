@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MvcPaging
+﻿namespace MvcPaging
 {  
     public class PaginationModel
     {
@@ -14,6 +9,5 @@ namespace MvcPaging
         public int? PageIndex { get; set; }
 
         public string DisplayText { get; set; }
-
     }
 }

@@ -90,7 +90,7 @@ namespace MvcPaging
             {
                 if (end < pageCount - 1)
                 {
-                    pages.Add(new PaginationModel { Active = true });
+                    pages.Add(new PaginationModel { Active = true, DisplayText = "..."});
                 }
                 if (pageCount - 2 > end)
                 {
