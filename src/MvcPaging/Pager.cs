@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace MvcPaging
 {
-	public class Pager
+	public class Pager : IHtmlString
 	{
 		private ViewContext viewContext;
 		private readonly int pageSize;
@@ -106,37 +106,35 @@ namespace MvcPaging
             return pages;
         }
 
-		public HtmlString RenderHtml()
-		{			
+		public string ToHtmlString()
+		{
 			var sb = new StringBuilder();
 
-            var pages = BuildPaginationModel();
+			var pages = BuildPaginationModel();
 
-            foreach (var page in pages)
-            {
-                if (page.Active)
-                {
-                    if (page.IsCurrent)
-                    {
-                        sb.AppendFormat("<span class=\"current\">{0}</span>", page.DisplayText);
-                    }
-                    else if (!page.PageIndex.HasValue)
-                    {
-                        sb.AppendFormat(page.DisplayText);
-                    }
-                    else
-                    {
-                        sb.Append(GeneratePageLink(page.DisplayText, page.PageIndex.GetValueOrDefault()));
-                    }
-                }
-                else
-                {
-                    sb.AppendFormat("<span class=\"disabled\">{0}</span>", page.DisplayText);
-                }
-            }
-
-			
-			return new HtmlString(sb.ToString());
+			foreach (var page in pages)
+			{
+				if (page.Active)
+				{
+					if (page.IsCurrent)
+					{
+						sb.AppendFormat("<span class=\"current\">{0}</span>", page.DisplayText);
+					}
+					else if (!page.PageIndex.HasValue)
+					{
+						sb.AppendFormat(page.DisplayText);
+					}
+					else
+					{
+						sb.Append(GeneratePageLink(page.DisplayText, page.PageIndex.GetValueOrDefault()));
+					}
+				}
+				else
+				{
+					sb.AppendFormat("<span class=\"disabled\">{0}</span>", page.DisplayText);
+				}
+			}
+			return sb.ToString();
 		}
 
 		private string GeneratePageLink(string linkText, int pageNumber)
