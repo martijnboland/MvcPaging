@@ -16,5 +16,5 @@
 	</tbody>
 </table>
 <div class="pager">
-	@Ajax.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, "AjaxPage", new AjaxOptions { UpdateTargetId = "gridcontainer"})
+	@Ajax.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new AjaxOptions { UpdateTargetId = "gridcontainer"}).Options(o => o.Action("AjaxPage"))
 </div>

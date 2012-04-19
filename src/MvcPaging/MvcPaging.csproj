@@ -72,6 +72,8 @@
     <Compile Include="IPagedList.cs" />
     <Compile Include="PagedList.cs" />
     <Compile Include="Pager.cs" />
+    <Compile Include="PagerOptions.cs" />
+    <Compile Include="PagerOptionsBuilder.cs" />
     <Compile Include="PaginationModel.cs" />
     <Compile Include="PagingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

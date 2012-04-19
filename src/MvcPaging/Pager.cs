@@ -2,109 +2,111 @@
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
 using System.Web.Routing;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MvcPaging
 {
 	public class Pager : IHtmlString
 	{
-		private ViewContext viewContext;
+		private readonly ViewContext viewContext;
 		private readonly int pageSize;
 		private readonly int currentPage;
 		private readonly int totalItemCount;
-		private readonly RouteValueDictionary linkWithoutPageValuesDictionary;
-		private readonly AjaxOptions ajaxOptions;
+		private readonly PagerOptions pagerOptions;
 
-		public Pager(ViewContext viewContext, int pageSize, int currentPage, int totalItemCount, RouteValueDictionary valuesDictionary, AjaxOptions ajaxOptions)
+		public Pager(ViewContext viewContext, int pageSize, int currentPage, int totalItemCount)
 		{
 			this.viewContext = viewContext;
 			this.pageSize = pageSize;
 			this.currentPage = currentPage;
 			this.totalItemCount = totalItemCount;
-			this.linkWithoutPageValuesDictionary = valuesDictionary;
-			this.ajaxOptions = ajaxOptions;
+			this.pagerOptions = new PagerOptions();
 		}
 
-        public IList<PaginationModel> BuildPaginationModel()
-        {
-            var pages = new List<PaginationModel>();
+		public Pager Options(Action<PagerOptionsBuilder> buildOptions)
+		{
+			buildOptions(new PagerOptionsBuilder(this.pagerOptions));
+			return this;
+		}
 
-            var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
-            const int nrOfPagesToDisplay = 10;
+		public IEnumerable<PaginationModel> BuildPaginationModel()
+		{
+			var pages = new List<PaginationModel>();
 
-            // Previous
-            pages.Add(currentPage > 1 ? new PaginationModel { Active = true, DisplayText = "«", PageIndex = currentPage - 1 } : new PaginationModel { Active = false, DisplayText = "«" });
+			var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
 
-            var start = 1;
-            var end = pageCount;
+			// Previous
+			pages.Add(currentPage > 1 ? new PaginationModel { Active = true, DisplayText = "«", PageIndex = currentPage - 1 } : new PaginationModel { Active = false, DisplayText = "«" });
 
-            if (pageCount > nrOfPagesToDisplay)
-            {
-                var middle = (int)Math.Ceiling(nrOfPagesToDisplay / 2d) - 1;
-                var below = (currentPage - middle);
-                var above = (currentPage + middle);
+			var start = 1;
+			var end = pageCount;
+			var nrOfPagesToDisplay = this.pagerOptions.MaxNrOfPages;
 
-                if (below < 4)
-                {
-                    above = nrOfPagesToDisplay;
-                    below = 1;
-                }
-                else if (above > (pageCount - 4))
-                {
-                    above = pageCount;
-                    below = (pageCount - nrOfPagesToDisplay + 1);
-                }
+			if (pageCount > nrOfPagesToDisplay)
+			{
+				var middle = (int)Math.Ceiling(nrOfPagesToDisplay / 2d) - 1;
+				var below = (currentPage - middle);
+				var above = (currentPage + middle);
 
-                start = below;
-                end = above;
-            }
+				if (below < 4)
+				{
+					above = nrOfPagesToDisplay;
+					below = 1;
+				}
+				else if (above > (pageCount - 4))
+				{
+					above = pageCount;
+					below = (pageCount - nrOfPagesToDisplay + 1);
+				}
 
-            if (start > 1)
-            {
-                pages.Add(new PaginationModel { Active = true, PageIndex = 1, DisplayText = "1" });
-                if (start > 3)
-                {
-                    pages.Add(new PaginationModel { Active = true, PageIndex = 2, DisplayText = "2" });
-                }
-                if (start > 2)
-                {
-                    pages.Add(new PaginationModel { Active = true, DisplayText = "..." });
-                }
-            }
+				start = below;
+				end = above;
+			}
 
-            for (var i = start; i <= end; i++)
-            {
-                if (i == currentPage || (currentPage <= 0 && i == 0))
-                {
-                    pages.Add(new PaginationModel { Active = true, PageIndex = i, IsCurrent = true, DisplayText = i.ToString() });
-                }
-                else
-                {
-                    pages.Add(new PaginationModel { Active = true, PageIndex = i, DisplayText = i.ToString() });
-                }
-            }
-            if (end < pageCount)
-            {
-                if (end < pageCount - 1)
-                {
-                    pages.Add(new PaginationModel { Active = true, DisplayText = "..."});
-                }
-                if (pageCount - 2 > end)
-                {
-                    pages.Add(new PaginationModel { Active = true, PageIndex = pageCount - 1, DisplayText = (pageCount - 1).ToString() });
-                }
+			if (start > 1)
+			{
+				pages.Add(new PaginationModel { Active = true, PageIndex = 1, DisplayText = "1" });
+				if (start > 3)
+				{
+					pages.Add(new PaginationModel { Active = true, PageIndex = 2, DisplayText = "2" });
+				}
+				if (start > 2)
+				{
+					pages.Add(new PaginationModel { Active = true, DisplayText = "..." });
+				}
+			}
 
-                pages.Add(new PaginationModel { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString() });
-            }
+			for (var i = start; i <= end; i++)
+			{
+				if (i == currentPage || (currentPage <= 0 && i == 0))
+				{
+					pages.Add(new PaginationModel { Active = true, PageIndex = i, IsCurrent = true, DisplayText = i.ToString() });
+				}
+				else
+				{
+					pages.Add(new PaginationModel { Active = true, PageIndex = i, DisplayText = i.ToString() });
+				}
+			}
+			if (end < pageCount)
+			{
+				if (end < pageCount - 1)
+				{
+					pages.Add(new PaginationModel { Active = true, DisplayText = "..." });
+				}
+				if (pageCount - 2 > end)
+				{
+					pages.Add(new PaginationModel { Active = true, PageIndex = pageCount - 1, DisplayText = (pageCount - 1).ToString() });
+				}
 
-            // Next
-            pages.Add(currentPage < pageCount ? new PaginationModel { Active = true, PageIndex = currentPage + 1, DisplayText = "»" } : new PaginationModel { Active = false, DisplayText = "»" });
+				pages.Add(new PaginationModel { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString() });
+			}
 
-            return pages;
-        }
+			// Next
+			pages.Add(currentPage < pageCount ? new PaginationModel { Active = true, PageIndex = currentPage + 1, DisplayText = "»" } : new PaginationModel { Active = false, DisplayText = "»" });
+
+			return pages;
+		}
 
 		public string ToHtmlString()
 		{
@@ -144,7 +146,7 @@ namespace MvcPaging
 			// Avoid canonical errors when page count is equal to 1.
 			if (pageNumber == 1)
 			{
-				pageLinkValueDictionary = new RouteValueDictionary(this.linkWithoutPageValuesDictionary);
+				pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues);
 				if (routeDataValues.ContainsKey("page"))
 				{
 					routeDataValues.Remove("page");
@@ -152,7 +154,7 @@ namespace MvcPaging
 			}
 			else
 			{
-				pageLinkValueDictionary = new RouteValueDictionary(this.linkWithoutPageValuesDictionary) {{"page", pageNumber}};
+				pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues) { { "page", pageNumber } };
 			}
 
 			// To be sure we get the right route, ensure the controller and action are specified.
@@ -173,8 +175,8 @@ namespace MvcPaging
 
 			var stringBuilder = new StringBuilder("<a");
 
-			if (ajaxOptions != null)
-				foreach (var ajaxOption in ajaxOptions.ToUnobtrusiveHtmlAttributes())
+			if (pagerOptions.AjaxOptions != null)
+				foreach (var ajaxOption in pagerOptions.AjaxOptions.ToUnobtrusiveHtmlAttributes())
 					stringBuilder.AppendFormat(" {0}=\"{1}\"", ajaxOption.Key, ajaxOption.Value);
 
 			stringBuilder.AppendFormat(" href=\"{0}\">{1}</a>", virtualPathForArea.VirtualPath, linkText);
