@@ -4,17 +4,32 @@ Usage (Razor / pseudo code):
     
     @Html.Pager(pageSize, pageNumber, totalItemCount)
 
-Alternatively you can use:
+Options are added via the Options method:
 
-    @Html.Pager(pageSize, pageNumber, totalItemCount, routeValues)
+	@Html.Pager(pageSize, pageNumber, totalItemCount).Options(o => o
+		.Action("action")
+		.AddRouteValue("q", mySearchQuery)
+	)
 
-to add extra parameters to the page url's, for example, a with search query:
+Possible options:
+	Action(string action)
+		Sets an alternative action for the pager that is different from the current action
 
-    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new { q = Model.SearchQuery })
+	AddRouteValue(string name, object value)
+		Adds a single route value parameter that is added to page url's
 
-You can also specify an alternative action:
+	RouteValues(object routeValues)
+		Adds route value parameters that are added to the page url's
 
-    @Html.Pager(pageSize, pageNumber, totalItemCount, actionName)
+	RouteValues(RouteValueDictionary routeValues)
+		Adds route value parameters that are added to the page url's
+
+	DisplayTemplate(string displayTemplate)
+		When set, the internal HTML rendering is bypassed and a DisplayTemplate view with the given
+        name is rendered instead. Note that the DisplayTemplate must have a model of type PaginationModel
+
+	MaxNrOfPages(int maxNrOfPages)
+		Sets the maximum number of pages to show		
 
 --------------------------------------------------------------------------------------------------------
 

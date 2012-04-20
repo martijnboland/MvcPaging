@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MvcPaging")]
-[assembly: AssemblyCopyright("Copyright © Martijn Boland, Bart Lenaerts 2008-2012")]
+[assembly: AssemblyCopyright("Copyright © Martijn Boland, Bart Lenaerts, Rajeesh C V,  2008-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
