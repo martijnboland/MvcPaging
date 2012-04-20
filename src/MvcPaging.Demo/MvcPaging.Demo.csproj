@@ -77,17 +77,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Css\bootstrap.min.css" />
     <Content Include="Content\Css\Site.css" />
     <Content Include="Content\Images\accent.png" />
     <Content Include="Content\Images\bullet.png" />
     <Content Include="Content\Images\heroAccent.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Areas\Area51\Views\_ViewStart.cshtml" />
+    <Content Include="Views\Paging\Bootstrap.cshtml" />
     <None Include="Views\Paging\Index.cshtml" />
     <None Include="Views\Paging\IndexAjax.cshtml" />
     <None Include="Views\Paging\ProductsByCategory.cshtml" />
@@ -99,6 +102,7 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Shared\DisplayTemplates\BootstrapPagination.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvcPaging\MvcPaging.csproj">

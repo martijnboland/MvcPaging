@@ -66,5 +66,11 @@ namespace MvcPaging.Demo.Controllers
 			var products = this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize);
 			return PartialView("_ProductGrid", products);
 		}
+
+		public ActionResult Bootstrap(int? page)
+		{
+			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+			return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
+		}
 	}
 }
