@@ -11,7 +11,16 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-        Added non-generic IPagedList interface for convenience.
+- Refactored and simplified Html.Pager helper. The number of overloads is 
+  drastically reduced. Optional parameters are added via a Fluent interface.
+- Introduced PaginationModel and optional DisplayTemplate for more display
+  flexibility (https://github.com/martijnboland/MvcPaging/pull/6), thanks Rajeesh C V!
+- Added MaxNrOfPages option (https://github.com/martijnboland/MvcPaging/pull/4)
+- BREAKING CHANGE: Html.Pager overloads with actionName and routeValues have been 
+  removed. Use the Options method:
+  Html.Pager(pageSize, pageNumber, totalItemCount).Options(o => o.Action("ActionName"))
+- BREAKING CHANGE: the Ajax.Pager helper is removed. For AJAX scenarios use the
+  Html.Pager(pageSize, pageNumber, totalItemCount, ajaxOptions) overload
     </releaseNotes>
   </metadata>
 </package>
