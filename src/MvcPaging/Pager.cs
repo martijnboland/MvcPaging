@@ -49,12 +49,12 @@ namespace MvcPaging
 				var below = (currentPage - middle);
 				var above = (currentPage + middle);
 
-				if (below < 4)
+				if (below < 2)
 				{
 					above = nrOfPagesToDisplay;
 					below = 1;
 				}
-				else if (above > (pageCount - 4))
+				else if (above > (pageCount - 2))
 				{
 					above = pageCount;
 					below = (pageCount - nrOfPagesToDisplay + 1);
