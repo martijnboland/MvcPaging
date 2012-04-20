@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using System.Web.Mvc.Html;
 
 namespace MvcPaging
 {
@@ -11,16 +12,12 @@ namespace MvcPaging
 
 		public static Pager Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount)
 		{
-			return new Pager(htmlHelper.ViewContext, pageSize, currentPage, totalItemCount);
+			return new Pager(htmlHelper, pageSize, currentPage, totalItemCount);
 		}
 
-		#endregion
-
-		#region AjaxHelper extensions
-
-		public static Pager Pager(this AjaxHelper ajaxHelper, int pageSize, int currentPage, int totalItemCount,  AjaxOptions ajaxOptions)
+		public static Pager Pager(this HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount, AjaxOptions ajaxOptions)
 		{
-			return new Pager(ajaxHelper.ViewContext, pageSize, currentPage, totalItemCount).Options(o => o.AjaxOptions(ajaxOptions));
+			return new Pager(htmlHelper, pageSize, currentPage, totalItemCount).Options(o => o.AjaxOptions(ajaxOptions));
 		}
 
 		#endregion

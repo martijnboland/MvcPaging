@@ -2,6 +2,7 @@
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 using System.Web.Routing;
 using System.Collections.Generic;
 
@@ -9,15 +10,15 @@ namespace MvcPaging
 {
 	public class Pager : IHtmlString
 	{
-		private readonly ViewContext viewContext;
+		private readonly HtmlHelper htmlHelper;
 		private readonly int pageSize;
 		private readonly int currentPage;
 		private readonly int totalItemCount;
 		private readonly PagerOptions pagerOptions;
 
-		public Pager(ViewContext viewContext, int pageSize, int currentPage, int totalItemCount)
+		public Pager(HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount)
 		{
-			this.viewContext = viewContext;
+			this.htmlHelper = htmlHelper;
 			this.pageSize = pageSize;
 			this.currentPage = currentPage;
 			this.totalItemCount = totalItemCount;
@@ -30,14 +31,14 @@ namespace MvcPaging
 			return this;
 		}
 
-		public IEnumerable<PaginationModel> BuildPaginationModel()
+		public PaginationModel BuildPaginationModel(Func<int, string> generateUrl)
 		{
-			var pages = new List<PaginationModel>();
+			var model = new PaginationModel();
 
 			var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
 
 			// Previous
-			pages.Add(currentPage > 1 ? new PaginationModel { Active = true, DisplayText = "«", PageIndex = currentPage - 1 } : new PaginationModel { Active = false, DisplayText = "«" });
+			model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = "«", PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = "«" });
 
 			var start = 1;
 			var end = pageCount;
@@ -66,14 +67,14 @@ namespace MvcPaging
 
 			if (start > 1)
 			{
-				pages.Add(new PaginationModel { Active = true, PageIndex = 1, DisplayText = "1" });
+				model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 1, DisplayText = "1", Url = generateUrl(1) });
 				if (start > 3)
 				{
-					pages.Add(new PaginationModel { Active = true, PageIndex = 2, DisplayText = "2" });
+					model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 2, DisplayText = "2", Url = generateUrl(2) });
 				}
 				if (start > 2)
 				{
-					pages.Add(new PaginationModel { Active = true, DisplayText = "..." });
+					model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = "..." });
 				}
 			}
 
@@ -81,66 +82,81 @@ namespace MvcPaging
 			{
 				if (i == currentPage || (currentPage <= 0 && i == 0))
 				{
-					pages.Add(new PaginationModel { Active = true, PageIndex = i, IsCurrent = true, DisplayText = i.ToString() });
+					model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = i, IsCurrent = true, DisplayText = i.ToString() });
 				}
 				else
 				{
-					pages.Add(new PaginationModel { Active = true, PageIndex = i, DisplayText = i.ToString() });
+					model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = i, DisplayText = i.ToString(), Url = generateUrl(i) });
 				}
 			}
 			if (end < pageCount)
 			{
 				if (end < pageCount - 1)
 				{
-					pages.Add(new PaginationModel { Active = true, DisplayText = "..." });
+					model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = "..." });
 				}
 				if (pageCount - 2 > end)
 				{
-					pages.Add(new PaginationModel { Active = true, PageIndex = pageCount - 1, DisplayText = (pageCount - 1).ToString() });
+					model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount - 1, DisplayText = (pageCount - 1).ToString(), Url = generateUrl(pageCount - 1) });
 				}
 
-				pages.Add(new PaginationModel { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString() });
+				model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString(), Url = generateUrl(pageCount) });
 			}
 
 			// Next
-			pages.Add(currentPage < pageCount ? new PaginationModel { Active = true, PageIndex = currentPage + 1, DisplayText = "»" } : new PaginationModel { Active = false, DisplayText = "»" });
+			model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = "»", Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = "»" });
 
-			return pages;
+			return model;
 		}
 
 		public string ToHtmlString()
 		{
-			var sb = new StringBuilder();
+			var model = BuildPaginationModel(GeneratePageUrl);
 
-			var pages = BuildPaginationModel();
-
-			foreach (var page in pages)
+			if (! String.IsNullOrEmpty(this.pagerOptions.DisplayTemplate))
 			{
-				if (page.Active)
+				var templatePath = string.Format("DisplayTemplates/{0}", this.pagerOptions.DisplayTemplate);
+				return htmlHelper.Partial(templatePath, model).ToHtmlString();
+			}
+			else
+			{
+				var sb = new StringBuilder();		
+				
+				foreach (var paginationLink in model.PaginationLinks)
 				{
-					if (page.IsCurrent)
+					if (paginationLink.Active)
 					{
-						sb.AppendFormat("<span class=\"current\">{0}</span>", page.DisplayText);
-					}
-					else if (!page.PageIndex.HasValue)
-					{
-						sb.AppendFormat(page.DisplayText);
+						if (paginationLink.IsCurrent)
+						{
+							sb.AppendFormat("<span class=\"current\">{0}</span>", paginationLink.DisplayText);
+						}
+						else if (!paginationLink.PageIndex.HasValue)
+						{
+							sb.AppendFormat(paginationLink.DisplayText);
+						}
+						else
+						{
+							var linkBuilder = new StringBuilder("<a");
+							if (pagerOptions.AjaxOptions != null)
+								foreach (var ajaxOption in pagerOptions.AjaxOptions.ToUnobtrusiveHtmlAttributes())
+									linkBuilder.AppendFormat(" {0}=\"{1}\"", ajaxOption.Key, ajaxOption.Value);
+
+							linkBuilder.AppendFormat(" href=\"{0}\">{1}</a>", paginationLink.Url, paginationLink.DisplayText);
+							sb.Append(linkBuilder.ToString());
+						}
 					}
 					else
 					{
-						sb.Append(GeneratePageLink(page.DisplayText, page.PageIndex.GetValueOrDefault()));
+						sb.AppendFormat("<span class=\"disabled\">{0}</span>", paginationLink.DisplayText);
 					}
 				}
-				else
-				{
-					sb.AppendFormat("<span class=\"disabled\">{0}</span>", page.DisplayText);
-				}
+				return sb.ToString();
 			}
-			return sb.ToString();
 		}
 
-		private string GeneratePageLink(string linkText, int pageNumber)
+		private string GeneratePageUrl(int pageNumber)
 		{
+			var viewContext = this.htmlHelper.ViewContext;
 			var routeDataValues = viewContext.RequestContext.RouteData.Values;
 			RouteValueDictionary pageLinkValueDictionary;
 			// Avoid canonical errors when page count is equal to 1.
@@ -170,18 +186,7 @@ namespace MvcPaging
 			// 'Render' virtual path.
 			var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext, pageLinkValueDictionary);
 
-			if (virtualPathForArea == null)
-				return null;
-
-			var stringBuilder = new StringBuilder("<a");
-
-			if (pagerOptions.AjaxOptions != null)
-				foreach (var ajaxOption in pagerOptions.AjaxOptions.ToUnobtrusiveHtmlAttributes())
-					stringBuilder.AppendFormat(" {0}=\"{1}\"", ajaxOption.Key, ajaxOption.Value);
-
-			stringBuilder.AppendFormat(" href=\"{0}\">{1}</a>", virtualPathForArea.VirtualPath, linkText);
-
-			return stringBuilder.ToString();
+			return virtualPathForArea == null ? null : virtualPathForArea.VirtualPath;
 		}
 	}
 }

@@ -1,13 +1,28 @@
-﻿namespace MvcPaging
-{  
-    public class PaginationModel
-    {
-        public bool Active { get; set; }
+﻿using System.Collections.Generic;
 
-        public bool IsCurrent { get; set; }
+namespace MvcPaging
+{
+	public class PaginationModel
+	{
+		public IList<PaginationLink> PaginationLinks { get; private set; }
 
-        public int? PageIndex { get; set; }
+		public PaginationModel()
+		{
+			PaginationLinks = new List<PaginationLink>();
+		}
+	}
 
-        public string DisplayText { get; set; }
-    }
+
+	public class PaginationLink
+	{
+		public bool Active { get; set; }
+
+		public bool IsCurrent { get; set; }
+
+		public int? PageIndex { get; set; }
+
+		public string DisplayText { get; set; }
+
+		public string Url { get; set; }
+	}
 }
