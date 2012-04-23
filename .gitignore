@@ -7,3 +7,4 @@ _ReSharper.*
 *.suo
 *.cache
 nuget/lib/net40
+/packages
