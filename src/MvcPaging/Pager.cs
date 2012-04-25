@@ -112,15 +112,15 @@ namespace MvcPaging
 		{
 			var model = BuildPaginationModel(GeneratePageUrl);
 
-			if (! String.IsNullOrEmpty(this.pagerOptions.DisplayTemplate))
+			if (!String.IsNullOrEmpty(this.pagerOptions.DisplayTemplate))
 			{
 				var templatePath = string.Format("DisplayTemplates/{0}", this.pagerOptions.DisplayTemplate);
 				return htmlHelper.Partial(templatePath, model).ToHtmlString();
 			}
 			else
 			{
-				var sb = new StringBuilder();		
-				
+				var sb = new StringBuilder();
+
 				foreach (var paginationLink in model.PaginationLinks)
 				{
 					if (paginationLink.Active)
