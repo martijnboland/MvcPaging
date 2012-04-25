@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc.Ajax;
 
 namespace MvcPaging
@@ -6,12 +6,12 @@ namespace MvcPaging
 	public class PaginationModel
 	{
 		public IList<PaginationLink> PaginationLinks { get; private set; }
-        	public AjaxOptions AjaxOptions { get; internal set; }
+		public AjaxOptions AjaxOptions { get; internal set; }
 
 		public PaginationModel()
 		{
 			PaginationLinks = new List<PaginationLink>();
-            		AjaxOptions = null;
+			AjaxOptions = null;
 		}
 	}
 

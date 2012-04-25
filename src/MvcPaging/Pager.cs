@@ -104,12 +104,12 @@ namespace MvcPaging
 
 			// Next
 			model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = "»", Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = "»" });
-			
+
 			// AjaxOptions
-		        if (pagerOptions.AjaxOptions != null)
-	                {
-	                	model.AjaxOptions = pagerOptions.AjaxOptions;
-	                }
+			if (pagerOptions.AjaxOptions != null)
+			{
+				model.AjaxOptions = pagerOptions.AjaxOptions;
+			}
 
 			return model;
 		}
