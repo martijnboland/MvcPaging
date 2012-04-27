@@ -1,3 +1,11 @@
+2.0.2 (2012-04-27)
+- Added AjaxOptions property to PaginationModel, so the DisplayTemplate option can be 
+  used in Ajax scenarios. Thanks to Raffaele.
+- Added AlwaysAddFirstPageNumber configuration option to force the page number to be
+  set for page 1.
+  This is for scenarios where omitting the page parameter not automatically defaults
+  to page 1.
+
 2.0.0 (2012-04-20)
 - Refactored and simplified Html.Pager helper. The number of overloads is 
   drastically reduced. Optional parameters are added via a Fluent interface.

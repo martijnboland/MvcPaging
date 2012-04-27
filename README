@@ -29,7 +29,11 @@ Possible options:
         name is rendered instead. Note that the DisplayTemplate must have a model of type PaginationModel
 
 	MaxNrOfPages(int maxNrOfPages)
-		Sets the maximum number of pages to show		
+		Sets the maximum number of pages to show	
+	
+	AlwaysAddFirstPageNumber
+		By default we don't add the page number for page 1 because it results in canonical links. 
+		Use this option to override this behaviour.	
 
 --------------------------------------------------------------------------------------------------------
 
