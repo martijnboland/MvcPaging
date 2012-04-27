@@ -93,6 +93,20 @@ namespace MvcPaging
 		}
 
 		/// <summary>
+		/// Always add the page number to the generated link for the first page.
+		/// </summary>
+		/// <remarks>
+		/// By default we don't add the page number for page 1 because it results in canonical links. 
+		/// Use this option to override this behaviour.
+		/// </remarks>
+		/// <returns></returns>
+		public PagerOptionsBuilder AlwaysAddFirstPageNumber()
+		{
+			this.pagerOptions.AlwaysAddFirstPageNumber = true;
+			return this;
+		}
+
+		/// <summary>
 		/// Set the AjaxOptions.
 		/// </summary>
 		/// <param name="ajaxOptions"></param>

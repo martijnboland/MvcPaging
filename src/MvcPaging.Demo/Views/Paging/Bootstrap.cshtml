@@ -61,7 +61,11 @@
 				}
 			</tbody>
 		</table>
-		@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.DisplayTemplate("BootstrapPagination").MaxNrOfPages(14))
+		@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+			.DisplayTemplate("BootstrapPagination")
+			.MaxNrOfPages(14)
+			.AlwaysAddFirstPageNumber()
+		)
 	</div>
 	<!-- /container -->
 </body>

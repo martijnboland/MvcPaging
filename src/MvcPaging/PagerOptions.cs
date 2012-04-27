@@ -11,6 +11,7 @@ namespace MvcPaging
 		public string DisplayTemplate { get; internal set; }
 		public int MaxNrOfPages { get; internal set; }
 		public AjaxOptions AjaxOptions { get; internal set; }
+		public bool AlwaysAddFirstPageNumber { get; internal set; } 
 
 		public PagerOptions()
 		{
