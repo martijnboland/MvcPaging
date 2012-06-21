@@ -5,10 +5,29 @@ namespace MvcPaging
 {
 	public class PagerOptions
 	{
-		const int DefaultMaxNrOfPages = 10;
+        public static class DefaultDefaults
+        {
+            public const int MaxNrOfPages = 10;
+            public const string DisplayTemplate = null;
+            public const bool AlwaysAddFirstPageNumber = false;
+        }
 		const string DefaultPageRouteValueKey = "page";
 
-		public RouteValueDictionary RouteValues { get; internal set; }
+        public static class Defaults
+        {
+            public static int MaxNrOfPages = DefaultDefaults.MaxNrOfPages;
+            public static string DisplayTemplate = DefaultDefaults.DisplayTemplate;
+            public static bool AlwaysAddFirstPageNumber = DefaultDefaults.AlwaysAddFirstPageNumber;
+
+            public static void ResetToDefaults()
+            {
+                MaxNrOfPages = DefaultDefaults.MaxNrOfPages;
+                DisplayTemplate = DefaultDefaults.DisplayTemplate;
+                AlwaysAddFirstPageNumber = DefaultDefaults.AlwaysAddFirstPageNumber;
+            }
+        }
+
+        public RouteValueDictionary RouteValues { get; internal set; }
 		public string DisplayTemplate { get; internal set; }
 		public int MaxNrOfPages { get; internal set; }
 		public AjaxOptions AjaxOptions { get; internal set; }
@@ -18,8 +37,10 @@ namespace MvcPaging
 
 		public PagerOptions()
 		{
-			this.RouteValues = new RouteValueDictionary();
-			MaxNrOfPages = DefaultMaxNrOfPages;
+			RouteValues = new RouteValueDictionary();
+            DisplayTemplate = Defaults.DisplayTemplate;
+            MaxNrOfPages = Defaults.MaxNrOfPages;
+            AlwaysAddFirstPageNumber = Defaults.AlwaysAddFirstPageNumber;
 			PageRouteValueKey = DefaultPageRouteValueKey;
 		}
 	}
