@@ -43,31 +43,31 @@ namespace MvcPaging.Tests
 			}
 		}
 
-        [Test]
-	    public void Can_Defaults_Be_Set()
-        {
-            var first = new PagerOptions();
-            PagerOptions.Defaults.AlwaysAddFirstPageNumber = !PagerOptions.DefaultDefaults.AlwaysAddFirstPageNumber;
-            PagerOptions.Defaults.DisplayTemplate = PagerOptions.DefaultDefaults.DisplayTemplate + "-test";
-            PagerOptions.Defaults.MaxNrOfPages = PagerOptions.DefaultDefaults.MaxNrOfPages + 1;
+		[Test]
+		public void Can_Defaults_Be_Set()
+		{
+			var first = new PagerOptions();
+			PagerOptions.Defaults.AlwaysAddFirstPageNumber = !PagerOptions.DefaultDefaults.AlwaysAddFirstPageNumber;
+			PagerOptions.Defaults.DisplayTemplate = PagerOptions.DefaultDefaults.DisplayTemplate + "-test";
+			PagerOptions.Defaults.MaxNrOfPages = PagerOptions.DefaultDefaults.MaxNrOfPages + 1;
 
-            var second = new PagerOptions();
+			var second = new PagerOptions();
 
-            Assert.AreEqual(second.AlwaysAddFirstPageNumber, PagerOptions.Defaults.AlwaysAddFirstPageNumber);
-            Assert.AreEqual(second.DisplayTemplate, PagerOptions.Defaults.DisplayTemplate);
-            Assert.AreEqual(second.MaxNrOfPages, PagerOptions.Defaults.MaxNrOfPages);
+			Assert.AreEqual(second.AlwaysAddFirstPageNumber, PagerOptions.Defaults.AlwaysAddFirstPageNumber);
+			Assert.AreEqual(second.DisplayTemplate, PagerOptions.Defaults.DisplayTemplate);
+			Assert.AreEqual(second.MaxNrOfPages, PagerOptions.Defaults.MaxNrOfPages);
 
-            Assert.AreNotEqual(first.AlwaysAddFirstPageNumber, second.AlwaysAddFirstPageNumber);
-            Assert.AreNotEqual(first.DisplayTemplate, second.DisplayTemplate);
-            Assert.AreNotEqual(first.MaxNrOfPages, second.MaxNrOfPages);
+			Assert.AreNotEqual(first.AlwaysAddFirstPageNumber, second.AlwaysAddFirstPageNumber);
+			Assert.AreNotEqual(first.DisplayTemplate, second.DisplayTemplate);
+			Assert.AreNotEqual(first.MaxNrOfPages, second.MaxNrOfPages);
 
-            // cleanup
-            PagerOptions.Defaults.ResetToDefaults();
+			// cleanup
+			PagerOptions.Defaults.Reset();
 
-            Assert.AreEqual(PagerOptions.DefaultDefaults.AlwaysAddFirstPageNumber, PagerOptions.Defaults.AlwaysAddFirstPageNumber);
-            Assert.AreEqual(PagerOptions.DefaultDefaults.DisplayTemplate, PagerOptions.Defaults.DisplayTemplate);
-            Assert.AreEqual(PagerOptions.DefaultDefaults.MaxNrOfPages, PagerOptions.Defaults.MaxNrOfPages);
-        }
+			Assert.AreEqual(PagerOptions.DefaultDefaults.AlwaysAddFirstPageNumber, PagerOptions.Defaults.AlwaysAddFirstPageNumber);
+			Assert.AreEqual(PagerOptions.DefaultDefaults.DisplayTemplate, PagerOptions.Defaults.DisplayTemplate);
+			Assert.AreEqual(PagerOptions.DefaultDefaults.MaxNrOfPages, PagerOptions.Defaults.MaxNrOfPages);
+		}
 
 		[Test]
 		public void Can_Action_Be_Set_Before_RouteData()
