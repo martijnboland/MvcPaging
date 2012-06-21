@@ -6,7 +6,7 @@ namespace MvcPaging
 	public class PagerOptions
 	{
 		const int DefaultMaxNrOfPages = 10;
-        const string DefaultPageRouteValueKey = "page";
+		const string DefaultPageRouteValueKey = "page";
 
 		public RouteValueDictionary RouteValues { get; internal set; }
 		public string DisplayTemplate { get; internal set; }
@@ -19,7 +19,7 @@ namespace MvcPaging
 		{
 			this.RouteValues = new RouteValueDictionary();
 			MaxNrOfPages = DefaultMaxNrOfPages;
-            PageRouteValueKey = DefaultPageRouteValueKey;
+			PageRouteValueKey = DefaultPageRouteValueKey;
 		}
 	}
 }
