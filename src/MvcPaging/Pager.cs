@@ -111,7 +111,7 @@ namespace MvcPaging
 				model.AjaxOptions = pagerOptions.AjaxOptions;
 			}
 
-            model.Options = pagerOptions;
+			model.Options = pagerOptions;
 			return model;
 		}
 
@@ -166,7 +166,7 @@ namespace MvcPaging
 			var routeDataValues = viewContext.RequestContext.RouteData.Values;
 			RouteValueDictionary pageLinkValueDictionary;
 			// Avoid canonical errors when page count is equal to 1.
-			if (pageNumber == 1 && ! this.pagerOptions.AlwaysAddFirstPageNumber)
+			if (pageNumber == 1 && !this.pagerOptions.AlwaysAddFirstPageNumber)
 			{
 				pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues);
 				if (routeDataValues.ContainsKey("page"))

@@ -44,35 +44,35 @@ namespace MvcPaging.Tests
 		}
 
 		[Test]
-        public void Can_Action_Be_Set_Before_RouteData()
-        {
-            const string ACTION_NAME = "testaction";
-            // Assemble
-            var pager = new Pager(null, 2, 1, 5).Options(o => o.Action(ACTION_NAME).RouteValues(new {a = "b"}));
+		public void Can_Action_Be_Set_Before_RouteData()
+		{
+			const string ACTION_NAME = "testaction";
+			// Assemble
+			var pager = new Pager(null, 2, 1, 5).Options(o => o.Action(ACTION_NAME).RouteValues(new { a = "b" }));
 
-            // Act
-            var result = pager.BuildPaginationModel(BuildUrl);
+			// Act
+			var result = pager.BuildPaginationModel(BuildUrl);
 
-            // Assert
-            Assert.AreEqual(result.Options.Action, ACTION_NAME);
-            Assert.AreEqual(result.Options.RouteValues["action"], ACTION_NAME);
-        }
+			// Assert
+			Assert.AreEqual(result.Options.Action, ACTION_NAME);
+			Assert.AreEqual(result.Options.RouteValues["action"], ACTION_NAME);
+		}
 
-        [Test]
-        public void Is_Action_Overriden()
-        {
-            const string ACTION_NAME = "testaction";
-            const string ACTION_NAME_2 = "testaction2";
-            // Assemble
-            var pager = new Pager(null, 2, 1, 5).Options(o => o.Action(ACTION_NAME).RouteValues(new { a = "b", action = ACTION_NAME_2 }));
+		[Test]
+		public void Is_Action_Overriden()
+		{
+			const string ACTION_NAME = "testaction";
+			const string ACTION_NAME_2 = "testaction2";
+			// Assemble
+			var pager = new Pager(null, 2, 1, 5).Options(o => o.Action(ACTION_NAME).RouteValues(new { a = "b", action = ACTION_NAME_2 }));
 
-            // Act
-            var result = pager.BuildPaginationModel(BuildUrl);
+			// Act
+			var result = pager.BuildPaginationModel(BuildUrl);
 
-            // Assert
-            Assert.AreEqual(result.Options.Action, ACTION_NAME);
-            Assert.AreEqual(result.Options.RouteValues["action"], ACTION_NAME_2);
-        }
+			// Assert
+			Assert.AreEqual(result.Options.Action, ACTION_NAME);
+			Assert.AreEqual(result.Options.RouteValues["action"], ACTION_NAME_2);
+		}
 
 		[Test]
 		public void Can_Build_Correct_Model_For_5_Items_With_2_Item_Per_Page()
