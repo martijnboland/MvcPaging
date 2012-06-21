@@ -111,6 +111,7 @@ namespace MvcPaging
 				model.AjaxOptions = pagerOptions.AjaxOptions;
 			}
 
+            model.Options = pagerOptions;
 			return model;
 		}
 

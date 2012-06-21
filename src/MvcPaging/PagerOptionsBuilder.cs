@@ -27,6 +27,7 @@ namespace MvcPaging
 					throw new ArgumentException("The valuesDictionary already contains an action.", "action");
 				}
 				pagerOptions.RouteValues.Add("action", action);
+			    pagerOptions.Action = action;
 			}
 			return this;
 		}
@@ -66,6 +67,10 @@ namespace MvcPaging
 				throw new ArgumentException("routeValues may not be null", "routeValues");
 			}
 			this.pagerOptions.RouteValues = routeValues;
+            if (!string.IsNullOrWhiteSpace(pagerOptions.Action) && !pagerOptions.RouteValues.ContainsKey("action"))
+            {
+                pagerOptions.RouteValues.Add("action", pagerOptions.Action);
+            }
 			return this;
 		}
 

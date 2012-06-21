@@ -7,11 +7,13 @@ namespace MvcPaging
 	{
 		public IList<PaginationLink> PaginationLinks { get; private set; }
 		public AjaxOptions AjaxOptions { get; internal set; }
+        public PagerOptions Options { get; internal set; }
 
 		public PaginationModel()
 		{
 			PaginationLinks = new List<PaginationLink>();
 			AjaxOptions = null;
+	        Options = null;
 		}
 	}
 
