@@ -116,5 +116,20 @@ namespace MvcPaging
 			this.pagerOptions.AjaxOptions = ajaxOptions;
 			return this;
 		}
+
+        /// <summary>
+        /// Set the page routeValue key for pagination links
+        /// </summary>
+        /// <param name="pageRouteValueKey"></param>
+        /// <returns></returns>
+        public PagerOptionsBuilder PageRouteValueKey(string pageRouteValueKey)
+        {
+            if (pageRouteValueKey == null)
+            {
+                throw new ArgumentException("pageRouteValueKey may not be null", "pageRouteValueKey");
+            }
+            this.pagerOptions.PageRouteValueKey = pageRouteValueKey;
+            return this;
+        }
 	}
 }
