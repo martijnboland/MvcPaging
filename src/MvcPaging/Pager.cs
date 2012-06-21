@@ -169,14 +169,14 @@ namespace MvcPaging
 			if (pageNumber == 1 && !this.pagerOptions.AlwaysAddFirstPageNumber)
 			{
 				pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues);
-				if (routeDataValues.ContainsKey("page"))
+				if (routeDataValues.ContainsKey(this.pagerOptions.PageRouteValueKey))
 				{
-					routeDataValues.Remove("page");
+					routeDataValues.Remove(this.pagerOptions.PageRouteValueKey);
 				}
 			}
 			else
 			{
-				pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues) { { "page", pageNumber } };
+				pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues) { { this.pagerOptions.PageRouteValueKey, pageNumber } };
 			}
 
 			// To be sure we get the right route, ensure the controller and action are specified.

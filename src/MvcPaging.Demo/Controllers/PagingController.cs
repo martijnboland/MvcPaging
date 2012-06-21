@@ -9,7 +9,7 @@ namespace MvcPaging.Demo.Controllers
 	{
 		private const int DefaultPageSize = 10;
 		private IList<Product> allProducts = new List<Product>();
-		private readonly string[] categories = new string[3] {"Shoes", "Electronics", "Food"};
+		private readonly string[] categories = new string[3] { "Shoes", "Electronics", "Food" };
 
 		public PagingController()
 		{
@@ -24,7 +24,7 @@ namespace MvcPaging.Demo.Controllers
 			{
 				var product = new Product();
 				product.Name = "Product " + (i + 1);
-				var categoryIndex = i%4;
+				var categoryIndex = i % 4;
 				if (categoryIndex > 2)
 				{
 					categoryIndex = categoryIndex - 3;
@@ -40,13 +40,19 @@ namespace MvcPaging.Demo.Controllers
 			return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
 		}
 
+		public ActionResult CustomPageRouteValueKey(SearchModel search)
+		{
+			int currentPageIndex = search.page.HasValue ? search.page.Value - 1 : 0;
+			return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
+		}
+
 		public ActionResult ViewByCategory(string categoryName, int? page)
 		{
 			categoryName = categoryName ?? this.categories[0];
 			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
 			var productsByCategory = this.allProducts.Where(p => p.Category.Equals(categoryName)).ToPagedList(currentPageIndex,
-			                                                                                                  DefaultPageSize);
+																											  DefaultPageSize);
 			ViewBag.CategoryName = new SelectList(this.categories, categoryName);
 			ViewBag.CategoryDisplayName = categoryName;
 			return View("ProductsByCategory", productsByCategory);

@@ -75,6 +75,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -93,6 +94,7 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Areas\Area51\Views\_ViewStart.cshtml" />
     <Content Include="Views\Paging\Bootstrap.cshtml" />
+    <Content Include="Views\Paging\CustomPageRouteValueKey.cshtml" />
     <None Include="Views\Paging\Index.cshtml" />
     <None Include="Views\Paging\IndexAjax.cshtml" />
     <None Include="Views\Paging\ProductsByCategory.cshtml" />
