@@ -1,3 +1,9 @@
+2.0.3 (2012-06-22)
+- Fixed issue where setting the Action option would be overridden when also setting
+  the RouteValues option. 
+- Added Defaults to PagerOptions class.
+- Added PageRouteValueKey option to set the name of the page parameter.
+
 2.0.2 (2012-04-27)
 - Added AjaxOptions property to PaginationModel, so the DisplayTemplate option can be 
   used in Ajax scenarios. Thanks to Raffaele.

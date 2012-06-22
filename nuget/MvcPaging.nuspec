@@ -11,12 +11,12 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.0.2 (2012-04-27)
-- Added AjaxOptions property to PaginationModel, so the DisplayTemplate option can be 
-  used in Ajax scenarios. Thanks to Raffaele.
-- Added AlwaysAddFirstPageNumber configuration option to force the page number to be
-  set for page 1.
-  This is for scenarios where omitting the page parameter not automatically defaults
-  to page 1.    </releaseNotes>
+2.0.3 (2012-06-22)
+- Fixed issue where setting the Action option would be overridden when also setting
+  the RouteValues option. 
+- Added Defaults to PagerOptions class.
+- Added PageRouteValueKey option to set the name of the page parameter.
+Thanks to Erdogan Kurtur and Steven Anderson for the contributions.
+     </releaseNotes>
   </metadata>
 </package>
