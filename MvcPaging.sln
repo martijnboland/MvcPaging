@@ -1,12 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcPaging", "src\MvcPaging\MvcPaging.csproj", "{AAF30968-1118-4937-B392-E9863EA8D76D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcPaging.Tests", "src\MvcPaging.Tests\MvcPaging.Tests.csproj", "{85DE9684-F5EA-47FC-B492-4C46EF17CB9A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcPaging.Demo", "src\MvcPaging.Demo\MvcPaging.Demo.csproj", "{3F6E4B30-82C7-4033-90D0-2E27E3ACE75F}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B8CB3AEF-3742-4FC0-870B-874714E1D240}"
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOG = CHANGELOG
@@ -19,6 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{05A016
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcPaging", "src\MvcPaging\MvcPaging.csproj", "{AAF30968-1118-4937-B392-E9863EA8D76D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcPaging.Tests", "src\MvcPaging.Tests\MvcPaging.Tests.csproj", "{85DE9684-F5EA-47FC-B492-4C46EF17CB9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcPaging.Demo", "src\MvcPaging.Demo\MvcPaging.Demo.csproj", "{3F6E4B30-82C7-4033-90D0-2E27E3ACE75F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
