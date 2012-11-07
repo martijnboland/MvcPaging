@@ -17,7 +17,7 @@ namespace MvcPaging
 		int ItemEnd { get; }		
 	}
 
-	public interface IPagedList<T> : IPagedList, IList<T>
+	public interface IPagedList<out T> : IPagedList, IEnumerable<T>
 	{
 	}
 }
