@@ -1,6 +1,6 @@
 ﻿@model IPagedList<MvcPaging.Demo.Models.Product>
 @{
-	ViewBag.Title = "Browse all products";
+	ViewBag.Title = "Browse all products (custom page route value key)";
 }
 <h2>@ViewBag.Title</h2>
 <table class="grid">
@@ -21,5 +21,6 @@
 </table>
 <div class="pager">
 	@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
-                .PageRouteValueKey("Search.page"))
+                .PageRouteValueKey("Search.page")
+				.AlwaysAddFirstPageNumber())
 </div>
