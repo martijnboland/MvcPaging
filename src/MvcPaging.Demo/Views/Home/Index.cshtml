@@ -19,8 +19,12 @@
 	<dd>An example of paging a list of products.</dd>
 </dl>
 <dl>
-	<dt>@Html.ActionLink("Paging with filtering", "ViewByCategory", "Paging")</dt>
-	<dd>A list of products that are filtered on the category.</dd>
+	<dt>@Html.ActionLink("Paging with filtering #1", "ViewByCategory", "Paging")</dt>
+	<dd>A list of products that are filtered by category.</dd>
+</dl>
+<dl>
+	<dt>@Html.ActionLink("Paging with filtering #2", "ViewByCategories", "Paging")</dt>
+	<dd>A list of products that are filtered by multiple categories.</dd>
 </dl>
 <dl>
 	<dt>@Html.ActionLink("Simple paging in an area", "Index", "Paging", new { Area = "Area51" }, null )</dt>

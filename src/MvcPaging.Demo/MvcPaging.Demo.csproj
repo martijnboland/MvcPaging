@@ -22,6 +22,10 @@
     <UseIISExpress>false</UseIISExpress>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -93,6 +97,7 @@
     <Content Include="Areas\Area51\Views\_ViewStart.cshtml" />
     <Content Include="Views\Paging\Bootstrap.cshtml" />
     <Content Include="Views\Paging\CustomPageRouteValueKey.cshtml" />
+    <Content Include="Views\Paging\ProductsByCategories.cshtml" />
     <None Include="Views\Paging\Index.cshtml" />
     <None Include="Views\Paging\IndexAjax.cshtml" />
     <None Include="Views\Paging\ProductsByCategory.cshtml" />

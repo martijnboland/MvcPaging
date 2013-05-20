@@ -9,7 +9,7 @@ namespace MvcPaging.Demo.Controllers
 	{
 		private const int DefaultPageSize = 10;
 		private IList<Product> allProducts = new List<Product>();
-		private readonly string[] categories = new string[3] { "Shoes", "Electronics", "Food" };
+		private readonly string[] allCategories = new string[3] { "Shoes", "Electronics", "Food" };
 
 		public PagingController()
 		{
@@ -29,7 +29,7 @@ namespace MvcPaging.Demo.Controllers
 				{
 					categoryIndex = categoryIndex - 3;
 				}
-				product.Category = categories[categoryIndex];
+				product.Category = allCategories[categoryIndex];
 				allProducts.Add(product);
 			}
 		}
@@ -48,14 +48,26 @@ namespace MvcPaging.Demo.Controllers
 
 		public ActionResult ViewByCategory(string categoryName, int? page)
 		{
-			categoryName = categoryName ?? this.categories[0];
+			categoryName = categoryName ?? this.allCategories[0];
 			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
 			var productsByCategory = this.allProducts.Where(p => p.Category.Equals(categoryName)).ToPagedList(currentPageIndex,
 																											  DefaultPageSize);
-			ViewBag.CategoryName = new SelectList(this.categories, categoryName);
+			ViewBag.CategoryName = new SelectList(this.allCategories, categoryName);
 			ViewBag.CategoryDisplayName = categoryName;
 			return View("ProductsByCategory", productsByCategory);
+		}
+
+		public ActionResult ViewByCategories(string[] categories, int? page)
+		{
+			categories = categories ?? new string[0];
+			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+
+			var productsByCategories = this.allProducts.Where(p => categories.Contains(p.Category)).ToPagedList(currentPageIndex,
+																											  DefaultPageSize);
+			ViewBag.AllCategories = this.allCategories;
+			ViewBag.SelectedCategories = categories;
+			return View("ProductsByCategories", productsByCategories);
 		}
 
 		public ActionResult IndexAjax()

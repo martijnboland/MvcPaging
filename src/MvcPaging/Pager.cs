@@ -189,6 +189,9 @@ namespace MvcPaging
 				pageLinkValueDictionary.Add("action", routeDataValues["action"]);
 			}
 
+			// Fix the dictionary if there are arrays in it.
+			pageLinkValueDictionary = pageLinkValueDictionary.FixListRouteDataValues();
+
 			// 'Render' virtual path.
 			var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext, pageLinkValueDictionary);
 
