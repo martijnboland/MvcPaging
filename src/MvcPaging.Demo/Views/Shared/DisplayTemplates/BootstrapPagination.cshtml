@@ -29,6 +29,17 @@
 	{
 		aBuilder.MergeAttribute("href", link.Url);
 	}
+	
+	// Ajax support
+	if (Model.AjaxOptions != null)
+        {
+            foreach (var ajaxOption in Model.AjaxOptions.ToUnobtrusiveHtmlAttributes())
+            {
+                aBuilder.MergeAttribute(ajaxOption.Key, ajaxOption.Value.ToString(), true);
+            }
+        }
+	
+	
 	if (link.DisplayText == "«")
 	{
 		aBuilder.SetInnerText("←");
