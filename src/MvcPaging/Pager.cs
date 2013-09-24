@@ -73,7 +73,7 @@ namespace MvcPaging
 				}
 				if (start > 2)
 				{
-					model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = "..." });
+					model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = "<span class=\"points\">...</span>" });
 				}
 			}
 
@@ -92,7 +92,7 @@ namespace MvcPaging
 			{
 				if (end < pageCount - 1)
 				{
-					model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = "..." });
+                    model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = "<span class=\"points\">...</span>" });
 				}
 				if (pageCount - 2 > end)
 				{
