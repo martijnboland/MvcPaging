@@ -90,5 +90,11 @@ namespace MvcPaging.Demo.Controllers
 			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 			return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
 		}
+
+		public ActionResult Bootstrap3(int? page)
+		{
+			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+			return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
+		}
 	}
 }

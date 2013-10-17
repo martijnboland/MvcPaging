@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Css\bootstrap.min.css" />
+    <Content Include="Content\Css\bootstrap3.min.css" />
     <Content Include="Content\Css\Site.css" />
     <Content Include="Content\Images\accent.png" />
     <Content Include="Content\Images\bullet.png" />
@@ -98,6 +99,7 @@
     <Content Include="Views\Paging\Bootstrap.cshtml" />
     <Content Include="Views\Paging\CustomPageRouteValueKey.cshtml" />
     <Content Include="Views\Paging\ProductsByCategories.cshtml" />
+    <Content Include="Views\Paging\Bootstrap3.cshtml" />
     <None Include="Views\Paging\Index.cshtml" />
     <None Include="Views\Paging\IndexAjax.cshtml" />
     <None Include="Views\Paging\ProductsByCategory.cshtml" />
@@ -110,6 +112,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Shared\DisplayTemplates\BootstrapPagination.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Bootstrap3Pagination.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvcPaging\MvcPaging.csproj">
