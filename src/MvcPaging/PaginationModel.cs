@@ -29,5 +29,7 @@ namespace MvcPaging
 		public string DisplayText { get; set; }
 
 		public string Url { get; set; }
+
+		public bool IsSpacer { get; set; }
 	}
 }

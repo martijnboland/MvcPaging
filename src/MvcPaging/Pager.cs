@@ -73,7 +73,7 @@ namespace MvcPaging
 				}
 				if (start > 2)
 				{
-					model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = "..." });
+					model.PaginationLinks.Add(new PaginationLink { Active = false, DisplayText = "...", IsSpacer = true });
 				}
 			}
 
@@ -92,7 +92,7 @@ namespace MvcPaging
 			{
 				if (end < pageCount - 1)
 				{
-					model.PaginationLinks.Add(new PaginationLink { Active = true, DisplayText = "..." });
+					model.PaginationLinks.Add(new PaginationLink { Active = false, DisplayText = "...", IsSpacer = true });
 				}
 				if (pageCount - 2 > end)
 				{
@@ -153,7 +153,14 @@ namespace MvcPaging
 					}
 					else
 					{
-						sb.AppendFormat("<span class=\"disabled\">{0}</span>", paginationLink.DisplayText);
+						if (!paginationLink.IsSpacer)
+						{
+							sb.AppendFormat("<span class=\"disabled\">{0}</span>", paginationLink.DisplayText);
+						}
+						else
+						{
+							sb.Append(paginationLink.DisplayText);
+						}
 					}
 				}
 				return sb.ToString();
