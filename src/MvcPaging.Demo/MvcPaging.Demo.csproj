@@ -90,16 +90,17 @@
     <Content Include="Content\Images\heroAccent.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.7.2.js" />
-    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Areas\Area51\Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Views\Paging\Bootstrap.cshtml" />
     <Content Include="Views\Paging\CustomPageRouteValueKey.cshtml" />
     <Content Include="Views\Paging\ProductsByCategories.cshtml" />
     <Content Include="Views\Paging\Bootstrap3.cshtml" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
     <None Include="Views\Paging\Index.cshtml" />
     <None Include="Views\Paging\IndexAjax.cshtml" />
     <None Include="Views\Paging\ProductsByCategory.cshtml" />
@@ -162,7 +163,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49523</DevelopmentServerPort>
+          <DevelopmentServerPort>49800</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/MvcPaging</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
