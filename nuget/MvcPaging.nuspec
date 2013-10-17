@@ -11,11 +11,13 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.0.4 (2013-05-20)
-- Support for covariance in IPagedList by inheriting from IEnumerable&lt;T&gt; instead of 
-  IList&lt;T&gt; (https://github.com/martijnboland/MvcPaging/pull/17).
-- Small bugfix in Demo project (https://github.com/martijnboland/MvcPaging/pull/18).
-- Support for array parameters (https://github.com/martijnboland/MvcPaging/issues/22).
+2.0.5 (2013-10-17)
+- Added AJAX support in DisplayTemplate for Twitter Bootstrap 
+  (https://github.com/martijnboland/MvcPaging/pull/25)
+- Introduced spacer link ( [...] between groups of pages) and set IsActive to false
+  for these links. (https://github.com/martijnboland/MvcPaging/issues/23)
+- Added demo page with Bootstrap 3
+  (https://github.com/martijnboland/MvcPaging/issues/27)
      </releaseNotes>
   </metadata>
 </package>

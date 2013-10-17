@@ -1,3 +1,11 @@
+2.0.5 (2013-10-17)
+- Added AJAX support in DisplayTemplate for Twitter Bootstrap 
+  (https://github.com/martijnboland/MvcPaging/pull/25)
+- Introduced spacer link ( [...] between groups of pages) and set IsActive to false
+  for these links. (https://github.com/martijnboland/MvcPaging/issues/23)
+- Added demo page with Bootstrap 3
+  (https://github.com/martijnboland/MvcPaging/issues/27)
+
 2.0.4 (2013-05-20)
 - Support for covariance in IPagedList by inheriting from IEnumerable<T> instead of 
   IList<T> (https://github.com/martijnboland/MvcPaging/pull/17).
