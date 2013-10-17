@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/martijnboland/MvcPaging</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A Paging library for ASP.NET MVC.</description>
-    <tags>mvc3 pager asp.net mvc paging</tags>
+    <tags>mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
 2.0.5 (2013-10-17)
 - Added AJAX support in DisplayTemplate for Twitter Bootstrap 
