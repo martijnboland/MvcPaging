@@ -206,6 +206,22 @@ namespace MvcPaging.Tests
 			CollectionAssert.AreEqual(expectedPagination, result.PaginationLinks, new PaginationComparer());
 		}
 
+		[Test]
+		public void Are_Pager_Propeties_Properly_Propagated()
+		{
+			// Arrange
+			var pager = new Pager(null, 10, 3, 158);
+
+			// Act
+			var model = pager.BuildPaginationModel(BuildUrl);
+
+			// Assert
+			Assert.AreEqual(model.PageSize, 10);
+			Assert.AreEqual(model.CurrentPage, 3);
+			Assert.AreEqual(model.TotalItemCount, 158);
+			Assert.AreEqual(model.PageCount, 16);
+		}
+
 		private string BuildUrl(int pageNumber)
 		{
 			return string.Format("/test/{0}", pageNumber);

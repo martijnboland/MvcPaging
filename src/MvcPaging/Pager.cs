@@ -30,11 +30,10 @@ namespace MvcPaging
 			return this;
 		}
 
-		public PaginationModel BuildPaginationModel(Func<int, string> generateUrl)
+		public virtual PaginationModel BuildPaginationModel(Func<int, string> generateUrl)
 		{
-			var model = new PaginationModel();
-
 			var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
+			var model = new PaginationModel { PageSize = this.pageSize, CurrentPage = this.currentPage, TotalItemCount = this.totalItemCount, PageCount = pageCount };
 
 			// Previous
 			model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = "«", PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = "«" });
@@ -115,7 +114,7 @@ namespace MvcPaging
 			return model;
 		}
 
-		public string ToHtmlString()
+		public virtual string ToHtmlString()
 		{
 			var model = BuildPaginationModel(GeneratePageUrl);
 
@@ -167,7 +166,7 @@ namespace MvcPaging
 			}
 		}
 
-		private string GeneratePageUrl(int pageNumber)
+		protected virtual string GeneratePageUrl(int pageNumber)
 		{
 			var viewContext = this.htmlHelper.ViewContext;
 			var routeDataValues = viewContext.RequestContext.RouteData.Values;
