@@ -19,7 +19,7 @@ namespace MvcPaging
                 if (value is System.Collections.IEnumerable && !(value is string))
                 {
                     var index = 0;
-                    foreach (string val in (System.Collections.IEnumerable)value)
+                    foreach (var val in (System.Collections.IEnumerable)value)
                     {
                         newRv.Add(string.Format("{0}[{1}]", key, index), val);
                         index++;
