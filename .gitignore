@@ -8,3 +8,4 @@ _ReSharper.*
 *.cache
 nuget/lib/net40
 /packages
+/*.user
