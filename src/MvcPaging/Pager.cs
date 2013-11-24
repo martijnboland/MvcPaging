@@ -158,7 +158,7 @@ namespace MvcPaging
 						}
 						else
 						{
-							sb.Append(paginationLink.DisplayText);
+							sb.AppendFormat("<span class=\"spacer\">{0}</span>", paginationLink.DisplayText);
 						}
 					}
 				}
