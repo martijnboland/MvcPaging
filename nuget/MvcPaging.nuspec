@@ -9,15 +9,16 @@
     <projectUrl>https://github.com/martijnboland/MvcPaging</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A Paging library for ASP.NET MVC.</description>
-    <tags>mvc4 mvc3 pager asp.net mvc paging</tags>
+    <tags>mvc5 mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.0.5 (2013-10-17)
-- Added AJAX support in DisplayTemplate for Twitter Bootstrap 
-  (https://github.com/martijnboland/MvcPaging/pull/25)
-- Introduced spacer link ( [...] between groups of pages) and set IsActive to false
-  for these links. (https://github.com/martijnboland/MvcPaging/issues/23)
-- Added demo page with Bootstrap 3
-  (https://github.com/martijnboland/MvcPaging/issues/27)
+2.0.6 (2013-12-12)
+- Added Pager properties (PageSize, CurrentPage, PageCount, TotalItemCount) to 
+  PaginationModel to be used in custom display templates. 
+  See also: https://github.com/martijnboland/MvcPaging/issues/28
+- The pages spacer (...) is wrapped in a span.
+- Fixed issue that occurred with routedata values when array parameters were 
+  non-strings. See https://github.com/martijnboland/MvcPaging/pull/29.
+Thanks to  Anıl Anar and Erick Jensen.
      </releaseNotes>
   </metadata>
 </package>
