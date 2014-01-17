@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Routing;
 
@@ -6,7 +9,7 @@ namespace MvcPaging
 {
 	public class PagerOptionsBuilder
 	{
-		private PagerOptions pagerOptions;
+		protected PagerOptions pagerOptions;
 
 		public PagerOptionsBuilder(PagerOptions pagerOptions)
 		{
@@ -134,6 +137,26 @@ namespace MvcPaging
 		internal PagerOptionsBuilder AjaxOptions(AjaxOptions ajaxOptions)
 		{
 			this.pagerOptions.AjaxOptions = ajaxOptions;
+			return this;
+		}
+	}
+
+	public class PagerOptionsBuilder<TModel> : PagerOptionsBuilder
+	{
+		private HtmlHelper<TModel> htmlHelper;
+
+		public PagerOptionsBuilder(PagerOptions pagerOptions, HtmlHelper<TModel> htmlHelper) : base(pagerOptions)
+		{
+			this.htmlHelper = htmlHelper;
+		}
+
+		public PagerOptionsBuilder<TModel> AddRouteValueFor<TProperty>(Expression<Func<TModel, TProperty>> expression)
+		{
+			var name = ExpressionHelper.GetExpressionText(expression);
+			var metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
+
+			AddRouteValue(name, metadata.Model);
+
 			return this;
 		}
 	}

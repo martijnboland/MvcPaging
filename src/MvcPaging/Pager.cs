@@ -13,7 +13,7 @@ namespace MvcPaging
 		private readonly int pageSize;
 		private readonly int currentPage;
 		private readonly int totalItemCount;
-		private readonly PagerOptions pagerOptions;
+		protected readonly PagerOptions pagerOptions;
 
 		public Pager(HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount)
 		{
@@ -202,6 +202,22 @@ namespace MvcPaging
 			var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext, pageLinkValueDictionary);
 
 			return virtualPathForArea == null ? null : virtualPathForArea.VirtualPath;
+		}
+	}
+
+	public class Pager<TModel> : Pager
+	{
+		private HtmlHelper<TModel> htmlHelper;
+
+		public Pager(HtmlHelper<TModel> htmlHelper, int pageSize, int currentPage, int totalItemCount) : base(htmlHelper, pageSize, currentPage, totalItemCount)
+		{
+			this.htmlHelper = htmlHelper;
+		}
+
+		public Pager<TModel> Options(Action<PagerOptionsBuilder<TModel>> buildOptions)
+		{
+			buildOptions(new PagerOptionsBuilder<TModel>(this.pagerOptions, htmlHelper));
+			return this;
 		}
 	}
 }

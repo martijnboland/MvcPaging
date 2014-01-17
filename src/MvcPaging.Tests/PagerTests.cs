@@ -2,6 +2,8 @@
 using System.Linq;
 using NUnit.Framework;
 using System.Collections;
+using Moq;
+using System.Web.Mvc;
 
 namespace MvcPaging.Tests
 {
@@ -106,13 +108,13 @@ namespace MvcPaging.Tests
 			// Assemble
 			var pager = new Pager(null, 2, 1, 5);
 			var expectedPagination = new List<PaginationLink>()
-            {
-                new PaginationLink { Active = false, DisplayText = "«", Url = null },
-                new PaginationLink { Active = true, DisplayText = "1", PageIndex = 1, IsCurrent = true, Url = null },
-                new PaginationLink { Active = true, DisplayText = "2", PageIndex = 2, Url = "/test/2" },
-                new PaginationLink { Active = true, DisplayText = "3", PageIndex = 3, Url = "/test/3" },
-                new PaginationLink { Active = true, DisplayText = "»", PageIndex = 2, Url = "/test/2" }
-            };
+			{
+				new PaginationLink { Active = false, DisplayText = "«", Url = null },
+				new PaginationLink { Active = true, DisplayText = "1", PageIndex = 1, IsCurrent = true, Url = null },
+				new PaginationLink { Active = true, DisplayText = "2", PageIndex = 2, Url = "/test/2" },
+				new PaginationLink { Active = true, DisplayText = "3", PageIndex = 3, Url = "/test/3" },
+				new PaginationLink { Active = true, DisplayText = "»", PageIndex = 2, Url = "/test/2" }
+			};
 
 			// Act
 			var result = pager.BuildPaginationModel(BuildUrl);
@@ -128,15 +130,15 @@ namespace MvcPaging.Tests
 			// Assemble
 			var pager = new Pager(null, 2, 3, 10);
 			var expectedPagination = new List<PaginationLink>()
-            {
-                new PaginationLink { Active = true, DisplayText = "«", PageIndex = 2, Url = "/test/2" },
-                new PaginationLink { Active = true, DisplayText = "1", PageIndex = 1, Url = "/test/1" },
-                new PaginationLink { Active = true, DisplayText = "2", PageIndex = 2, Url = "/test/2" },
-                new PaginationLink { Active = true, DisplayText = "3", PageIndex = 3, IsCurrent = true, Url = null },
-                new PaginationLink { Active = true, DisplayText = "4", PageIndex = 4, Url = "/test/4" },
-                new PaginationLink { Active = true, DisplayText = "5", PageIndex = 5, Url = "/test/5" },
-                new PaginationLink { Active = true, DisplayText = "»", PageIndex = 4, Url = "/test/4" }
-            };
+			{
+				new PaginationLink { Active = true, DisplayText = "«", PageIndex = 2, Url = "/test/2" },
+				new PaginationLink { Active = true, DisplayText = "1", PageIndex = 1, Url = "/test/1" },
+				new PaginationLink { Active = true, DisplayText = "2", PageIndex = 2, Url = "/test/2" },
+				new PaginationLink { Active = true, DisplayText = "3", PageIndex = 3, IsCurrent = true, Url = null },
+				new PaginationLink { Active = true, DisplayText = "4", PageIndex = 4, Url = "/test/4" },
+				new PaginationLink { Active = true, DisplayText = "5", PageIndex = 5, Url = "/test/5" },
+				new PaginationLink { Active = true, DisplayText = "»", PageIndex = 4, Url = "/test/4" }
+			};
 
 			// Act
 			var result = pager.BuildPaginationModel(BuildUrl);
@@ -153,23 +155,23 @@ namespace MvcPaging.Tests
 			// Assemble
 			var pager = new Pager(null, 2, 13, 33);
 			var expectedPagination = new List<PaginationLink>()
-            {
-                new PaginationLink { Active = true, DisplayText = "«", PageIndex = 12, Url = "/test/12" },
-                new PaginationLink { Active = true, DisplayText = "1", PageIndex = 1, Url = "/test/1" },
-                new PaginationLink { Active = true, DisplayText = "2", PageIndex = 2, Url = "/test/2" },
-                new PaginationLink { Active = false, DisplayText = "...", Url = null, IsSpacer = true },
-                new PaginationLink { Active = true, DisplayText = "8", PageIndex = 8, Url = "/test/8" },
-                new PaginationLink { Active = true, DisplayText = "9", PageIndex = 9, Url = "/test/9" },
-                new PaginationLink { Active = true, DisplayText = "10", PageIndex = 10, Url = "/test/10" },
-                new PaginationLink { Active = true, DisplayText = "11", PageIndex = 11, Url = "/test/11" },
-                new PaginationLink { Active = true, DisplayText = "12", PageIndex = 12, Url = "/test/12" },
-                new PaginationLink { Active = true, DisplayText = "13", PageIndex = 13, IsCurrent = true, Url = null },
-                new PaginationLink { Active = true, DisplayText = "14", PageIndex = 14, Url = "/test/14" },
-                new PaginationLink { Active = true, DisplayText = "15", PageIndex = 15, Url = "/test/15" },
-                new PaginationLink { Active = true, DisplayText = "16", PageIndex = 16, Url = "/test/16" },
-                new PaginationLink { Active = true, DisplayText = "17", PageIndex = 17, Url = "/test/17" },                
-                new PaginationLink { Active = true, DisplayText = "»", PageIndex = 14, Url = "/test/14" }
-            };
+			{
+				new PaginationLink { Active = true, DisplayText = "«", PageIndex = 12, Url = "/test/12" },
+				new PaginationLink { Active = true, DisplayText = "1", PageIndex = 1, Url = "/test/1" },
+				new PaginationLink { Active = true, DisplayText = "2", PageIndex = 2, Url = "/test/2" },
+				new PaginationLink { Active = false, DisplayText = "...", Url = null, IsSpacer = true },
+				new PaginationLink { Active = true, DisplayText = "8", PageIndex = 8, Url = "/test/8" },
+				new PaginationLink { Active = true, DisplayText = "9", PageIndex = 9, Url = "/test/9" },
+				new PaginationLink { Active = true, DisplayText = "10", PageIndex = 10, Url = "/test/10" },
+				new PaginationLink { Active = true, DisplayText = "11", PageIndex = 11, Url = "/test/11" },
+				new PaginationLink { Active = true, DisplayText = "12", PageIndex = 12, Url = "/test/12" },
+				new PaginationLink { Active = true, DisplayText = "13", PageIndex = 13, IsCurrent = true, Url = null },
+				new PaginationLink { Active = true, DisplayText = "14", PageIndex = 14, Url = "/test/14" },
+				new PaginationLink { Active = true, DisplayText = "15", PageIndex = 15, Url = "/test/15" },
+				new PaginationLink { Active = true, DisplayText = "16", PageIndex = 16, Url = "/test/16" },
+				new PaginationLink { Active = true, DisplayText = "17", PageIndex = 17, Url = "/test/17" },                
+				new PaginationLink { Active = true, DisplayText = "»", PageIndex = 14, Url = "/test/14" }
+			};
 
 			// Act
 			var result = pager.BuildPaginationModel(BuildUrl);
@@ -185,18 +187,18 @@ namespace MvcPaging.Tests
 			// Assemble
 			var pager = new Pager(null, 2, 1, 33).Options(o => o.MaxNrOfPages(5));
 			var expectedPagination = new List<PaginationLink>()
-            {
-                new PaginationLink { Active = false, DisplayText = "«", Url = null },
-                new PaginationLink { Active = true, DisplayText = "1", PageIndex = 1, IsCurrent = true, Url = null },
-                new PaginationLink { Active = true, DisplayText = "2", PageIndex = 2, Url = "/test/2"},
-                new PaginationLink { Active = true, DisplayText = "3", PageIndex = 3, Url = "/test/3" },
+			{
+				new PaginationLink { Active = false, DisplayText = "«", Url = null },
+				new PaginationLink { Active = true, DisplayText = "1", PageIndex = 1, IsCurrent = true, Url = null },
+				new PaginationLink { Active = true, DisplayText = "2", PageIndex = 2, Url = "/test/2"},
+				new PaginationLink { Active = true, DisplayText = "3", PageIndex = 3, Url = "/test/3" },
 				new PaginationLink { Active = true, DisplayText = "4", PageIndex = 4, Url = "/test/4" },
 				new PaginationLink { Active = true, DisplayText = "5", PageIndex = 5, Url = "/test/5" },
 				new PaginationLink { Active = false, DisplayText = "...", Url = null, IsSpacer = true },
 				new PaginationLink { Active = true, DisplayText = "16", PageIndex = 16, Url = "/test/16" },
-                new PaginationLink { Active = true, DisplayText = "17", PageIndex = 17, Url = "/test/17" }, 
-                new PaginationLink { Active = true, DisplayText = "»", PageIndex = 2, Url = "/test/2" }
-            };
+				new PaginationLink { Active = true, DisplayText = "17", PageIndex = 17, Url = "/test/17" }, 
+				new PaginationLink { Active = true, DisplayText = "»", PageIndex = 2, Url = "/test/2" }
+			};
 
 			// Act
 			var result = pager.BuildPaginationModel(BuildUrl);
@@ -222,9 +224,61 @@ namespace MvcPaging.Tests
 			Assert.AreEqual(model.PageCount, 16);
 		}
 
+		[Test]
+		public void Can_Add_RouteData_Values_With_StrongTyping()
+		{
+			// Arrange
+			var model = new TestModel { Foo = "bar" };
+			var htmlHelper = GetHtmlHelperWithModel(model);
+			var pager = new Pager<TestModel>(htmlHelper, 10, 3, 158);
+
+			// Act
+			pager = pager.Options(o => o.AddRouteValueFor(m => m.Foo));
+		
+			var result = pager.BuildPaginationModel(BuildUrl);
+
+			// Assert
+			Assert.That(result.Options.RouteValues.ContainsKey("Foo"));
+			Assert.AreEqual(result.Options.RouteValues["Foo"], "bar");
+		}
+
+		[Test]
+		public void Can_Add_RouteData_Values_With_StrongTyping_Nested()
+		{
+			// Arrange
+			var model = new TestModel { Nested = new Nested { X = 34, Y = 21 } };
+			var htmlHelper = GetHtmlHelperWithModel(model);
+			var pager = new Pager<TestModel>(htmlHelper, 10, 3, 158);
+
+			// Act
+			pager = pager.Options(o => o.AddRouteValueFor(m => m.Nested.X));
+			pager = pager.Options(o => o.AddRouteValueFor(m => m.Nested.Y));
+
+			var result = pager.BuildPaginationModel(BuildUrl);
+
+			// Assert
+			Assert.That(result.Options.RouteValues.ContainsKey("Nested.X"));
+			Assert.That(result.Options.RouteValues.ContainsKey("Nested.Y"));
+			Assert.AreEqual(result.Options.RouteValues["Nested.X"], 34);
+			Assert.AreEqual(result.Options.RouteValues["Nested.Y"], 21);
+		}
+
 		private string BuildUrl(int pageNumber)
 		{
 			return string.Format("/test/{0}", pageNumber);
+		}
+
+		private HtmlHelper<TModel> GetHtmlHelperWithModel<TModel>(TModel model)
+		{
+			var viewData = new ViewDataDictionary<TModel>(model);
+
+			var dataContainerMock = new Mock<IViewDataContainer>();
+			dataContainerMock.Setup(m => m.ViewData).Returns(viewData);
+
+			var viewContext = new ViewContext { ViewData = viewData };
+			var htmlHelper = new HtmlHelper<TModel>(viewContext, dataContainerMock.Object);
+
+			return htmlHelper;
 		}
 	}
 }
