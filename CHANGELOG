@@ -1,3 +1,10 @@
+2.1.0 (2014-01-22)
+- Made Pager and OptionsBuilder Model-aware. This allows for future strongly typed 
+  extensions with lambda's.
+- Added AddRouteValueFor<TModel>(expression) method to fluent options interface:
+    Pager(...).Options(o => o.AddRouteValueFor(m => m.SearchQuery))
+  See also: https://github.com/martijnboland/MvcPaging/issues/32
+
 2.0.6 (2013-12-12)
 - Added Pager properties (PageSize, CurrentPage, PageCount, TotalItemCount) to 
   PaginationModel to be used in custom display templates. 

@@ -11,14 +11,12 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc5 mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.0.6 (2013-12-12)
-- Added Pager properties (PageSize, CurrentPage, PageCount, TotalItemCount) to 
-  PaginationModel to be used in custom display templates. 
-  See also: https://github.com/martijnboland/MvcPaging/issues/28
-- The pages spacer (...) is wrapped in a span.
-- Fixed issue that occurred with routedata values when array parameters were 
-  non-strings. See https://github.com/martijnboland/MvcPaging/pull/29.
-Thanks to  Anıl Anar and Erick Jensen.
+2.1.0 (2014-01-22)
+- Made Pager and OptionsBuilder Model-aware. This allows for future strongly typed 
+  extensions with lambda's.
+- Added AddRouteValueFor<TModel>(expression) method to fluent options interface:
+    Pager(...).Options(o => o.AddRouteValueFor(m => m.SearchQuery))
+  See also: https://github.com/martijnboland/MvcPaging/issues/32
      </releaseNotes>
   </metadata>
 </package>
