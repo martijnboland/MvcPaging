@@ -1,5 +1,5 @@
 ﻿@using System.Linq
-@model IPagedList<MvcPaging.Demo.Models.Product>
+@model MvcPaging.Demo.Models.ViewByCategoriesViewModel
 @{
 	ViewBag.Title = "Browse products by categories";
 }
@@ -10,13 +10,13 @@
 		Select category or categories:
 		<ul>
 			@{
-				IEnumerable<string> selectedCategories = ViewBag.SelectedCategories ?? new string[0];
+				IEnumerable<string> selectedCategories = Model.Categories ?? new string[0];
 			}
-			@foreach (var category in ViewBag.AllCategories)
+			@foreach (var category in Model.AvailableCategories)
 			{
 				<li>
 					<label>
-						<input type="checkbox" name="categories" value="@category" @if(selectedCategories.Any(c => c == category)) { <text> checked="checked"</text>} />
+						<input type="checkbox" name="categories" value="@category" @if(Model.Categories.Any(c => c == category)) { <text> checked="checked"</text>} />
 						@category
 					</label>
 				</li>
@@ -25,7 +25,7 @@
 		<input type="submit" value="Browse" />
 	</p>
 }
-@if (Model.Any())
+@if (Model.Products.Any())
 {
 	<table class="grid">
 		<thead>
@@ -35,7 +35,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (var product in Model)
+			@foreach (var product in Model.Products)
 			{
 				<tr>
 					<td>@product.Name</td>
@@ -45,7 +45,7 @@
 		</tbody>
 	</table>
 	<div class="pager">
-		@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("categories", ViewBag.SelectedCategories))
-		Displaying @Model.ItemStart - @Model.ItemEnd of @Model.TotalItemCount item(s)
+		@Html.Pager(Model.Products.PageSize, Model.Products.PageNumber, Model.Products.TotalItemCount).Options(o => o.AddRouteValueFor(m => m.Categories))
+		Displaying @Model.Products.ItemStart - @Model.Products.ItemEnd of @Model.Products.TotalItemCount item(s)
 	</div>
 }

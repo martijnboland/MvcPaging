@@ -60,14 +60,13 @@ namespace MvcPaging.Demo.Controllers
 
 		public ActionResult ViewByCategories(string[] categories, int? page)
 		{
-			categories = categories ?? new string[0];
+			var model = new ViewByCategoriesViewModel();
+			model.Categories = categories ?? new string[0];
 			int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
-			var productsByCategories = this.allProducts.Where(p => categories.Contains(p.Category)).ToPagedList(currentPageIndex,
-																											  DefaultPageSize);
-			ViewBag.AllCategories = this.allCategories;
-			ViewBag.SelectedCategories = categories;
-			return View("ProductsByCategories", productsByCategories);
+			model.Products = this.allProducts.Where(p => model.Categories.Contains(p.Category)).ToPagedList(currentPageIndex, DefaultPageSize);
+			model.AvailableCategories = this.allCategories;
+			return View("ProductsByCategories", model);
 		}
 
 		public ActionResult IndexAjax()

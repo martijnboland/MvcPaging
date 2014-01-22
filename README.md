@@ -18,6 +18,10 @@ Possible options:
 	AddRouteValue(string name, object value)
 		Adds a single route value parameter that is added to page url's
 
+	AddRouteValueFor<TProperty>(Expression<Func<TModel, TProperty>> expression)
+		Adds a strongly typed route value parameter based on the current model
+		(e.g. AddRouteValueFor(m => m.SearchQuery))
+
 	RouteValues(object routeValues)
 		Adds route value parameters that are added to the page url's
 

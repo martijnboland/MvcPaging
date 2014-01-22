@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ViewByCategoriesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
