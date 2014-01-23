@@ -1,19 +1,61 @@
-﻿@model IPagedList<MvcPaging.Demo.Models.Product>
+﻿@using MvcPaging.Demo.Models
+@model IPagedList<Product>
+	@{
+		ViewBag.Title = "Browse products by category";
+	}
+	<h2>@ViewBag.Title</h2>
+	@using (Html.BeginForm("ViewByCategory", "Paging", FormMethod.Get))
+	{
+		<p>
+			Select a category:
+			@Html.DropDownList("categoryName")
+			<input type="submit" value="Browse" />
+		</p>
+	}
+	@if (Model.Count() > 0)
+	{
+		<table class="grid">
+			<thead>
+				<tr>
+					<th>Product name</th>
+					<th>Category</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var product in Model)
+				{
+					<tr>
+						<td>@product.Name</td>
+						<td>@product.Category</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<div class="pager">
+			@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("categoryname", ViewBag.CategoryDisplayName))
+			Displaying @Model.ItemStart - @Model.ItemEnd of @Model.TotalItemCount item(s)
+		</div>
+	}
+	@{
+		var sourceModel = new ViewSourceViewModel();
+		sourceModel.RazorCode = @"
+@using MvcPaging.Demo.Models
+@model IPagedList<Product>
 @{
-	ViewBag.Title = "Browse products by category";
+	ViewBag.Title = ""Browse products by category"";
 }
 <h2>@ViewBag.Title</h2>
-@using (Html.BeginForm("ViewByCategory", "Paging", FormMethod.Get))
+@using (Html.BeginForm(""ViewByCategory"", ""Paging"", FormMethod.Get))
 {
 	<p>
 		Select a category:
-		@Html.DropDownList("categoryName")
-		<input type="submit" value="Browse" />
+		@Html.DropDownList(""categoryName"")
+		<input type=""submit"" value=""Browse"" />
 	</p>
 }
 @if (Model.Count() > 0)
 {
-	<table class="grid">
+	<table class=""grid"">
 		<thead>
 			<tr>
 				<th>Product name</th>
@@ -22,16 +64,33 @@
 		</thead>
 		<tbody>
 			@foreach (var product in Model)
-   {
+			{
 				<tr>
 					<td>@product.Name</td>
 					<td>@product.Category</td>
 				</tr>
-   }
+			}
 		</tbody>
 	</table>
-	<div class="pager">
-		@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue("categoryname", ViewBag.CategoryDisplayName))
+	<div class=""pager"">
+		@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.AddRouteValue(""categoryname"", ViewBag.CategoryDisplayName))
 		Displaying @Model.ItemStart - @Model.ItemEnd of @Model.TotalItemCount item(s)
 	</div>
 }
+";
+		sourceModel.ControllerCode = @"
+public ActionResult ViewByCategory(string categoryName, int? page)
+{
+	categoryName = categoryName ?? this.allCategories[0];
+	int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+
+	var productsByCategory = this.allProducts.Where(p => p.Category.Equals(categoryName)).ToPagedList(currentPageIndex,
+																										DefaultPageSize);
+	ViewBag.CategoryName = new SelectList(this.allCategories, categoryName);
+	ViewBag.CategoryDisplayName = categoryName;
+	return View(""ProductsByCategory"", productsByCategory);
+}
+";
+}
+
+@Html.Partial("ViewSource", sourceModel)

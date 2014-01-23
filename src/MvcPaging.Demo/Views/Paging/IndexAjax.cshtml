@@ -1,4 +1,5 @@
-﻿@model IPagedList<MvcPaging.Demo.Models.Product>
+﻿@using MvcPaging.Demo.Models
+@model IPagedList<Product>
 @{
 	ViewBag.Title = "Browse all products (ajax)";
 }
@@ -6,3 +7,62 @@
 <div id="gridcontainer">
 	@Html.Partial("_ProductGrid", Model)
 </div>
+@{
+	var sourceModel = new ViewSourceViewModel();
+	sourceModel.RazorCode = @"
+
+<!-- IndexAjax.cshtml view -->
+
+@using MvcPaging.Demo.Models
+@model IPagedList<Product>
+@{
+	ViewBag.Title = ""Browse all products (ajax)"";
+}
+<h2>@ViewBag.Title</h2>
+<div id=""gridcontainer"">
+	@Html.Partial(""_ProductGrid"", Model)
+</div>
+
+<!-- Partial _ProductGrid.cshtml view -->
+
+@model IPagedList<MvcPaging.Demo.Models.Product>
+<table class=""grid"">
+	<thead>
+		<tr>
+			<th>Product name</th>
+			<th>Category</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var product in Model) {
+			<tr>
+				<td>@product.Name</td>
+				<td>@product.Category</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<div class=""pager"">
+	@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount, new AjaxOptions { UpdateTargetId = ""gridcontainer""}).Options(o => o.Action(""AjaxPage""))
+</div>
+";
+
+	sourceModel.ControllerCode = @"
+public ActionResult IndexAjax()
+{
+	int currentPageIndex = 0;
+	var products = this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize);
+	return View(products);
+}
+
+public ActionResult AjaxPage(int? page)
+{
+	ViewBag.Title = ""Browse all products"";
+	int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+	var products = this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize);
+	return PartialView(""_ProductGrid"", products);
+}
+";
+}
+
+@Html.Partial("ViewSource", sourceModel)

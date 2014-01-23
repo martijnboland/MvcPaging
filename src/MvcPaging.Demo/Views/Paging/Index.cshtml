@@ -1,4 +1,5 @@
-﻿@model IPagedList<MvcPaging.Demo.Models.Product>
+﻿@using MvcPaging.Demo.Models
+@model IPagedList<MvcPaging.Demo.Models.Product>
 @{
 	ViewBag.Title = "Browse all products";
 }
@@ -22,3 +23,43 @@
 <div class="pager">
 	@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
 </div>
+
+@{
+	var sourceModel = new ViewSourceViewModel();
+	sourceModel.RazorCode = @"
+@using MvcPaging.Demo.Models
+@model IPagedList<MvcPaging.Demo.Models.Product>
+@{
+	ViewBag.Title = ""Browse all products"";
+}
+<h2>@ViewBag.Title</h2>
+<table class=""grid"">
+	<thead>
+		<tr>
+			<th>Product name</th>
+			<th>Category</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var product in Model) { 
+			<tr>
+				<td>@product.Name</td>
+				<td>@product.Category</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<div class=""pager"">
+	@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>
+";
+	sourceModel.ControllerCode = @"
+public ActionResult Index(int? page)
+{
+	int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+	return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
+}
+";
+}
+
+@Html.Partial("ViewSource", sourceModel)
