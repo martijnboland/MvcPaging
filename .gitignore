@@ -9,3 +9,4 @@ _ReSharper.*
 nuget/lib/net40
 /packages
 /*.user
+PublishProfiles

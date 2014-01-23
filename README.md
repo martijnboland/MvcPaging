@@ -1,4 +1,5 @@
 The MvcPaging library contains an ASP.NET MVC HTML helper that renders a pager based on given parameters.
+A live demo can be found at http://demo.taiga.nl/mvcpaging.
 
 Usage (Razor / pseudo code): 
     
