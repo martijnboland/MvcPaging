@@ -78,7 +78,7 @@ namespace MvcPaging
 
 			for (var i = start; i <= end; i++)
 			{
-				if (i == currentPage || (currentPage <= 0 && i == 0))
+				if (i == currentPage || (currentPage <= 0 && i == 1))
 				{
 					model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = i, IsCurrent = true, DisplayText = i.ToString() });
 				}

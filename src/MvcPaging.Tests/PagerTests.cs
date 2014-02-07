@@ -263,6 +263,32 @@ namespace MvcPaging.Tests
 			Assert.AreEqual(result.Options.RouteValues["Nested.Y"], 21);
 		}
 
+		[Test]
+		public void When_current_page_is_not_set_the_first_link_should_be_current()
+		{
+			// Arrange
+			var pager = new Pager(null, 10, 0, 158);
+
+			// Act
+			var result = pager.BuildPaginationModel(BuildUrl);
+
+			// Assert
+			Assert.That(result.PaginationLinks.First(pl => pl.PageIndex != null).IsCurrent);
+		}
+
+		[Test]
+		public void When_current_page_is_set_to_one_the_first_link_should_be_current()
+		{
+			// Arrange
+			var pager = new Pager(null, 10, 1, 158);
+
+			// Act
+			var result = pager.BuildPaginationModel(BuildUrl);
+
+			// Assert
+			Assert.That(result.PaginationLinks.First(pl => pl.PageIndex != null).IsCurrent);
+		}
+
 		private string BuildUrl(int pageNumber)
 		{
 			return string.Format("/test/{0}", pageNumber);
