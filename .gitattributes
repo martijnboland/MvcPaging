@@ -1,0 +1,4 @@
+* text auto
+
+*.csproj text merge=union
+*.sln    text merge=union eol=crlf
