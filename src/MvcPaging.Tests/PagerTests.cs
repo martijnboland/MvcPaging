@@ -2,8 +2,8 @@
 using System.Linq;
 using NUnit.Framework;
 using System.Collections;
-using Moq;
 using System.Web.Mvc;
+using Moq;
 
 namespace MvcPaging.Tests
 {

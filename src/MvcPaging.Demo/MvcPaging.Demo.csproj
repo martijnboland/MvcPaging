@@ -23,9 +23,9 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -138,11 +138,11 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\demo.taiga.nl.pubxml" />
-    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
-    <Content Include="Scripts\jquery-2.0.3.js" />
-    <Content Include="Scripts\jquery-2.0.3.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <None Include="Scripts\jquery-2.1.0-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Areas\Area51\Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\SyntaxHighlighter\shAutoloader.js" />
     <Content Include="Scripts\SyntaxHighlighter\shBrushAppleScript.js" />
@@ -176,7 +176,6 @@
     <Content Include="Views\Paging\CustomPageRouteValueKey.cshtml" />
     <Content Include="Views\Paging\ProductsByCategories.cshtml" />
     <Content Include="Views\Paging\Bootstrap3.cshtml" />
-    <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Views\Paging\Index.cshtml" />
     <Content Include="Views\Paging\IndexAjax.cshtml" />
     <Content Include="Views\Paging\ProductsByCategory.cshtml" />
@@ -191,6 +190,7 @@
     <Content Include="Views\Shared\DisplayTemplates\BootstrapPagination.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Bootstrap3Pagination.cshtml" />
     <Content Include="Views\Shared\ViewSource.cshtml" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvcPaging\MvcPaging.csproj">
@@ -252,5 +252,4 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>
