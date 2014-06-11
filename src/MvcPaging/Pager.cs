@@ -15,7 +15,7 @@ namespace MvcPaging
 		private readonly int totalItemCount;
 		protected readonly PagerOptions pagerOptions;
 
-		public Pager(HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount)
+        public Pager(HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount)
 		{
 			this.htmlHelper = htmlHelper;
 			this.pageSize = pageSize;
@@ -35,8 +35,9 @@ namespace MvcPaging
 			var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
 			var model = new PaginationModel { PageSize = this.pageSize, CurrentPage = this.currentPage, TotalItemCount = this.totalItemCount, PageCount = pageCount };
 
-			// Previous
-			model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = "«", PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = "«" });
+            var prevousPageText = this.pagerOptions.PreviousPageText;
+            // Previous
+            model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = prevousPageText, PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = prevousPageText });
 
 			var start = 1;
 			var end = pageCount;
@@ -101,8 +102,9 @@ namespace MvcPaging
 				model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString(), Url = generateUrl(pageCount) });
 			}
 
-			// Next
-			model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = "»", Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = "»" });
+            var nextPageText = this.pagerOptions.NextPageText;
+            // Next
+            model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = nextPageText, Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = nextPageText });
 
 			// AjaxOptions
 			if (pagerOptions.AjaxOptions != null)

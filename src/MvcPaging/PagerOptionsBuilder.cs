@@ -50,6 +50,28 @@ namespace MvcPaging
 		}
 
 		/// <summary>
+		/// Set the text for previous page navigation.
+		/// </summary>
+        /// <param name="previousPageText"></param>
+		/// <returns></returns>
+		public PagerOptionsBuilder SetPreviousPageText(string previousPageText)
+		{
+		    pagerOptions.PreviousPageText = previousPageText;
+			return this;
+		}
+
+		/// <summary>
+        /// Set the text for next page navigation.
+		/// </summary>
+        /// <param name="nextPageText"></param>
+		/// <returns></returns>
+		public PagerOptionsBuilder SetNextPageText(string nextPageText)
+		{
+		    pagerOptions.NextPageText = nextPageText;
+			return this;
+		}
+
+		/// <summary>
 		/// Set custom route value parameters for the pager links.
 		/// </summary>
 		/// <param name="routeValues"></param>
