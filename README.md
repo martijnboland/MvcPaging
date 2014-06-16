@@ -39,8 +39,15 @@ Possible options:
 	AlwaysAddFirstPageNumber
 		By default we don't add the page number for page 1 because it results in canonical links. 
 		Use this option to override this behaviour.	
+
 	PageRouteValueKey
 		Set the page routeValue key for pagination links
+
+	SetPreviousPageText
+		Set a custom text for the previous page
+
+	SetNextPageText
+		Set a custom text for the next page
 
 --------------------------------------------------------------------------------------------------------
 
@@ -58,4 +65,4 @@ when the list already only contains the data for the page
 --------------------------------------------------------------------------------------------------------
 
 For the source and a demo project, see https://github.com/martijnboland/MvcPaging. 
-We accept contributions via GitHub pull requests. Please use tabs for indentation and turn off autocrlf.
+We accept contributions via GitHub pull requests. Please use tabs for indentation.
