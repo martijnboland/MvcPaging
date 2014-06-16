@@ -39,19 +39,8 @@
             }
         }
 	
-	
-	if (link.DisplayText == "«")
-	{
-		aBuilder.SetInnerText("←");
-	}
-	else if (link.DisplayText == "»")
-	{
-		aBuilder.SetInnerText("→");
-	}
-	else
-	{
-		aBuilder.SetInnerText(link.DisplayText);		
-	}
+	aBuilder.SetInnerText(link.DisplayText);		
+
 	liBuilder.InnerHtml = aBuilder.ToString();
 	
 	@Html.Raw(liBuilder.ToString())

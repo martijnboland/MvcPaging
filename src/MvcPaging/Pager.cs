@@ -35,8 +35,9 @@ namespace MvcPaging
 			var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
 			var model = new PaginationModel { PageSize = this.pageSize, CurrentPage = this.currentPage, TotalItemCount = this.totalItemCount, PageCount = pageCount };
 
+			var previousPageText = this.pagerOptions.PreviousPageText;
 			// Previous
-			model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = "«", PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = "«" });
+			model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = previousPageText, PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = previousPageText });
 
 			var start = 1;
 			var end = pageCount;
@@ -101,8 +102,9 @@ namespace MvcPaging
 				model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString(), Url = generateUrl(pageCount) });
 			}
 
+			var nextPageText = this.pagerOptions.NextPageText;
 			// Next
-			model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = "»", Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = "»" });
+			model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = nextPageText, Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = nextPageText });
 
 			// AjaxOptions
 			if (pagerOptions.AjaxOptions != null)
