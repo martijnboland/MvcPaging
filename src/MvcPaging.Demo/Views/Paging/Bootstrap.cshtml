@@ -71,6 +71,8 @@
 			.DisplayTemplate("BootstrapPagination")
 			.MaxNrOfPages(14)
 			.AlwaysAddFirstPageNumber()
+			.SetPreviousPageText("←")
+			.SetNextPageText("→")
 		)
 		
 		@{
@@ -145,6 +147,8 @@
 			.DisplayTemplate(""BootstrapPagination"")
 			.MaxNrOfPages(14)
 			.AlwaysAddFirstPageNumber()
+			.SetPreviousPageText(""←"")
+			.SetNextPageText(""→"")
 		)
 	</div>
 </body>
@@ -191,22 +195,11 @@
 				aBuilder.MergeAttribute(ajaxOption.Key, ajaxOption.Value.ToString(), true);
 			}
 		}
+	
+	aBuilder.SetInnerText(link.DisplayText);		
 
-
-	if (link.DisplayText == ""«"")
-	{
-		aBuilder.SetInnerText(""←"");
-	}
-	else if (link.DisplayText == ""»"")
-	{
-		aBuilder.SetInnerText(""→"");
-	}
-	else
-	{
-		aBuilder.SetInnerText(link.DisplayText);
-	}
 	liBuilder.InnerHtml = aBuilder.ToString();
-
+	
 	@Html.Raw(liBuilder.ToString())
 }
 ";
