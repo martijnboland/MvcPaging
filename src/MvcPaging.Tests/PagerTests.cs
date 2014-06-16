@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI;
 using NUnit.Framework;
 using System.Collections;
 using System.Web.Mvc;
@@ -287,6 +288,29 @@ namespace MvcPaging.Tests
 
 			// Assert
 			Assert.That(result.PaginationLinks.First(pl => pl.PageIndex != null).IsCurrent);
+		}
+
+		[Test]
+		public void Can_Build_Correct_Model_With_Custom_Previous_And_Next_Text()
+		{
+			// Assemble
+			var pager = new Pager(null, 2, 1, 5);
+			pager.Options(o => o.SetPreviousPageText("Prev").SetNextPageText("Next"));
+			var expectedPagination = new List<PaginationLink>()
+			{
+				new PaginationLink { Active = false, DisplayText = "Prev", Url = null },
+				new PaginationLink { Active = true, DisplayText = "1", PageIndex = 1, IsCurrent = true, Url = null },
+				new PaginationLink { Active = true, DisplayText = "2", PageIndex = 2, Url = "/test/2" },
+				new PaginationLink { Active = true, DisplayText = "3", PageIndex = 3, Url = "/test/3" },
+				new PaginationLink { Active = true, DisplayText = "Next", PageIndex = 2, Url = "/test/2" }
+			};
+
+			// Act
+			var result = pager.BuildPaginationModel(BuildUrl);
+
+			// Assert
+			Assert.AreEqual(expectedPagination.Count, result.PaginationLinks.Count());
+			CollectionAssert.AreEqual(expectedPagination, result.PaginationLinks, new PaginationComparer());
 		}
 
 		private string BuildUrl(int pageNumber)

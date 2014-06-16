@@ -11,8 +11,8 @@ namespace MvcPaging
 			public const string DisplayTemplate = null;
 			public const bool AlwaysAddFirstPageNumber = false;
 			public const string DefaultPageRouteValueKey = "page";
-            public const string PreviousPageText = "«";
-            public const string NextPageText = "»";
+			public const string PreviousPageText = "«";
+			public const string NextPageText = "»";
 		}
 
 		/// <summary>
@@ -25,8 +25,8 @@ namespace MvcPaging
 			public static string DisplayTemplate = DefaultDefaults.DisplayTemplate;
 			public static bool AlwaysAddFirstPageNumber = DefaultDefaults.AlwaysAddFirstPageNumber;
 			public static string DefaultPageRouteValueKey = DefaultDefaults.DefaultPageRouteValueKey;
-            public static string PreviousPageText = DefaultDefaults.PreviousPageText;
-            public static string NextPageText = DefaultDefaults.NextPageText;
+			public static string PreviousPageText = DefaultDefaults.PreviousPageText;
+			public static string NextPageText = DefaultDefaults.NextPageText;
 
 			public static void Reset()
 			{
@@ -34,8 +34,8 @@ namespace MvcPaging
 				DisplayTemplate = DefaultDefaults.DisplayTemplate;
 				AlwaysAddFirstPageNumber = DefaultDefaults.AlwaysAddFirstPageNumber;
 				DefaultPageRouteValueKey = DefaultDefaults.DefaultPageRouteValueKey;
-                PreviousPageText = DefaultDefaults.PreviousPageText;
-                NextPageText = DefaultDefaults.NextPageText;
+				PreviousPageText = DefaultDefaults.PreviousPageText;
+				NextPageText = DefaultDefaults.NextPageText;
 			}
 		}
 
@@ -56,8 +56,8 @@ namespace MvcPaging
 			MaxNrOfPages = Defaults.MaxNrOfPages;
 			AlwaysAddFirstPageNumber = Defaults.AlwaysAddFirstPageNumber;
 			PageRouteValueKey = Defaults.DefaultPageRouteValueKey;
-            PreviousPageText = DefaultDefaults.PreviousPageText;
-            NextPageText = DefaultDefaults.NextPageText;
+			PreviousPageText = DefaultDefaults.PreviousPageText;
+			NextPageText = DefaultDefaults.NextPageText;
 		}
 	}
 }
