@@ -1,5 +1,8 @@
-﻿@using MvcPaging.Demo.Models
+﻿@using MvcPaging
+@using MvcPaging.Demo.Models
+
 @model IPagedList<Product>
+
 	<h2>Welcome to area 51</h2>
 	<p>Don't like the area? @Html.ActionLink("Go back to the root area", "Index", "Home", new { area=String.Empty }, null)</p>
 	<table class="grid">
@@ -19,7 +22,7 @@
 		</tbody>
 	</table>
 	<div class="pager">
-		@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+		@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o.DisplayFirstAndLastPage())
 	</div>
 
 @{
