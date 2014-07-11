@@ -1,7 +1,7 @@
 The MvcPaging library contains an ASP.NET MVC HTML helper that renders a pager based on given parameters.
 A live demo can be found at http://demo.taiga.nl/mvcpaging.
 
-Usage (Razor / pseudo code): 
+###Usage (Razor / pseudo code): 
     
     @Html.Pager(pageSize, pageNumber, totalItemCount)
 
@@ -49,7 +49,7 @@ Possible options:
 	SetNextPageText
 		Set a custom text for the next page
 
---------------------------------------------------------------------------------------------------------
+###PagedList
 
 The library contains a PagedList class that makes it easy to work with paged data. Use it via an 
 extension method on IEnumerable<> or IList<>:
@@ -61,10 +61,6 @@ with any unpaged list or
     myList.ToPagedList(pageIndex, pageSize, totalItemCount)
 
 when the list already only contains the data for the page
-
---------------------------------------------------------------------------------------------------------
-
-For the source and a demo project, see https://github.com/martijnboland/MvcPaging. 
 
 ###Contributing
 
