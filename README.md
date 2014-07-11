@@ -65,4 +65,7 @@ when the list already only contains the data for the page
 --------------------------------------------------------------------------------------------------------
 
 For the source and a demo project, see https://github.com/martijnboland/MvcPaging. 
+
+###Contributing
+
 We accept contributions via GitHub pull requests. Please use tabs for indentation.
