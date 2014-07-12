@@ -35,9 +35,15 @@ namespace MvcPaging
 			var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
 			var model = new PaginationModel { PageSize = this.pageSize, CurrentPage = this.currentPage, TotalItemCount = this.totalItemCount, PageCount = pageCount };
 
+			// First page
+			if (this.pagerOptions.DisplayFirstAndLastPage)
+			{
+				model.PaginationLinks.Add(new PaginationLink { Active = (currentPage > 1 ? true : false), DisplayText = this.pagerOptions.FirstPageText, DisplayTitle = this.pagerOptions.FirstPageTitle, PageIndex = 1, Url = generateUrl(1) });
+			}
+
+			// Previous page
 			var previousPageText = this.pagerOptions.PreviousPageText;
-			// Previous
-			model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = previousPageText, PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = previousPageText });
+			model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = previousPageText, DisplayTitle = this.pagerOptions.PreviousPageTitle, PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = previousPageText });
 
 			var start = 1;
 			var end = pageCount;
@@ -88,6 +94,7 @@ namespace MvcPaging
 					model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = i, DisplayText = i.ToString(), Url = generateUrl(i) });
 				}
 			}
+
 			if (end < pageCount)
 			{
 				if (end < pageCount - 1)
@@ -102,9 +109,15 @@ namespace MvcPaging
 				model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString(), Url = generateUrl(pageCount) });
 			}
 
+			// Next page
 			var nextPageText = this.pagerOptions.NextPageText;
-			// Next
-			model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = nextPageText, Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = nextPageText });
+			model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = nextPageText, DisplayTitle = this.pagerOptions.NextPageTitle, Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = nextPageText });
+
+			// Last page
+			if (this.pagerOptions.DisplayFirstAndLastPage)
+			{
+				model.PaginationLinks.Add(new PaginationLink { Active = (currentPage < pageCount ? true : false), DisplayText = this.pagerOptions.LastPageText, DisplayTitle = this.pagerOptions.LastPageTitle, PageIndex = pageCount, Url = generateUrl(pageCount) });
+			}
 
 			// AjaxOptions
 			if (pagerOptions.AjaxOptions != null)
@@ -144,11 +157,13 @@ namespace MvcPaging
 						else
 						{
 							var linkBuilder = new StringBuilder("<a");
+
 							if (pagerOptions.AjaxOptions != null)
 								foreach (var ajaxOption in pagerOptions.AjaxOptions.ToUnobtrusiveHtmlAttributes())
 									linkBuilder.AppendFormat(" {0}=\"{1}\"", ajaxOption.Key, ajaxOption.Value);
 
-							linkBuilder.AppendFormat(" href=\"{0}\">{1}</a>", paginationLink.Url, paginationLink.DisplayText);
+							linkBuilder.AppendFormat(" href=\"{0}\" title=\"{1}\">{2}</a>", paginationLink.Url, paginationLink.DisplayTitle, paginationLink.DisplayText);
+
 							sb.Append(linkBuilder.ToString());
 						}
 					}
@@ -173,10 +188,12 @@ namespace MvcPaging
 			var viewContext = this.htmlHelper.ViewContext;
 			var routeDataValues = viewContext.RequestContext.RouteData.Values;
 			RouteValueDictionary pageLinkValueDictionary;
+
 			// Avoid canonical errors when pageNumber is equal to 1.
 			if (pageNumber == 1 && !this.pagerOptions.AlwaysAddFirstPageNumber)
 			{
 				pageLinkValueDictionary = new RouteValueDictionary(this.pagerOptions.RouteValues);
+
 				if (routeDataValues.ContainsKey(this.pagerOptions.PageRouteValueKey))
 				{
 					routeDataValues.Remove(this.pagerOptions.PageRouteValueKey);
@@ -192,6 +209,7 @@ namespace MvcPaging
 			{
 				pageLinkValueDictionary.Add("controller", routeDataValues["controller"]);
 			}
+
 			if (!pageLinkValueDictionary.ContainsKey("action") && routeDataValues.ContainsKey("action"))
 			{
 				pageLinkValueDictionary.Add("action", routeDataValues["action"]);
@@ -211,7 +229,8 @@ namespace MvcPaging
 	{
 		private HtmlHelper<TModel> htmlHelper;
 
-		public Pager(HtmlHelper<TModel> htmlHelper, int pageSize, int currentPage, int totalItemCount) : base(htmlHelper, pageSize, currentPage, totalItemCount)
+		public Pager(HtmlHelper<TModel> htmlHelper, int pageSize, int currentPage, int totalItemCount)
+			: base(htmlHelper, pageSize, currentPage, totalItemCount)
 		{
 			this.htmlHelper = htmlHelper;
 		}
