@@ -43,11 +43,32 @@ Possible options:
 	PageRouteValueKey
 		Set the page routeValue key for pagination links
 
+	DisplayFirstAndLastPage
+		Displays first and last navigation pages
+
+	SetFirstPageText
+		Set a custom text for the first page
+
+	SetFirstPageTitle
+		Set a custom text for title attribute of the first page link
+
+	SetLastPageText
+		Set a custom text for the last page
+
+	SetLastPageTitle
+		Set a custom text for title attribute of the last page link
+		
 	SetPreviousPageText
 		Set a custom text for the previous page
 
+	SetPreviousPageTitle
+		Set a custom text for title attribute of the previous page link
+
 	SetNextPageText
 		Set a custom text for the next page
+
+	SetNextPageTitle
+		Set a custom text for title attribute of the next page link
 
 ###PagedList
 

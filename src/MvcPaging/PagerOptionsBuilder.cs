@@ -140,7 +140,6 @@ namespace MvcPaging
 		/// <summary>
 		/// Displays first and last navigation pages.
 		/// </summary>
-		/// <param name="displayFirstAndLastPage"></param>
 		/// <returns></returns>
 		public PagerOptionsBuilder DisplayFirstAndLastPage()
 		{
