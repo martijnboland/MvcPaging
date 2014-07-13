@@ -61,6 +61,17 @@ namespace MvcPaging
 		}
 
 		/// <summary>
+		/// Set the title for previous page navigation.
+		/// </summary>
+		/// <param name="previousPageTitle"></param>
+		/// <returns></returns>
+		public PagerOptionsBuilder SetPreviousPageTitle(string previousPageTitle)
+		{
+			pagerOptions.PreviousPageTitle = previousPageTitle;
+			return this;
+		}
+
+		/// <summary>
 		/// Set the text for next page navigation.
 		/// </summary>
 		/// <param name="nextPageText"></param>
@@ -68,6 +79,72 @@ namespace MvcPaging
 		public PagerOptionsBuilder SetNextPageText(string nextPageText)
 		{
 			pagerOptions.NextPageText = nextPageText;
+			return this;
+		}
+
+		/// <summary>
+		/// Set the title for next page navigation.
+		/// </summary>
+		/// <param name="nextPageTitle"></param>
+		/// <returns></returns>
+		public PagerOptionsBuilder SetNextPageTitle(string nextPageTitle)
+		{
+			pagerOptions.NextPageTitle = nextPageTitle;
+			return this;
+		}
+
+		/// <summary>
+		/// Set the text for first page navigation.
+		/// </summary>
+		/// <param name="firstPageText"></param>
+		/// <returns></returns>
+		public PagerOptionsBuilder SetFirstPageText(string firstPageText)
+		{
+			pagerOptions.FirstPageText = firstPageText;
+			return this;
+		}
+
+		/// <summary>
+		/// Set the title for first page navigation.
+		/// </summary>
+		/// <param name="firstPageTitle"></param>
+		/// <returns></returns>
+		public PagerOptionsBuilder SetFirstPageTitle(string firstPageTitle)
+		{
+			pagerOptions.FirstPageTitle = firstPageTitle;
+			return this;
+		}
+
+		/// <summary>
+		/// Set the text for last page navigation.
+		/// </summary>
+		/// <param name="lastPageText"></param>
+		/// <returns></returns>
+		public PagerOptionsBuilder SetLastPageText(string lastPageText)
+		{
+			pagerOptions.LastPageText = lastPageText;
+			return this;
+		}
+
+		/// <summary>
+		/// Set the title for last page navigation.
+		/// </summary>
+		/// <param name="lastPageTitle"></param>
+		/// <returns></returns>
+		public PagerOptionsBuilder SetLastPageTitle(string lastPageTitle)
+		{
+			pagerOptions.LastPageTitle = lastPageTitle;
+			return this;
+		}
+
+		/// <summary>
+		/// Displays first and last navigation pages.
+		/// </summary>
+		/// <param name="displayFirstAndLastPage"></param>
+		/// <returns></returns>
+		public PagerOptionsBuilder DisplayFirstAndLastPage()
+		{
+			pagerOptions.DisplayFirstAndLastPage = true;
 			return this;
 		}
 
@@ -102,7 +179,7 @@ namespace MvcPaging
 		}
 
 		/// <summary>
-		/// Set the name of the DisplayTemplate view to use for rendering. 
+		/// Set the name of the DisplayTemplate view to use for rendering.
 		/// </summary>
 		/// <param name="displayTemplate"></param>
 		/// <remarks>The view must have a model of IEnumerable&lt;PaginationModel&gt;</remarks>
@@ -128,7 +205,7 @@ namespace MvcPaging
 		/// Always add the page number to the generated link for the first page.
 		/// </summary>
 		/// <remarks>
-		/// By default we don't add the page number for page 1 because it results in canonical links. 
+		/// By default we don't add the page number for page 1 because it results in canonical links.
 		/// Use this option to override this behaviour.
 		/// </remarks>
 		/// <returns></returns>
@@ -166,14 +243,15 @@ namespace MvcPaging
 	}
 
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	/// <typeparam name="TModel"></typeparam>
 	public class PagerOptionsBuilder<TModel> : PagerOptionsBuilder
 	{
 		private readonly HtmlHelper<TModel> htmlHelper;
 
-		public PagerOptionsBuilder(PagerOptions pagerOptions, HtmlHelper<TModel> htmlHelper) : base(pagerOptions)
+		public PagerOptionsBuilder(PagerOptions pagerOptions, HtmlHelper<TModel> htmlHelper)
+			: base(pagerOptions)
 		{
 			this.htmlHelper = htmlHelper;
 		}
@@ -241,7 +319,7 @@ namespace MvcPaging
 		}
 
 		/// <summary>
-		/// Set the name of the DisplayTemplate view to use for rendering. 
+		/// Set the name of the DisplayTemplate view to use for rendering.
 		/// </summary>
 		/// <param name="displayTemplate"></param>
 		/// <remarks>The view must have a model of IEnumerable&lt;PaginationModel&gt;</remarks>
@@ -267,7 +345,7 @@ namespace MvcPaging
 		/// Always add the page number to the generated link for the first page.
 		/// </summary>
 		/// <remarks>
-		/// By default we don't add the page number for page 1 because it results in canonical links. 
+		/// By default we don't add the page number for page 1 because it results in canonical links.
 		/// Use this option to override this behaviour.
 		/// </remarks>
 		/// <returns></returns>
@@ -304,6 +382,17 @@ namespace MvcPaging
 		}
 
 		/// <summary>
+		/// Set the title for previous page navigation.
+		/// </summary>
+		/// <param name="previousPageTitle"></param>
+		/// <returns></returns>
+		public new PagerOptionsBuilder<TModel> SetPreviousPageTitle(string previousPageTitle)
+		{
+			base.SetPreviousPageTitle(previousPageTitle);
+			return this;
+		}
+
+		/// <summary>
 		/// Set the text for next page navigation.
 		/// </summary>
 		/// <param name="nextPageText"></param>
@@ -311,6 +400,72 @@ namespace MvcPaging
 		public new PagerOptionsBuilder<TModel> SetNextPageText(string nextPageText)
 		{
 			base.SetNextPageText(nextPageText);
+			return this;
+		}
+
+		/// <summary>
+		/// Set the title for next page navigation.
+		/// </summary>
+		/// <param name="nextPageTitle"></param>
+		/// <returns></returns>
+		public new PagerOptionsBuilder<TModel> SetNextPageTitle(string nextPageTitle)
+		{
+			base.SetNextPageTitle(nextPageTitle);
+			return this;
+		}
+
+		/// <summary>
+		/// Set the text for first page navigation.
+		/// </summary>
+		/// <param name="firstPageText"></param>
+		/// <returns></returns>
+		public new PagerOptionsBuilder<TModel> SetFirstPageText(string firstPageText)
+		{
+			base.SetFirstPageText(firstPageText);
+			return this;
+		}
+
+		/// <summary>
+		/// Set the title for first page navigation.
+		/// </summary>
+		/// <param name="firstPageTitle"></param>
+		/// <returns></returns>
+		public new PagerOptionsBuilder<TModel> SetFirstPageTitle(string firstPageTitle)
+		{
+			base.SetFirstPageTitle(firstPageTitle);
+			return this;
+		}
+
+		/// <summary>
+		/// Set the text for last page navigation.
+		/// </summary>
+		/// <param name="lastPageText"></param>
+		/// <returns></returns>
+		public new PagerOptionsBuilder<TModel> SetLastPageText(string lastPageText)
+		{
+			base.SetLastPageText(lastPageText);
+			return this;
+		}
+
+		/// <summary>
+		/// Set the title for last page navigation.
+		/// </summary>
+		/// <param name="lastPageTitle"></param>
+		/// <returns></returns>
+		public new PagerOptionsBuilder<TModel> SetLastPageTitle(string lastPageTitle)
+		{
+			base.SetLastPageTitle(lastPageTitle);
+			return this;
+		}
+
+		/// <summary>
+		/// Displays first and last navigation pages.
+		/// </summary>
+		/// <param name="displayFirstAndLastPage"></param>
+		/// <returns></returns>
+		public new PagerOptionsBuilder<TModel> DisplayFirstAndLastPage()
+		{
+			base.DisplayFirstAndLastPage();
 			return this;
 		}
 	}
