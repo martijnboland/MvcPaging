@@ -102,7 +102,13 @@
 		</tbody>
 	</table>
 	<div class=""pager"">
-		@Html.Pager(Model.Products.PageSize, Model.Products.PageNumber, Model.Products.TotalItemCount).Options(o => o.AddRouteValueFor(m => m.Categories))
+		@Html.Pager(Model.Products.PageSize, Model.Products.PageNumber, Model.Products.TotalItemCount).Options(o => o
+			.AddRouteValueFor(m => m.Categories)
+			.DisplayFirstAndLastPage()
+			.SetFirstPageText(""First"")
+			.SetLastPageText(""Last"")
+			.SetPreviousPageText(""Prev"")
+			.SetNextPageText(""Next""))
 		Displaying @Model.Products.ItemStart - @Model.Products.ItemEnd of @Model.Products.TotalItemCount item(s)
 	</div>
 }
