@@ -64,4 +64,4 @@ when the list already only contains the data for the page
 
 ###Contributing
 
-We accept contributions via GitHub pull requests. Please use tabs for indentation.
+Contributions via pull requests are great. We use TABS for indentation :-).
