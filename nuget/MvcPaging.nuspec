@@ -11,12 +11,18 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc5 mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.1.0 (2014-01-22)
-- Made Pager and OptionsBuilder Model-aware. This allows for future strongly typed 
-  extensions with lambda's.
-- Added AddRouteValueFor&lt;TModel&gt;(expression) method to fluent options interface:
-    Pager(...).Options(o => o.AddRouteValueFor(m => m.SearchQuery))
-  See also: https://github.com/martijnboland/MvcPaging/issues/32
+2.1.1 (2014-07-29)
+- Added new options 
+  - DisplayFirstAndLastPage
+  - SetFirstPageText
+  - SetFirstPageTitle
+  - SetLastPageText
+  - SetLastPageTitle
+  - SetPreviousPageText
+  - SetPreviousPageTitle
+  - SetNextPageText
+  - SetNextPageTitle
+  See also https://github.com/martijnboland/MvcPaging/pull/41
      </releaseNotes>
   </metadata>
 </package>

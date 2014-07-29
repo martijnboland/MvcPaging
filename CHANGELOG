@@ -1,3 +1,16 @@
+2.1.1 (2014-07-29)
+- Added new options 
+  - DisplayFirstAndLastPage
+  - SetFirstPageText
+  - SetFirstPageTitle
+  - SetLastPageText
+  - SetLastPageTitle
+  - SetPreviousPageText
+  - SetPreviousPageTitle
+  - SetNextPageText
+  - SetNextPageTitle
+  See also https://github.com/martijnboland/MvcPaging/pull/41
+
 2.1.0 (2014-01-22)
 - Made Pager and OptionsBuilder Model-aware. This allows for future strongly typed 
   extensions with lambda's.
