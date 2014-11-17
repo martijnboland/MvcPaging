@@ -2,8 +2,8 @@ The MvcPaging library contains an ASP.NET MVC HTML helper that renders a pager b
 A live demo can be found at http://demo.taiga.nl/mvcpaging.
 
 ###Usage (Razor / pseudo code): 
-    
-    @Html.Pager(pageSize, pageNumber, totalItemCount)
+	
+	@Html.Pager(pageSize, pageNumber, totalItemCount)
 
 Options are added via the Options method:
 
@@ -31,7 +31,7 @@ Possible options:
 
 	DisplayTemplate(string displayTemplate)
 		When set, the internal HTML rendering is bypassed and a DisplayTemplate view with the given
-        name is rendered instead. Note that the DisplayTemplate must have a model of type PaginationModel
+		name is rendered instead. Note that the DisplayTemplate must have a model of type PaginationModel
 
 	MaxNrOfPages(int maxNrOfPages)
 		Sets the maximum number of pages to show	
@@ -69,17 +69,21 @@ Possible options:
 
 	SetNextPageTitle
 		Set a custom text for title attribute of the next page link
+	UseItemCountAsPageCount
+		The totalItemCount parameter is (ab)used for the total number of pages
+		instead of the total number of items to facilitate backends that return the total number
+		of pages instead of the total number of items
 
 ###PagedList
 
 The library contains a PagedList class that makes it easy to work with paged data. Use it via an 
 extension method on IEnumerable<> or IList<>:
 
-    myList.ToPagedList(pageIndex, pageSize)
+	myList.ToPagedList(pageIndex, pageSize)
 
 with any unpaged list or 
 
-    myList.ToPagedList(pageIndex, pageSize, totalItemCount)
+	myList.ToPagedList(pageIndex, pageSize, totalItemCount)
 
 when the list already only contains the data for the page
 

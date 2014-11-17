@@ -1,3 +1,7 @@
+2.1.2 (2014-11-17)
+- Added option UseItemCountAsPageCount to facilitate backends that return the total 
+  number of pages instead of the total number of items.
+
 2.1.1 (2014-07-29)
 - Added new options 
   - DisplayFirstAndLastPage
