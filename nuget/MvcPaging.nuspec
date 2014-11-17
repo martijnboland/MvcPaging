@@ -11,18 +11,9 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc5 mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.1.1 (2014-07-29)
-- Added new options 
-  - DisplayFirstAndLastPage
-  - SetFirstPageText
-  - SetFirstPageTitle
-  - SetLastPageText
-  - SetLastPageTitle
-  - SetPreviousPageText
-  - SetPreviousPageTitle
-  - SetNextPageText
-  - SetNextPageTitle
-  See also https://github.com/martijnboland/MvcPaging/pull/41
+2.1.2 (2014-11-17)
+- Added option UseItemCountAsPageCount to facilitate backends that return the total 
+  number of pages instead of the total number of items.
      </releaseNotes>
   </metadata>
 </package>
