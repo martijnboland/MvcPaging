@@ -230,6 +230,17 @@ namespace MvcPaging
 		}
 
 		/// <summary>
+		/// Indicate that the total item count means total page count. This option is for scenario's 
+		/// where certain backends don't return the number of total items, but the number of pages.
+		/// </summary>
+		/// <returns></returns>
+		public PagerOptionsBuilder UseItemCountAsPageCount()
+		{
+			this.pagerOptions.UseItemCountAsPageCount = true;
+			return this;
+		}
+
+		/// <summary>
 		/// Set the AjaxOptions.
 		/// </summary>
 		/// <param name="ajaxOptions"></param>
@@ -460,11 +471,21 @@ namespace MvcPaging
 		/// <summary>
 		/// Displays first and last navigation pages.
 		/// </summary>
-		/// <param name="displayFirstAndLastPage"></param>
 		/// <returns></returns>
 		public new PagerOptionsBuilder<TModel> DisplayFirstAndLastPage()
 		{
 			base.DisplayFirstAndLastPage();
+			return this;
+		}
+
+		/// <summary>
+		/// Indicate that the total item count means total page count. This option is for scenario's 
+		/// where certain backends don't return the number of total items, but the number of pages.
+		/// </summary>
+		/// <returns></returns>
+		public new PagerOptionsBuilder<TModel> UseItemCountAsPageCount()
+		{
+			base.UseItemCountAsPageCount();
 			return this;
 		}
 	}

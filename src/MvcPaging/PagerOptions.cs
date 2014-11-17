@@ -20,6 +20,7 @@ namespace MvcPaging
 			public const string LastPageText = ">";
 			public const string LastPageTitle = "Last page";
 			public const bool DisplayFirstAndLastPage = false;
+			public const bool UseItemCountAsPageCount = false;
 		}
 
 		/// <summary>
@@ -41,6 +42,7 @@ namespace MvcPaging
 			public static string LastPageText = DefaultDefaults.LastPageText;
 			public static string LastPageTitle = DefaultDefaults.LastPageTitle;
 			public static bool DisplayFirstAndLastPage = DefaultDefaults.DisplayFirstAndLastPage;
+			public static bool UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
 
 			public static void Reset()
 			{
@@ -57,6 +59,7 @@ namespace MvcPaging
 				LastPageText = DefaultDefaults.LastPageText;
 				LastPageTitle = DefaultDefaults.LastPageTitle;
 				DisplayFirstAndLastPage = DefaultDefaults.DisplayFirstAndLastPage;
+				UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
 			}
 		}
 
@@ -92,6 +95,8 @@ namespace MvcPaging
 
 		public bool DisplayFirstAndLastPage { get; internal set; }
 
+		public bool UseItemCountAsPageCount { get; internal set; }
+
 		public PagerOptions()
 		{
 			RouteValues = new RouteValueDictionary();
@@ -108,6 +113,7 @@ namespace MvcPaging
 			LastPageText = DefaultDefaults.LastPageText;
 			LastPageTitle = DefaultDefaults.LastPageTitle;
 			DisplayFirstAndLastPage = DefaultDefaults.DisplayFirstAndLastPage;
+			UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
 		}
 	}
 }

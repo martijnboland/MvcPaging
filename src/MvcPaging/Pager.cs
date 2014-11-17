@@ -12,7 +12,7 @@ namespace MvcPaging
 		private readonly HtmlHelper htmlHelper;
 		private readonly int pageSize;
 		private readonly int currentPage;
-		private readonly int totalItemCount;
+		private int totalItemCount;
 		protected readonly PagerOptions pagerOptions;
 
 		public Pager(HtmlHelper htmlHelper, int pageSize, int currentPage, int totalItemCount)
@@ -32,7 +32,18 @@ namespace MvcPaging
 
 		public virtual PaginationModel BuildPaginationModel(Func<int, string> generateUrl)
 		{
-			var pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
+			int pageCount;
+			if (this.pagerOptions.UseItemCountAsPageCount)
+			{
+				// Set page count directly from total item count instead of calculating. Then calculate totalItemCount based on pageCount and pageSize;
+				pageCount = this.totalItemCount;
+				this.totalItemCount = pageCount*this.pageSize;
+			}
+			else
+			{
+				pageCount = (int)Math.Ceiling(totalItemCount / (double)pageSize);
+			}
+			
 			var model = new PaginationModel { PageSize = this.pageSize, CurrentPage = this.currentPage, TotalItemCount = this.totalItemCount, PageCount = pageCount };
 
 			// First page
