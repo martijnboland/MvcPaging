@@ -70,6 +70,7 @@ Possible options:
 
 	SetNextPageTitle
 		Set a custom text for title attribute of the next page link
+		
 	UseItemCountAsPageCount
 		The totalItemCount parameter is (ab)used for the total number of pages
 		instead of the total number of items to facilitate backends that return the total number
