@@ -13,6 +13,7 @@ Options are added via the Options method:
 	)
 
 Possible options:
+
 	Action(string action)
 		Sets an alternative action for the pager that is different from the current action
 
