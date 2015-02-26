@@ -2,3 +2,5 @@
 
 *.csproj text merge=union
 *.sln    text merge=union eol=crlf
+
+src/MvcPaging.Demo/* linguist-vendored
