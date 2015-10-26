@@ -1,6 +1,10 @@
 The MvcPaging library contains an ASP.NET MVC HTML helper that renders a pager based on given parameters.
 A live demo can be found at http://demo.taiga.nl/mvcpaging.
 
+###Important information for ASP.NET 5 / MVC 6 users
+
+This library doesn't support the new ASP.NET 5 (vnext) model. Go to https://github.com/joeaudette/cloudscribe.Web.Pagination for a new and improved version for ASP.NET 5.
+
 ###Usage (Razor / pseudo code): 
 	
 	@Html.Pager(pageSize, pageNumber, totalItemCount)
