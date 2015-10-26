@@ -3,7 +3,7 @@ A live demo can be found at http://demo.taiga.nl/mvcpaging.
 
 ###Important information for ASP.NET 5 / MVC 6 users
 
-This library doesn't support the new ASP.NET 5 (vnext) model. Go to https://github.com/joeaudette/cloudscribe.Web.Pagination for a new and improved version for ASP.NET 5.
+This library doesn't support the new ASP.NET 5 (vnext) model. Go to https://github.com/joeaudette/cloudscribe.Web.Pagination for the logical successor of this library.
 
 ###Usage (Razor / pseudo code): 
 	
