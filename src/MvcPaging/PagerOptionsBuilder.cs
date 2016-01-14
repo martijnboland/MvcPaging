@@ -147,6 +147,13 @@ namespace MvcPaging
 			return this;
 		}
 
+
+        public PagerOptionsBuilder HidePreviousAndNextPage()
+        {
+            pagerOptions.HidePreviousAndNextPage = true;
+            return this;
+        }
+
 		/// <summary>
 		/// Set custom route value parameters for the pager links.
 		/// </summary>
