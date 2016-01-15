@@ -21,6 +21,7 @@ namespace MvcPaging
             public const string LastPageTitle = "Last page";
             public const bool DisplayFirstAndLastPage = false;
             public const bool UseItemCountAsPageCount = false;
+            public static bool HidePreviousAndNextPage = false;
         }
 
         /// <summary>
@@ -94,6 +95,7 @@ namespace MvcPaging
         public string LastPageTitle { get; set; }
 
         public bool DisplayFirstAndLastPage { get; internal set; }
+        public bool HidePreviousAndNextPage { get; internal set; }
 
         public bool UseItemCountAsPageCount { get; internal set; }
 
@@ -114,6 +116,7 @@ namespace MvcPaging
             LastPageTitle = DefaultDefaults.LastPageTitle;
             DisplayFirstAndLastPage = DefaultDefaults.DisplayFirstAndLastPage;
             UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
+            HidePreviousAndNextPage = DefaultDefaults.HidePreviousAndNextPage;
         }
     }
 }

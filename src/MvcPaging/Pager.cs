@@ -53,8 +53,11 @@ namespace MvcPaging
             }
 
             // Previous page
-            var previousPageText = this.pagerOptions.PreviousPageText;
-            model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = previousPageText, DisplayTitle = this.pagerOptions.PreviousPageTitle, PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = previousPageText });
+            if (!this.pagerOptions.HidePreviousAndNextPage)
+            {
+                var previousPageText = this.pagerOptions.PreviousPageText;
+                model.PaginationLinks.Add(currentPage > 1 ? new PaginationLink { Active = true, DisplayText = previousPageText, DisplayTitle = this.pagerOptions.PreviousPageTitle, PageIndex = currentPage - 1, Url = generateUrl(currentPage - 1) } : new PaginationLink { Active = false, DisplayText = previousPageText });
+            }
 
             var start = 1;
             var end = pageCount;
@@ -116,13 +119,14 @@ namespace MvcPaging
                 {
                     model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount - 1, DisplayText = (pageCount - 1).ToString(), Url = generateUrl(pageCount - 1) });
                 }
-
-                model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = pageCount, DisplayText = pageCount.ToString(), Url = generateUrl(pageCount) });
             }
 
-            // Next page
-            var nextPageText = this.pagerOptions.NextPageText;
-            model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = nextPageText, DisplayTitle = this.pagerOptions.NextPageTitle, Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = nextPageText });
+			// Next page
+            if (!this.pagerOptions.HidePreviousAndNextPage) 
+            { 
+    			var nextPageText = this.pagerOptions.NextPageText;
+	    		model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = nextPageText, DisplayTitle = this.pagerOptions.NextPageTitle, Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = nextPageText });
+            }
 
             // Last page
             if (this.pagerOptions.DisplayFirstAndLastPage)

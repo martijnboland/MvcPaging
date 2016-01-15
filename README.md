@@ -80,6 +80,9 @@ Possible options:
 		instead of the total number of items to facilitate backends that return the total number
 		of pages instead of the total number of items
 
+	HidePreviousAndNextPage
+		Don't show the 'previous' and 'next' links and only show the page numbers
+
 ###PagedList
 
 The library contains a PagedList class that makes it easy to work with paged data. Use it via an 
