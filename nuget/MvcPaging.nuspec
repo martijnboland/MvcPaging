@@ -11,9 +11,9 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc5 mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.1.2 (2014-11-17)
-- Added option UseItemCountAsPageCount to facilitate backends that return the total 
-  number of pages instead of the total number of items.
+2.1.3 (2016-01-15)
+- Added option HidePreviousAndNextPage to only show page numbers and hide the 
+  previous and next links.
      </releaseNotes>
   </metadata>
 </package>
