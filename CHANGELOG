@@ -1,4 +1,4 @@
-2.1.3 (2016-01-15)
+2.1.4 (2016-01-15)
 - Added option HidePreviousAndNextPage to only show page numbers and hide the 
   'previous' and 'next' links. See https://github.com/martijnboland/MvcPaging/pull/51 
 
