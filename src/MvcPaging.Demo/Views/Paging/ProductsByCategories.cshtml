@@ -2,61 +2,59 @@
 @using MvcPaging.Demo.Models
 @model ViewByCategoriesViewModel
 @{
-	ViewBag.Title = "Browse products by categories";
+    ViewBag.Title = "Browse products by categories";
 }
 <h2>@ViewBag.Title</h2>
 @using (Html.BeginForm("ViewByCategories", "Paging", FormMethod.Get))
 {
-	<p>
-		Select category or categories:
-		<ul>
-			@foreach (var category in Model.AvailableCategories)
-			{
-				<li>
-					<label>
-						<input type="checkbox" name="categories" value="@category" @if(Model.Categories.Any(c => c == category)) { <text> checked="checked"</text>} />
-						@category
-					</label>
-				</li>
-			}
-		</ul>
-		<input type="submit" value="Browse" />
-	</p>
+    <p>
+        Select category or categories:
+        <ul>
+            @foreach (var category in Model.AvailableCategories)
+            {
+                <li>
+                    <label>
+                        <input type="checkbox" name="categories" value="@category" @if (Model.Categories.Any(c => c == category)) { <text> checked="checked" </text> } />
+                        @category
+                    </label>
+                </li>}
+        </ul>
+        <input type="submit" value="Browse" />
+    </p>
 }
 @if (Model.Products.Any())
 {
-	<table class="grid">
-		<thead>
-			<tr>
-				<th>Product name</th>
-				<th>Category</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var product in Model.Products)
-			{
-				<tr>
-					<td>@product.Name</td>
-					<td>@product.Category</td>
-				</tr>
-			}
-		</tbody>
-	</table>
-	<div class="pager">
-		@Html.Pager(Model.Products.PageSize, Model.Products.PageNumber, Model.Products.TotalItemCount).Options(o => o
-			.AddRouteValueFor(m => m.Categories)
-			.DisplayFirstAndLastPage()
-			.SetFirstPageText("First")
-			.SetLastPageText("Last")
-			.SetPreviousPageText("Prev")
-			.SetNextPageText("Next"))
-		Displaying @Model.Products.ItemStart - @Model.Products.ItemEnd of @Model.Products.TotalItemCount item(s)
-	</div>
+    <table class="grid">
+        <thead>
+            <tr>
+                <th>Product name</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Category</td>
+                </tr>}
+        </tbody>
+    </table>
+    <div class="pager">
+        @Html.Pager(Model.Products.PageSize, Model.Products.PageNumber, Model.Products.TotalItemCount).Options(o => o
+            .AddRouteValueFor(m => m.Categories)
+            .DisplayFirstAndLastPage()
+            .SetFirstPageText("First")
+            .SetLastPageText("Last")
+            .SetPreviousPageText("Prev")
+            .SetNextPageText("Next"))
+        Displaying @Model.Products.ItemStart - @Model.Products.ItemEnd of @Model.Products.TotalItemCount item(s)
+    </div>
 }
 
 @{
-	var sourceModel = new ViewSourceViewModel();
-	sourceModel.RazorCode = @"
+    var sourceModel = new ViewSourceViewModel();
+    sourceModel.RazorCode = @"
 @using System.Linq
 @using MvcPaging.Demo.Models
 @model ViewByCategoriesViewModel
@@ -113,7 +111,7 @@
 	</div>
 }
 ";
-	sourceModel.ControllerCode = @"
+    sourceModel.ControllerCode = @"
 public ActionResult ViewByCategories(string[] categories, int? page)
 {
 	var model = new ViewByCategoriesViewModel();

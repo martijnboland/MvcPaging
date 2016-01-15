@@ -1,83 +1,82 @@
 ﻿@using MvcPaging.Demo.Models
 @model IPagedList<Product>
 @{
-	Layout = null;
-	ViewBag.Title = "Pager with Twitter Bootstrap layout";
+    Layout = null;
+    ViewBag.Title = "Pager with Twitter Bootstrap layout";
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>@ViewBag.Title</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Le styles -->
-	<link href="@Url.Content("~/Content/Css/bootstrap.min.css")" rel="stylesheet">
-	<style>
-		body
-		{
-			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-		}
-	</style>
-	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	
-	<link href="@Url.Content("~/Content/SyntaxHighlighter/shCore.css")" rel="stylesheet" type="text/css" />
-	<link href="@Url.Content("~/Content/SyntaxHighlighter/shThemeDefault.css")" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shCore.js")"></script>
-	<script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shBrushCSharp.js")"></script>
-	<script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shBrushXml.js")"></script>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Le styles -->
+    <link href="@Url.Content("~/Content/Css/bootstrap.min.css")" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="@Url.Content("~/Content/SyntaxHighlighter/shCore.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/SyntaxHighlighter/shThemeDefault.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shCore.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shBrushCSharp.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shBrushXml.js")"></script>
 
 </head>
 <body>
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-					class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-				</a><a class="brand" href="#">ASP.NET MVC Paging sample</a>
-				<div class="nav-collapse">
-					<ul class="nav">
-						<li>@Html.ActionLink("Home", "Index", "Home", new { area = String.Empty }, null)</li>
-						<li>@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, null)</li>
-					</ul>
-				</div>
-				<!--/.nav-collapse -->
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<h1>@ViewBag.Title</h1>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </a><a class="brand" href="#">ASP.NET MVC Paging sample</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = String.Empty }, null)</li>
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, null)</li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>@ViewBag.Title</h1>
 
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Product name</th>
-					<th>Category</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach (var product in Model)
-				{
-					<tr>
-						<td>@product.Name</td>
-						<td>@product.Category</td>
-					</tr>
-				}
-			</tbody>
-		</table>
-		@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
-			.DisplayTemplate("BootstrapPagination")
-			.MaxNrOfPages(14)
-			.AlwaysAddFirstPageNumber()
-			.SetPreviousPageText("←")
-			.SetNextPageText("→")
-		)
-		
-		@{
-			var sourceModel = new ViewSourceViewModel();
-			sourceModel.RazorCode = @"
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Category</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+            .DisplayTemplate("BootstrapPagination")
+            .MaxNrOfPages(14)
+            .AlwaysAddFirstPageNumber()
+            .SetPreviousPageText("←")
+            .SetNextPageText("→")
+        )
+
+        @{
+            var sourceModel = new ViewSourceViewModel();
+            sourceModel.RazorCode = @"
 <!-- Bootstrap.cshtml view -->
 
 @using MvcPaging.Demo.Models
@@ -104,7 +103,7 @@
 	<!--[if lt IE 9]>
 	  <script src=""http://html5shim.googlecode.com/svn/trunk/html5.js""></script>
 	<![endif]-->
-	
+
 </head>
 <body>
 	<div class=""navbar navbar-fixed-top"">
@@ -195,28 +194,28 @@
 				aBuilder.MergeAttribute(ajaxOption.Key, ajaxOption.Value.ToString(), true);
 			}
 		}
-	
-	aBuilder.SetInnerText(link.DisplayText);		
+
+	aBuilder.SetInnerText(link.DisplayText);
 
 	liBuilder.InnerHtml = aBuilder.ToString();
-	
+
 	@Html.Raw(liBuilder.ToString())
 }
 ";
 
-			sourceModel.ControllerCode = @"
+            sourceModel.ControllerCode = @"
 public ActionResult Bootstrap(int? page)
 {
 	int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 	return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
 }";
-		}
+        }
 
-		@Html.Partial("ViewSource", sourceModel)
+        @Html.Partial("ViewSource", sourceModel)
 
 
-	</div>
-	<!-- /container -->
-	
+    </div>
+    <!-- /container -->
+
 </body>
 </html>

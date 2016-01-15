@@ -1,81 +1,81 @@
 ﻿@using MvcPaging.Demo.Models
 @model IPagedList<Product>
 @{
-	Layout = null;
-	ViewBag.Title = "Pager with Bootstrap 3 layout";
+    Layout = null;
+    ViewBag.Title = "Pager with Bootstrap 3 layout";
 }
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>@ViewBag.Title</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- Le styles -->
-		<link href="@Url.Content("~/Content/Css/bootstrap3.min.css")" rel="stylesheet">
-		<style>
-			body {
-				padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-			}
-		</style>
-		
-		<link href="@Url.Content("~/Content/SyntaxHighlighter/shCore.css")" rel="stylesheet" type="text/css" />
-		<link href="@Url.Content("~/Content/SyntaxHighlighter/shThemeDefault.css")" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shCore.js")"></script>
-		<script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shBrushCSharp.js")"></script>
-		<script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shBrushXml.js")"></script>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Le styles -->
+    <link href="@Url.Content("~/Content/Css/bootstrap3.min.css")" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
 
-	</head>
+    <link href="@Url.Content("~/Content/SyntaxHighlighter/shCore.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/SyntaxHighlighter/shThemeDefault.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shCore.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shBrushCSharp.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shBrushXml.js")"></script>
+
+</head>
 <body>
-	<a class="sr-only" href="#content">Skip navigation</a>
+    <a class="sr-only" href="#content">Skip navigation</a>
 
-	<!-- Docs master nav -->
-	<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
-		<div class="container">
-			<div class="navbar-header">
-				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-				<ul class="nav navbar-nav">
-					<li>@Html.ActionLink("Home", "Index", "Home", new { area = String.Empty }, null)</li>
-					<li>@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, null)</li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<div class="container">
-		<h1>@ViewBag.Title</h1>
+    <!-- Docs master nav -->
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = String.Empty }, null)</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, null)</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>@ViewBag.Title</h1>
 
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Product name</th>
-					<th>Category</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach (var product in Model) 
-				{
-					<tr>
-						<td>@product.Name</td>
-						<td>@product.Category</td>
-					</tr>
-				}
-			</tbody>
-		</table>
-		@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
-			.DisplayTemplate("Bootstrap3Pagination")
-			.MaxNrOfPages(14)
-			.AlwaysAddFirstPageNumber()
-		)
-		
-		@{
-			var sourceModel = new ViewSourceViewModel();
-			sourceModel.RazorCode = @"
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Category</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+            .DisplayTemplate("Bootstrap3Pagination")
+            .MaxNrOfPages(14)
+            .AlwaysAddFirstPageNumber()
+        )
+
+        @{
+            var sourceModel = new ViewSourceViewModel();
+            sourceModel.RazorCode = @"
 <!-- Bootstrap3.cshtml view -->
 
 @using MvcPaging.Demo.Models
@@ -131,7 +131,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach (var product in Model) 
+				@foreach (var product in Model)
 				{
 					<tr>
 						<td>@product.Name</td>
@@ -199,25 +199,25 @@
 	}
 	else
 	{
-		aBuilder.SetInnerText(link.DisplayText);        
+		aBuilder.SetInnerText(link.DisplayText);
 	}
 	liBuilder.InnerHtml = aBuilder.ToString();
 
 	@Html.Raw(liBuilder.ToString())
 }";
 
-			sourceModel.ControllerCode = @"
+            sourceModel.ControllerCode = @"
 public ActionResult Bootstrap(int? page)
 {
 	int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 	return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
 }";
-		}
+        }
 
-		@Html.Partial("ViewSource", sourceModel)
+        @Html.Partial("ViewSource", sourceModel)
 
 
-	</div>
-	<!-- /container -->
+    </div>
+    <!-- /container -->
 </body>
 </html>

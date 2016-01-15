@@ -1,15 +1,15 @@
 ﻿@using MvcPaging.Demo.Models
 @model IPagedList<Product>
 @{
-	ViewBag.Title = "Browse all products (ajax)";
+    ViewBag.Title = "Browse all products (ajax)";
 }
 <h2>@ViewBag.Title</h2>
 <div id="gridcontainer">
-	@Html.Partial("_ProductGrid", Model)
+    @Html.Partial("_ProductGrid", Model)
 </div>
 @{
-	var sourceModel = new ViewSourceViewModel();
-	sourceModel.RazorCode = @"
+    var sourceModel = new ViewSourceViewModel();
+    sourceModel.RazorCode = @"
 
 <!-- IndexAjax.cshtml view -->
 
@@ -47,7 +47,7 @@
 </div>
 ";
 
-	sourceModel.ControllerCode = @"
+    sourceModel.ControllerCode = @"
 public ActionResult IndexAjax()
 {
 	int currentPageIndex = 0;

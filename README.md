@@ -95,4 +95,4 @@ when the list already only contains the data for the page
 
 ###Contributing
 
-Contributions via pull requests are great. We use TABS for indentation :-).
+Contributions via pull requests are great. We use 4 spaces for indentation :-).
