@@ -11,9 +11,9 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc5 mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.1.4 (2016-01-15)
-- Added option HidePreviousAndNextPage to only show page numbers and hide the 
-  previous and next links.
+2.1.5 (2016-05-19)
+- A bug, introduced in 2.1.4, was fixed where the wrong last page number was
+  calculated in some cases. See https://github.com/martijnboland/MvcPaging/pull/54
      </releaseNotes>
   </metadata>
 </package>
