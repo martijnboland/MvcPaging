@@ -195,7 +195,6 @@ namespace MvcPaging.Tests
                 new PaginationLink { Active = true, DisplayText = "4", PageIndex = 4, Url = "/test/4" },
                 new PaginationLink { Active = true, DisplayText = "5", PageIndex = 5, Url = "/test/5" },
                 new PaginationLink { Active = false, DisplayText = "...", Url = null, IsSpacer = true },
-                new PaginationLink { Active = true, DisplayText = "16", PageIndex = 16, Url = "/test/16" },
                 new PaginationLink { Active = true, DisplayText = "17", PageIndex = 17, Url = "/test/17" },
                 new PaginationLink { Active = true, DisplayText = "»", PageIndex = 2, Url = "/test/2" }
             };
@@ -373,7 +372,6 @@ namespace MvcPaging.Tests
                 new PaginationLink { Active = true, DisplayText = "4", PageIndex = 4, Url = "/test/4" },
                 new PaginationLink { Active = true, DisplayText = "5", PageIndex = 5, Url = "/test/5" },
                 new PaginationLink { Active = false, DisplayText = "...", Url = null, IsSpacer = true },
-                new PaginationLink { Active = true, DisplayText = "12", PageIndex = 12, Url = "/test/12" },
                 new PaginationLink { Active = true, DisplayText = "13", PageIndex = 13, Url = "/test/13" },
                 new PaginationLink { Active = true, DisplayText = "»", PageIndex = 2, Url = "/test/2" }
             };
