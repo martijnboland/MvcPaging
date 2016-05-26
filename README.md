@@ -51,6 +51,12 @@ Possible options:
 	DisplayFirstAndLastPage
 		Displays first and last navigation pages
 
+	DisplayFirstPage
+		Displays the first navigation page
+
+	DisplayLastPage
+		Displays the last navigation page
+
 	SetFirstPageText
 		Set a custom text for the first page
 
