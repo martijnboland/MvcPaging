@@ -138,15 +138,35 @@ namespace MvcPaging
         }
 
         /// <summary>
-        /// Displays first and last navigation pages.
+        /// Displays both first and last navigation pages.
         /// </summary>
         /// <returns></returns>
         public PagerOptionsBuilder DisplayFirstAndLastPage()
         {
-            pagerOptions.DisplayFirstAndLastPage = true;
+            pagerOptions.DisplayFirstPage = true;
+            pagerOptions.DisplayLastPage = true;
             return this;
         }
 
+        /// <summary>
+        /// Displays the first navigation page but not the last.
+        /// </summary>
+        /// <returns></returns>
+        public PagerOptionsBuilder DisplayFirstPage()
+        {
+            pagerOptions.DisplayFirstPage = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Displays the last navigation page but not the first.
+        /// </summary>
+        /// <returns></returns>
+        public PagerOptionsBuilder DisplayLastPage()
+        {
+            pagerOptions.DisplayLastPage = true;
+            return this;
+        }
 
         public PagerOptionsBuilder HidePreviousAndNextPage()
         {
