@@ -1,3 +1,7 @@
+2.1.6 (2016-05-27)
+- Added separate options to display first and last page, 
+  see https://github.com/martijnboland/MvcPaging/pull/56
+
 2.1.5 (2016-05-19)
 - A bug, introduced in 2.1.4, was fixed where the wrong last page number was
   calculated in some cases. See https://github.com/martijnboland/MvcPaging/pull/54
