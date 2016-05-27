@@ -19,7 +19,8 @@ namespace MvcPaging
             public const string FirstPageTitle = "First page";
             public const string LastPageText = ">";
             public const string LastPageTitle = "Last page";
-            public const bool DisplayFirstAndLastPage = false;
+            public const bool DisplayFirstPage = false;
+            public const bool DisplayLastPage = false;
             public const bool UseItemCountAsPageCount = false;
             public static bool HidePreviousAndNextPage = false;
         }
@@ -42,7 +43,8 @@ namespace MvcPaging
             public static string FirstPageTitle = DefaultDefaults.FirstPageTitle;
             public static string LastPageText = DefaultDefaults.LastPageText;
             public static string LastPageTitle = DefaultDefaults.LastPageTitle;
-            public static bool DisplayFirstAndLastPage = DefaultDefaults.DisplayFirstAndLastPage;
+            public static bool DisplayFirstPage = DefaultDefaults.DisplayFirstPage;
+            public static bool DisplayLastPage = DefaultDefaults.DisplayLastPage;
             public static bool UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
 
             public static void Reset()
@@ -59,7 +61,8 @@ namespace MvcPaging
                 FirstPageTitle = DefaultDefaults.FirstPageTitle;
                 LastPageText = DefaultDefaults.LastPageText;
                 LastPageTitle = DefaultDefaults.LastPageTitle;
-                DisplayFirstAndLastPage = DefaultDefaults.DisplayFirstAndLastPage;
+                DisplayFirstPage = DefaultDefaults.DisplayFirstPage;
+                DisplayLastPage = DefaultDefaults.DisplayLastPage;
                 UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
             }
         }
@@ -94,7 +97,10 @@ namespace MvcPaging
 
         public string LastPageTitle { get; set; }
 
-        public bool DisplayFirstAndLastPage { get; internal set; }
+        public bool DisplayFirstAndLastPage { get { return DisplayFirstPage && DisplayLastPage; } }
+        public bool DisplayFirstPage { get; set; }
+        public bool DisplayLastPage { get; set; }
+
         public bool HidePreviousAndNextPage { get; internal set; }
 
         public bool UseItemCountAsPageCount { get; internal set; }
@@ -114,7 +120,8 @@ namespace MvcPaging
             FirstPageTitle = DefaultDefaults.FirstPageTitle;
             LastPageText = DefaultDefaults.LastPageText;
             LastPageTitle = DefaultDefaults.LastPageTitle;
-            DisplayFirstAndLastPage = DefaultDefaults.DisplayFirstAndLastPage;
+            DisplayFirstPage = DefaultDefaults.DisplayFirstPage;
+            DisplayLastPage = DefaultDefaults.DisplayLastPage;
             UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
             HidePreviousAndNextPage = DefaultDefaults.HidePreviousAndNextPage;
         }

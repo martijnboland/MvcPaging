@@ -47,7 +47,7 @@ namespace MvcPaging
             var model = new PaginationModel { PageSize = this.pageSize, CurrentPage = this.currentPage, TotalItemCount = this.totalItemCount, PageCount = pageCount };
 
             // First page
-            if (this.pagerOptions.DisplayFirstAndLastPage)
+            if (this.pagerOptions.DisplayFirstPage)
             {
                 model.PaginationLinks.Add(new PaginationLink { Active = (currentPage > 1 ? true : false), DisplayText = this.pagerOptions.FirstPageText, DisplayTitle = this.pagerOptions.FirstPageTitle, PageIndex = 1, Url = generateUrl(1) });
             }
@@ -129,7 +129,7 @@ namespace MvcPaging
             }
 
             // Last page
-            if (this.pagerOptions.DisplayFirstAndLastPage)
+            if (this.pagerOptions.DisplayLastPage)
             {
                 model.PaginationLinks.Add(new PaginationLink { Active = (currentPage < pageCount ? true : false), DisplayText = this.pagerOptions.LastPageText, DisplayTitle = this.pagerOptions.LastPageTitle, PageIndex = pageCount, Url = generateUrl(pageCount) });
             }
