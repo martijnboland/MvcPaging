@@ -39,10 +39,8 @@ namespace MvcPaging
             if (TotalItemCount <= 0)
                 return;
 
-            var realTotalPages = (int)Math.Ceiling(realTotalCount / (double)PageSize);
-
-            if (realTotalCount < TotalItemCount && realTotalPages <= PageIndex)
-                AddRange(source.Skip((realTotalPages - 1) * PageSize).Take(PageSize));
+            if (realTotalCount != TotalItemCount)
+                AddRange(source.Take(PageSize));
             else
                 AddRange(source.Skip(PageIndex * PageSize).Take(PageSize));
         }
