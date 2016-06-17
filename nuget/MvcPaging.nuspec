@@ -11,9 +11,9 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc5 mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.1.6 (2016-05-27)
-- Added separate options to display first and last page, 
-  see https://github.com/martijnboland/MvcPaging/pull/56
-     </releaseNotes>
+2.1.7 (2016-06-17)
+- Added fix for issue when underlying list contains partial data
+  see https://github.com/martijnboland/MvcPaging/pull/59
+    </releaseNotes>
   </metadata>
 </package>
