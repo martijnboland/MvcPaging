@@ -385,6 +385,66 @@ namespace MvcPaging.Tests
             CollectionAssert.AreEqual(expectedPagination, result.PaginationLinks, new PaginationComparer());
         }
 
+        [Test]
+        public void Can_Create_PagedList_From_List_With_Partial_Data()
+        {
+            // Assemble
+            var allItems = new List<int>();
+            for (int i = 1; i <= 97; i++) allItems.Add(i);
+
+            int pageSize = 10, currentPageIndex = 5;
+            var expectedList = allItems.ToPagedList(currentPageIndex, pageSize);
+            int start = currentPageIndex * pageSize + 1;
+            int end = start + pageSize - 1;
+
+            // Act 1: when the List contains exactly one-page-number of items
+            // items 51-60
+            var currentPageItems = allItems.Where(el => (el >= start) && (el <= end)).Select(el => el);
+            var pagedList = currentPageItems.ToPagedList(currentPageIndex, pageSize, allItems.Count());
+
+            // Assert 1
+            Assert.AreEqual(10, currentPageItems.Count());
+            Assert.AreEqual(10, pagedList.Count());
+            Assert.AreEqual(51, pagedList.ItemStart);
+            Assert.AreEqual(expectedList, pagedList);
+            CollectionAssert.AreEqual(expectedList, pagedList);
+
+            // Act 2: when the List contains more than one-page-number of items
+            // items 51-68
+            end = start + pageSize + 7;
+            currentPageItems = allItems.Where(el => (el >= start) && (el <= end)).Select(el => el);
+            pagedList = currentPageItems.ToPagedList(currentPageIndex, pageSize, allItems.Count());
+
+            // Assert 2
+            Assert.AreEqual(18, currentPageItems.Count());
+            Assert.AreEqual(10, pagedList.Count());
+            Assert.AreEqual(expectedList, pagedList);
+            CollectionAssert.AreEqual(expectedList, pagedList);
+
+            // Act 3: when the List contains less than one-page-number of items
+            // items 91-97
+            currentPageIndex = 9;
+            expectedList = allItems.ToPagedList(currentPageIndex, pageSize);
+            start = currentPageIndex * pageSize + 1;
+            end = start + 6;
+            currentPageItems = allItems.Where(el => (el >= start) && (el <= end)).Select(el => el);
+            pagedList = currentPageItems.ToPagedList(currentPageIndex, pageSize, allItems.Count());
+
+            // Assert 3
+            Assert.AreEqual(7, currentPageItems.Count());
+            Assert.AreEqual(7, pagedList.Count());
+            Assert.AreEqual(97, pagedList.Last());
+            Assert.AreEqual(expectedList, pagedList);
+            CollectionAssert.AreEqual(expectedList, pagedList);
+
+            // Act 4: when the List contains no items
+            currentPageItems = new List<int>();
+            pagedList = currentPageItems.ToPagedList(currentPageIndex, pageSize, allItems.Count());
+
+            // Assert 4
+            Assert.AreEqual(0, pagedList.Count());
+        }
+
         private string BuildUrl(int pageNumber)
         {
             return string.Format("/test/{0}", pageNumber);
