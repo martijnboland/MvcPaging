@@ -1,11 +1,11 @@
 The MvcPaging library contains an ASP.NET MVC HTML helper that renders a pager based on given parameters.
 A live demo can be found at http://demo.taiga.nl/mvcpaging.
 
-###Important information for ASP.NET 5 / MVC 6 users
+### Important information for ASP.NET 5 / MVC 6 users
 
 This library doesn't support ASP.NET 5. Go to https://github.com/joeaudette/cloudscribe.Web.Pagination for the logical successor of this library. Thanks Joe for the effort!
 
-###Usage (Razor / pseudo code): 
+### Usage (Razor / pseudo code): 
 	
 	@Html.Pager(pageSize, pageNumber, totalItemCount)
 
@@ -89,7 +89,7 @@ Possible options:
 	HidePreviousAndNextPage
 		Don't show the 'previous' and 'next' links and only show the page numbers
 
-###PagedList
+### PagedList
 
 The library contains a PagedList class that makes it easy to work with paged data. Use it via an 
 extension method on IEnumerable<> or IList<>:
@@ -102,6 +102,6 @@ with any unpaged list or
 
 when the list already only contains the data for the page
 
-###Contributing
+### Contributing
 
 Contributions via pull requests are great. We use 4 spaces for indentation :-).
