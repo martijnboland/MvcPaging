@@ -87,6 +87,49 @@ namespace MvcPaging.Tests
         }
 
         [Test]
+        public void Can_Action_And_Controller_Be_Set_Before_RouteData()
+        {
+            const string ACTION_NAME = "testaction";
+            const string CONTROLLER_NAME = "testcontroller";
+            
+            //arrange
+            var pager = new Pager(null, 2, 1, 5).Options(o => o.Action(ACTION_NAME, CONTROLLER_NAME).RouteValues(new { a = "b" }));
+
+            //act
+            var result = pager.BuildPaginationModel(BuildUrl);
+
+            //assert
+            Assert.AreEqual(result.Options.Action, ACTION_NAME);
+            Assert.AreEqual(result.Options.Controller, CONTROLLER_NAME);
+
+            Assert.AreEqual(result.Options.RouteValues["action"], ACTION_NAME);
+            Assert.AreEqual(result.Options.RouteValues["controller"], CONTROLLER_NAME);
+        }
+
+        [Test]
+        public void Is_Action_And_Controller_Overriden()
+        {
+            const string ACTION_NAME = "testaction";
+            const string ACTION_NAME_2 = "testaction2";
+
+            const string CONTROLLER_NAME   = "testcontroller";
+            const string CONTROLLER_NAME_2 = "testcontroller2";
+
+            // arrange
+            var pager = new Pager(null, 2, 1, 5).Options(o => o.Action(ACTION_NAME, CONTROLLER_NAME).RouteValues(new { a = "b", action = ACTION_NAME_2, controller = CONTROLLER_NAME_2 }));
+
+            // Act
+            var result = pager.BuildPaginationModel(BuildUrl);
+
+            // Assert
+            Assert.AreEqual(result.Options.Action, ACTION_NAME);
+            Assert.AreEqual(result.Options.RouteValues["action"], ACTION_NAME_2);
+
+            Assert.AreEqual(result.Options.Controller, CONTROLLER_NAME);
+            Assert.AreEqual(result.Options.RouteValues["controller"], CONTROLLER_NAME_2);
+        }
+
+        [Test]
         public void Is_Action_Overriden()
         {
             const string ACTION_NAME = "testaction";
