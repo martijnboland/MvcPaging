@@ -21,6 +21,9 @@ Possible options:
 	Action(string action)
 		Sets an alternative action for the pager that is different from the current action
 
+	Action(string action, string controller)
+		Sets an alternative action and controller for the pager that is different from the current
+
 	AddRouteValue(string name, object value)
 		Adds a single route value parameter that is added to page url's
 
