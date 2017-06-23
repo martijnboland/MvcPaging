@@ -111,7 +111,7 @@ namespace MvcPaging
 
             if (end < pageCount)
             {
-                if (end < pageCount - 1)
+                if (end < pageCount)
                 {
                     model.PaginationLinks.Add(new PaginationLink { Active = false, DisplayText = "...", IsSpacer = true });
                 }

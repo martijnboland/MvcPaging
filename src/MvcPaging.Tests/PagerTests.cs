@@ -386,6 +386,31 @@ namespace MvcPaging.Tests
         }
 
         [Test]
+        public void Can_Build_Correct_Model_With_6_Pages_And_Max_5_Pages_And_DisplayLastPage_False()
+        {
+            // Assemble
+            var pager = new Pager(null, 20, 1, 105).Options(o => o.MaxNrOfPages(5));
+            var expectedPagination = new List<PaginationLink>()
+            {
+                new PaginationLink { Active = false, DisplayText = "«", Url = null },
+                new PaginationLink { Active = true, DisplayText = "1", PageIndex = 1, IsCurrent = true, Url = null },
+                new PaginationLink { Active = true, DisplayText = "2", PageIndex = 2, Url = "/test/2"},
+                new PaginationLink { Active = true, DisplayText = "3", PageIndex = 3, Url = "/test/3" },
+                new PaginationLink { Active = true, DisplayText = "4", PageIndex = 4, Url = "/test/4" },
+                new PaginationLink { Active = true, DisplayText = "5", PageIndex = 5, Url = "/test/5" },
+                new PaginationLink { Active = false, DisplayText = "...", Url = null, IsSpacer = true },
+                new PaginationLink { Active = true, DisplayText = "»", PageIndex = 2, Url = "/test/2" }
+            };
+
+            // Act
+            var result = pager.BuildPaginationModel(BuildUrl);
+
+            // Assert
+            Assert.AreEqual(expectedPagination.Count, result.PaginationLinks.Count());
+            CollectionAssert.AreEqual(expectedPagination, result.PaginationLinks, new PaginationComparer());
+        }
+
+        [Test]
         public void Can_Create_PagedList_From_List_With_Partial_Data()
         {
             // Assemble
