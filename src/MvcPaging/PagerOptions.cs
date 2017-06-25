@@ -79,6 +79,8 @@ namespace MvcPaging
 
         public string Action { get; internal set; }
 
+        public string Controller { get; internal set; }
+
         public string PageRouteValueKey { get; set; }
 
         public string PreviousPageText { get; set; }
