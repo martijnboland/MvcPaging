@@ -37,6 +37,29 @@ namespace MvcPaging
             return this;
         }
 
+        public PagerOptionsBuilder Action(string action, string controller)
+        {
+            if (action != null && controller != null)
+            {
+                if (pagerOptions.RouteValues.ContainsKey("action"))
+                {
+                    throw new ArgumentException("The valuesDictionary already contains an action.", "action");
+                }
+
+                if (pagerOptions.RouteValues.ContainsKey("controller"))
+                {
+                    throw new ArgumentException("The valuesDictionary already contains an controller.", "controller");
+                }
+
+                pagerOptions.RouteValues.Add("action", action);
+                pagerOptions.RouteValues.Add("controller", controller);
+
+                pagerOptions.Action = action;
+                pagerOptions.Controller = controller;
+            }
+            return this;
+        }
+
         /// <summary>
         /// Add a custom route value parameter for the pager links.
         /// </summary>
@@ -196,11 +219,19 @@ namespace MvcPaging
             {
                 throw new ArgumentException("routeValues may not be null", "routeValues");
             }
+
             this.pagerOptions.RouteValues = routeValues;
+
             if (!string.IsNullOrWhiteSpace(pagerOptions.Action) && !pagerOptions.RouteValues.ContainsKey("action"))
             {
                 pagerOptions.RouteValues.Add("action", pagerOptions.Action);
             }
+
+            if (!string.IsNullOrEmpty(pagerOptions.Controller) && !pagerOptions.RouteValues.ContainsKey("controller"))
+            {
+                pagerOptions.RouteValues.Add("controller", pagerOptions.Controller);
+            }
+
             return this;
         }
 
@@ -318,6 +349,18 @@ namespace MvcPaging
         public new PagerOptionsBuilder<TModel> Action(string action)
         {
             base.Action(action);
+            return this;
+        }
+
+        /// <summary>
+        /// Set the action name and controller name for the pager links.
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="controller"></param>
+        /// <returns></returns>
+        public new PagerOptionsBuilder<TModel> Action(string action, string controller)
+        {
+            base.Action(action, controller);
             return this;
         }
 
