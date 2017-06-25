@@ -3,7 +3,7 @@
   <metadata>
     <id>MvcPaging</id>
     <version>1.0.2</version>
-    <authors>Martijn Boland, Bart Lenaerts, Rajeesh CV</authors>
+    <authors>Martijn Boland</authors>
     <owners>Martijn Boland</owners>
     <licenseUrl>https://github.com/martijnboland/MvcPaging/wiki/License</licenseUrl>
     <projectUrl>https://github.com/martijnboland/MvcPaging</projectUrl>
@@ -11,9 +11,9 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc5 mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.1.7 (2016-06-17)
-- Added fix for issue when underlying list contains partial data
-  see https://github.com/martijnboland/MvcPaging/pull/59
+2.1.8 (2017-06-25)
+- Added option to specify custom controller and action
+  see https://github.com/martijnboland/MvcPaging/pull/67
     </releaseNotes>
   </metadata>
 </package>

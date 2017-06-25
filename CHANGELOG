@@ -1,5 +1,9 @@
+2.1.8 (2017-06-25)
+- Added option to specify custom controller and action,
+  see https://github.com/martijnboland/MvcPaging/pull/67
+
 2.1.7 (2016-06-17)
-- Added fix for issue when underlying list contains partial data
+- Added fix for issue when underlying list contains partial data,
   see https://github.com/martijnboland/MvcPaging/pull/59
 
 2.1.6 (2016-05-27)
