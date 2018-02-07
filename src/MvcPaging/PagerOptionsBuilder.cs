@@ -299,6 +299,21 @@ namespace MvcPaging
         }
 
         /// <summary>
+        /// Use an explicit route instead of letting ASP.NET MVC figuring out the correct route.
+        /// </summary>
+        /// <param name="customRouteName"></param>
+        /// <returns></returns>
+        public PagerOptionsBuilder CustomRouteName(string customRouteName)
+        {
+            if (customRouteName == null)
+            {
+                throw new ArgumentException("customRouteName may not be null", "customRouteName");
+            }
+            this.pagerOptions.CustomRouteName = customRouteName;
+            return this;
+        }
+
+        /// <summary>
         /// Set the AjaxOptions.
         /// </summary>
         /// <param name="ajaxOptions"></param>
@@ -556,6 +571,17 @@ namespace MvcPaging
         public new PagerOptionsBuilder<TModel> UseItemCountAsPageCount()
         {
             base.UseItemCountAsPageCount();
+            return this;
+        }
+
+        /// <summary>
+        /// Use an explicit route instead of letting ASP.NET MVC figuring out the correct route.
+        /// </summary>
+        /// <param name="customRouteName"></param>
+        /// <returns></returns>
+        public new PagerOptionsBuilder<TModel> CustomRouteName(string customRouteName)
+        {
+            base.CustomRouteName(customRouteName);
             return this;
         }
     }

@@ -95,5 +95,13 @@ namespace MvcPaging.Demo.Controllers
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
             return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
         }
+
+        [Route("genericos", Order = 3, Name = "genericos")]
+        [Route("generic", Order = 4, Name = "generic")]
+        public ActionResult CustomRouteName(int? page)
+        {
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
+        }
     }
 }
