@@ -96,8 +96,8 @@ namespace MvcPaging.Demo.Controllers
             return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
-        [Route("genericos", Order = 3, Name = "genericos")]
-        [Route("generic", Order = 4, Name = "generic")]
+        [Route("customroutename", Order = 1, Name = "customroutename")]
+        [Route("alternativeroutename", Order = 2, Name = "alternativeroutename")]
         public ActionResult CustomRouteName(int? page)
         {
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;

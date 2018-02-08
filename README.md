@@ -92,6 +92,9 @@ Possible options:
 	HidePreviousAndNextPage
 		Don't show the 'previous' and 'next' links and only show the page numbers
 
+	CustomRouteName
+		Indicate that a specific named route must be used when generating page links
+
 ### PagedList
 
 The library contains a PagedList class that makes it easy to work with paged data. Use it via an 
