@@ -11,9 +11,9 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc5 mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.1.8 (2017-06-25)
-- Added option to specify custom controller and action
-  see https://github.com/martijnboland/MvcPaging/pull/67
+2.1.9 (2018-02-08)
+- Added CustomRouteName option to force a specific named route for the page links,
+  see also https://github.com/martijnboland/MvcPaging/issues/69
     </releaseNotes>
   </metadata>
 </package>
