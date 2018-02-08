@@ -91,6 +91,9 @@ Possible options:
 
 	HidePreviousAndNextPage
 		Don't show the 'previous' and 'next' links and only show the page numbers
+		
+	CustomRouteName
+		Indicate that a specific named route must be used when generating page links
 
 ### PagedList
 

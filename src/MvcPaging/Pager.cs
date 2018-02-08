@@ -234,7 +234,8 @@ namespace MvcPaging
             pageLinkValueDictionary = pageLinkValueDictionary.FixListRouteDataValues();
 
             // 'Render' virtual path.
-            var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext, pageLinkValueDictionary);
+            var virtualPathForArea = RouteTable.Routes.GetVirtualPathForArea(viewContext.RequestContext,
+                this.pagerOptions.CustomRouteName, pageLinkValueDictionary);
 
             return virtualPathForArea == null ? null : virtualPathForArea.VirtualPath;
         }
