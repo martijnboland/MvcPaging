@@ -1,3 +1,7 @@
+2.1.10 (2018-03-11)
+- Added Microsoft.AspNet.Mvc as a nuget dependency to prevent warnings, 
+  see https://github.com/martijnboland/MvcPaging/issues/72.
+
 2.1.9 (2018-02-08)
 - Added CustomRouteName option to force a specific named route for the page links,
   see also https://github.com/martijnboland/MvcPaging/issues/69
