@@ -47,6 +47,7 @@ namespace MvcPaging
             public static bool DisplayFirstPage = DefaultDefaults.DisplayFirstPage;
             public static bool DisplayLastPage = DefaultDefaults.DisplayLastPage;
             public static bool UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
+            public static bool HidePreviousAndNextPage = DefaultDefaults.HidePreviousAndNextPage;
             public static string CustomRouteName = DefaultDefaults.CustomRouteName;
 
             public static void Reset()
@@ -66,6 +67,7 @@ namespace MvcPaging
                 DisplayFirstPage = DefaultDefaults.DisplayFirstPage;
                 DisplayLastPage = DefaultDefaults.DisplayLastPage;
                 UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
+                HidePreviousAndNextPage = DefaultDefaults.HidePreviousAndNextPage;
                 CustomRouteName = DefaultDefaults.CustomRouteName;
             }
         }
@@ -119,19 +121,19 @@ namespace MvcPaging
             MaxNrOfPages = Defaults.MaxNrOfPages;
             AlwaysAddFirstPageNumber = Defaults.AlwaysAddFirstPageNumber;
             PageRouteValueKey = Defaults.DefaultPageRouteValueKey;
-            PreviousPageText = DefaultDefaults.PreviousPageText;
-            PreviousPageTitle = DefaultDefaults.PreviousPageTitle;
-            NextPageText = DefaultDefaults.NextPageText;
-            NextPageTitle = DefaultDefaults.NextPageTitle;
-            FirstPageText = DefaultDefaults.FirstPageText;
-            FirstPageTitle = DefaultDefaults.FirstPageTitle;
-            LastPageText = DefaultDefaults.LastPageText;
-            LastPageTitle = DefaultDefaults.LastPageTitle;
-            DisplayFirstPage = DefaultDefaults.DisplayFirstPage;
-            DisplayLastPage = DefaultDefaults.DisplayLastPage;
-            UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
-            HidePreviousAndNextPage = DefaultDefaults.HidePreviousAndNextPage;
-            CustomRouteName = DefaultDefaults.CustomRouteName;
+            PreviousPageText = Defaults.PreviousPageText;
+            PreviousPageTitle = Defaults.PreviousPageTitle;
+            NextPageText = Defaults.NextPageText;
+            NextPageTitle = Defaults.NextPageTitle;
+            FirstPageText = Defaults.FirstPageText;
+            FirstPageTitle = Defaults.FirstPageTitle;
+            LastPageText = Defaults.LastPageText;
+            LastPageTitle = Defaults.LastPageTitle;
+            DisplayFirstPage = Defaults.DisplayFirstPage;
+            DisplayLastPage = Defaults.DisplayLastPage;
+            UseItemCountAsPageCount = Defaults.UseItemCountAsPageCount;
+            HidePreviousAndNextPage = Defaults.HidePreviousAndNextPage;
+            CustomRouteName = Defaults.CustomRouteName;
         }
     }
 }
