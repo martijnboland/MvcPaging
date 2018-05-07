@@ -52,16 +52,22 @@ namespace MvcPaging.Tests
             PagerOptions.Defaults.AlwaysAddFirstPageNumber = !PagerOptions.DefaultDefaults.AlwaysAddFirstPageNumber;
             PagerOptions.Defaults.DisplayTemplate = PagerOptions.DefaultDefaults.DisplayTemplate + "-test";
             PagerOptions.Defaults.MaxNrOfPages = PagerOptions.DefaultDefaults.MaxNrOfPages + 1;
+            PagerOptions.Defaults.PreviousPageText = "PreviousPrevious";
+            PagerOptions.Defaults.NextPageText = "NextNext";
 
             var second = new PagerOptions();
 
             Assert.AreEqual(second.AlwaysAddFirstPageNumber, PagerOptions.Defaults.AlwaysAddFirstPageNumber);
             Assert.AreEqual(second.DisplayTemplate, PagerOptions.Defaults.DisplayTemplate);
             Assert.AreEqual(second.MaxNrOfPages, PagerOptions.Defaults.MaxNrOfPages);
+            Assert.AreEqual(second.PreviousPageText, "PreviousPrevious");
+            Assert.AreEqual(second.NextPageText, "NextNext");
 
             Assert.AreNotEqual(first.AlwaysAddFirstPageNumber, second.AlwaysAddFirstPageNumber);
             Assert.AreNotEqual(first.DisplayTemplate, second.DisplayTemplate);
             Assert.AreNotEqual(first.MaxNrOfPages, second.MaxNrOfPages);
+            Assert.AreNotEqual(first.PreviousPageText, second.PreviousPageText);
+            Assert.AreNotEqual(first.NextPageText, second.NextPageText);
 
             // cleanup
             PagerOptions.Defaults.Reset();
