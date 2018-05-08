@@ -1,3 +1,7 @@
+2.1.11 (2018-05-08)
+- Fixed issue where overriding global pager defaults didn't work in many cases,
+  see https://github.com/martijnboland/MvcPaging/pull/73.
+
 2.1.10 (2018-03-11)
 - Added Microsoft.AspNet.Mvc as a nuget dependency to prevent warnings, 
   see https://github.com/martijnboland/MvcPaging/issues/72.
