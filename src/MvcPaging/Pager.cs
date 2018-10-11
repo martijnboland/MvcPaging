@@ -121,11 +121,11 @@ namespace MvcPaging
                 }
             }
 
-			// Next page
-            if (!this.pagerOptions.HidePreviousAndNextPage) 
-            { 
-    			var nextPageText = this.pagerOptions.NextPageText;
-	    		model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = nextPageText, DisplayTitle = this.pagerOptions.NextPageTitle, Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = nextPageText });
+            // Next page
+            if (!this.pagerOptions.HidePreviousAndNextPage)
+            {
+                var nextPageText = this.pagerOptions.NextPageText;
+                model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = nextPageText, DisplayTitle = this.pagerOptions.NextPageTitle, Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = nextPageText });
             }
 
             // Last page
@@ -148,9 +148,14 @@ namespace MvcPaging
         {
             var model = BuildPaginationModel(GeneratePageUrl);
 
-            if (!String.IsNullOrEmpty(this.pagerOptions.DisplayTemplate))
+            if (!string.IsNullOrEmpty(pagerOptions.DisplayTemplate))
             {
-                var templatePath = string.Format("DisplayTemplates/{0}", this.pagerOptions.DisplayTemplate);
+                var templatePath = string.Empty;
+                if (pagerOptions.DisplayTemplate.StartsWith("~"))
+                    templatePath = pagerOptions.DisplayTemplate;
+                else
+                    templatePath = string.Format("DisplayTemplates/{0}", pagerOptions.DisplayTemplate);
+
                 return htmlHelper.Partial(templatePath, model).ToHtmlString();
             }
             else
