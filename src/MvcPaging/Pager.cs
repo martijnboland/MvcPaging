@@ -84,7 +84,7 @@ namespace MvcPaging
                 end = above;
             }
 
-            if (start > 1)
+            if (!this.pagerOptions.HideFirstPageNumber && start > 1)
             {
                 model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 1, DisplayText = "1", Url = generateUrl(1) });
                 if (start > 3)
@@ -109,7 +109,7 @@ namespace MvcPaging
                 }
             }
 
-            if (end < pageCount)
+            if (!this.pagerOptions.HideLastPageNumber && end < pageCount)
             {
                 if (end < pageCount)
                 {
@@ -121,11 +121,11 @@ namespace MvcPaging
                 }
             }
 
-			// Next page
-            if (!this.pagerOptions.HidePreviousAndNextPage) 
-            { 
-    			var nextPageText = this.pagerOptions.NextPageText;
-	    		model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = nextPageText, DisplayTitle = this.pagerOptions.NextPageTitle, Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = nextPageText });
+            // Next page
+            if (!this.pagerOptions.HidePreviousAndNextPage)
+            {
+                var nextPageText = this.pagerOptions.NextPageText;
+                model.PaginationLinks.Add(currentPage < pageCount ? new PaginationLink { Active = true, PageIndex = currentPage + 1, DisplayText = nextPageText, DisplayTitle = this.pagerOptions.NextPageTitle, Url = generateUrl(currentPage + 1) } : new PaginationLink { Active = false, DisplayText = nextPageText });
             }
 
             // Last page

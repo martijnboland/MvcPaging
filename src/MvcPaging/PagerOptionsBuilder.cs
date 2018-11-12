@@ -191,22 +191,42 @@ namespace MvcPaging
             return this;
         }
 
+        /// <summary>
+        /// Hides the first navigation page number
+        /// </summary>
+        /// <returns></returns>
+        public PagerOptionsBuilder HideFirstPageNumber()
+        {
+            pagerOptions.HideFirstPageNumber = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Hides the last navigation page number
+        /// </summary>
+        /// <returns></returns>
+        public PagerOptionsBuilder HideLastPageNumber()
+        {
+            pagerOptions.HideLastPageNumber = true;
+            return this;
+        }
+
         public PagerOptionsBuilder HidePreviousAndNextPage()
         {
             pagerOptions.HidePreviousAndNextPage = true;
             return this;
         }
 
-		/// <summary>
-		/// Set custom route value parameters for the pager links.
-		/// </summary>
-		/// <param name="routeValues"></param>
-		/// <returns></returns>
-		public PagerOptionsBuilder RouteValues(object routeValues)
-		{
-			RouteValues(new RouteValueDictionary(routeValues));
-			return this;
-		}
+        /// <summary>
+        /// Set custom route value parameters for the pager links.
+        /// </summary>
+        /// <param name="routeValues"></param>
+        /// <returns></returns>
+        public PagerOptionsBuilder RouteValues(object routeValues)
+        {
+            RouteValues(new RouteValueDictionary(routeValues));
+            return this;
+        }
 
         /// <summary>
         /// Set custom route value parameters for the pager links.
