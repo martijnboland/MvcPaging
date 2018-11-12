@@ -21,6 +21,8 @@ namespace MvcPaging
             public const string LastPageTitle = "Last page";
             public const bool DisplayFirstPage = false;
             public const bool DisplayLastPage = false;
+            public const bool DisplayFirstPageNumber = false;
+            public const bool DisplayLastPageNumber = false;
             public const bool UseItemCountAsPageCount = false;
             public static bool HidePreviousAndNextPage = false;
             public const string CustomRouteName = null;
@@ -46,6 +48,8 @@ namespace MvcPaging
             public static string LastPageTitle = DefaultDefaults.LastPageTitle;
             public static bool DisplayFirstPage = DefaultDefaults.DisplayFirstPage;
             public static bool DisplayLastPage = DefaultDefaults.DisplayLastPage;
+            public static bool DisplayFirstPageNumber = DefaultDefaults.DisplayFirstPageNumber;
+            public static bool DisplayLastPageNumber = DefaultDefaults.DisplayLastPageNumber;
             public static bool UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
             public static bool HidePreviousAndNextPage = DefaultDefaults.HidePreviousAndNextPage;
             public static string CustomRouteName = DefaultDefaults.CustomRouteName;
@@ -66,6 +70,8 @@ namespace MvcPaging
                 LastPageTitle = DefaultDefaults.LastPageTitle;
                 DisplayFirstPage = DefaultDefaults.DisplayFirstPage;
                 DisplayLastPage = DefaultDefaults.DisplayLastPage;
+                DisplayFirstPageNumber = DefaultDefaults.DisplayFirstPageNumber;
+                DisplayLastPageNumber = DefaultDefaults.DisplayLastPageNumber;
                 UseItemCountAsPageCount = DefaultDefaults.UseItemCountAsPageCount;
                 HidePreviousAndNextPage = DefaultDefaults.HidePreviousAndNextPage;
                 CustomRouteName = DefaultDefaults.CustomRouteName;
@@ -105,8 +111,14 @@ namespace MvcPaging
         public string LastPageTitle { get; set; }
 
         public bool DisplayFirstAndLastPage { get { return DisplayFirstPage && DisplayLastPage; } }
+
         public bool DisplayFirstPage { get; set; }
+
         public bool DisplayLastPage { get; set; }
+
+        public bool DisplayFirstPageNumber { get; set; }
+
+        public bool DisplayLastPageNumber { get; set; }
 
         public bool HidePreviousAndNextPage { get; internal set; }
 
@@ -131,6 +143,8 @@ namespace MvcPaging
             LastPageTitle = Defaults.LastPageTitle;
             DisplayFirstPage = Defaults.DisplayFirstPage;
             DisplayLastPage = Defaults.DisplayLastPage;
+            DisplayFirstPageNumber = Defaults.DisplayFirstPageNumber;
+            DisplayLastPageNumber = Defaults.DisplayLastPageNumber;
             UseItemCountAsPageCount = Defaults.UseItemCountAsPageCount;
             HidePreviousAndNextPage = Defaults.HidePreviousAndNextPage;
             CustomRouteName = Defaults.CustomRouteName;
