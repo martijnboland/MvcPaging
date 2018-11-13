@@ -95,6 +95,13 @@ Possible options:
 	CustomRouteName
 		Indicate that a specific named route must be used when generating page links
 
+	HideFirstPageNumber
+		Don't show page number 1 and '...' when navigating away
+
+	HideLastPageNumber
+		Don't show the number of the last page and '...' when the last page is more than
+		MaxNumberOfPages
+
 ### PagedList
 
 The library contains a PagedList class that makes it easy to work with paged data. Use it via an 

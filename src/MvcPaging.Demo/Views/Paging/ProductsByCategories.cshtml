@@ -44,6 +44,8 @@
         @Html.Pager(Model.Products.PageSize, Model.Products.PageNumber, Model.Products.TotalItemCount).Options(o => o
             .AddRouteValueFor(m => m.Categories)
             .DisplayFirstAndLastPage()
+            .HideFirstPageNumber()
+            .HideLastPageNumber()
             .SetFirstPageText("First")
             .SetLastPageText("Last")
             .SetPreviousPageText("Prev")
@@ -103,6 +105,8 @@
 		@Html.Pager(Model.Products.PageSize, Model.Products.PageNumber, Model.Products.TotalItemCount).Options(o => o
 			.AddRouteValueFor(m => m.Categories)
 			.DisplayFirstAndLastPage()
+            .HideFirstPageNumber()
+            .HideLastPageNumber()
 			.SetFirstPageText(""First"")
 			.SetLastPageText(""Last"")
 			.SetPreviousPageText(""Prev"")
