@@ -84,7 +84,7 @@ namespace MvcPaging
                 end = above;
             }
 
-            if (this.pagerOptions.DisplayFirstPageNumber && start > 1)
+            if (!this.pagerOptions.HideFirstPageNumber && start > 1)
             {
                 model.PaginationLinks.Add(new PaginationLink { Active = true, PageIndex = 1, DisplayText = "1", Url = generateUrl(1) });
                 if (start > 3)
@@ -109,7 +109,7 @@ namespace MvcPaging
                 }
             }
 
-            if (this.pagerOptions.DisplayLastPageNumber && end < pageCount)
+            if (!this.pagerOptions.HideLastPageNumber && end < pageCount)
             {
                 if (end < pageCount)
                 {

@@ -192,22 +192,22 @@ namespace MvcPaging
         }
 
         /// <summary>
-        /// Displays the first navigation page number
+        /// Hides the first navigation page number
         /// </summary>
         /// <returns></returns>
-        public PagerOptionsBuilder DisplayFirstPageNumber()
+        public PagerOptionsBuilder HideFirstPageNumber()
         {
-            pagerOptions.DisplayFirstPageNumber = true;
+            pagerOptions.HideFirstPageNumber = true;
             return this;
         }
 
         /// <summary>
-        /// Displays the last navigation page number
+        /// Hides the last navigation page number
         /// </summary>
         /// <returns></returns>
-        public PagerOptionsBuilder DisplayLastPageNumber()
+        public PagerOptionsBuilder HideLastPageNumber()
         {
-            pagerOptions.DisplayLastPageNumber = true;
+            pagerOptions.HideLastPageNumber = true;
             return this;
         }
 
