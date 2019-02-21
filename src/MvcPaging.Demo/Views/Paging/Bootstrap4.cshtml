@@ -1,0 +1,218 @@
+﻿@using MvcPaging.Demo.Models
+@model IPagedList<Product>
+@{
+    Layout = null;
+    ViewBag.Title = "Pager with Bootstrap 4 layout";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Le styles -->
+    <link href="@Url.Content("~/Content/Css/bootstrap4.3.1.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/SyntaxHighlighter/shCore.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/SyntaxHighlighter/shThemeDefault.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shCore.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shBrushCSharp.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SyntaxHighlighter/shBrushXml.js")"></script>
+</head>
+<body>
+    <a class="sr-only" href="#content">Skip navigation</a>
+    <!-- Docs master nav -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = String.Empty }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("About", "About", "Home", new { area = String.Empty }, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>@ViewBag.Title</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Category</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+            .DisplayTemplate("Bootstrap4Pagination")
+            .MaxNrOfPages(14)
+            .AlwaysAddFirstPageNumber()
+            .HidePreviousAndNextPage()
+        )
+
+        @{
+            var sourceModel = new ViewSourceViewModel();
+            sourceModel.RazorCode = @"
+<!-- Bootstrap4.cshtml view -->
+
+@using MvcPaging.Demo.Models
+@model IPagedList<Product>
+@{
+    Layout = null;
+    ViewBag.Title = ""Pager with Bootstrap 4 layout"";
+}
+<!DOCTYPE html>
+<html lang=""en"">
+    <head>
+        <meta charset=""utf-8"">
+        <title>@ViewBag.Title</title>
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <!-- Le styles -->
+        <link href=""@Url.Content(""~/Content/Css/bootstrap4.3.1.min.css"")"" rel=""stylesheet"">
+        <style>
+            body {
+                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+            }
+        </style>
+    </head>
+<body>
+    <a class=""sr-only"" href=""#content"">Skip navigation</a>
+
+    <!-- Docs master nav -->
+    <header class=""navbar navbar-inverse navbar-fixed-top bs-docs-nav"" role=""banner"">
+        <div class=""container"">
+            <div class=""navbar-header"">
+                <button class=""navbar-toggle"" type=""button"" data-toggle=""collapse"" data-target="".bs-navbar-collapse"">
+                    <span class=""sr-only"">Toggle navigation</span>
+                    <span class=""icon-bar""></span>
+                    <span class=""icon-bar""></span>
+                    <span class=""icon-bar""></span>
+                </button>
+            </div>
+            <nav class=""collapse navbar-collapse bs-navbar-collapse"" role=""navigation"">
+                <ul class=""nav navbar-nav"">
+                    <li>@Html.ActionLink(""Home"", ""Index"", ""Home"", new { area = String.Empty }, null)</li>
+                    <li>@Html.ActionLink(""About"", ""About"", ""Home"", new { area = String.Empty }, null)</li>s
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class=""container"">
+        <h1>@ViewBag.Title</h1>
+
+        <table class=""table table-striped"">
+            <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Category</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+            .DisplayTemplate(""Bootstrap4Pagination"")
+            .MaxNrOfPages(14)
+            .AlwaysAddFirstPageNumber()
+            .HidePreviousAndNextPage()
+        )
+    </div>
+</body>
+
+<!-- Bootstrap4Pagination.cshtml DisplayTemplate -->
+
+@model PaginationModel
+<ul class=""pagination"">
+    @foreach (var link in Model.PaginationLinks)
+    {
+        @BuildLink(link)
+    }
+</ul>
+
+@helper BuildLink(PaginationLink link)
+{
+    var liBuilder = new TagBuilder(""li"");
+    liBuilder.MergeAttribute(""class"", ""page-item"");
+    if (link.IsCurrent)
+    {
+        liBuilder.AddCssClass(""class"", ""active"");
+    }
+    if (! link.Active)
+    {
+        liBuilder.AddCssClass(""class"", ""disabled"");
+    }
+
+    var aBuilder = new TagBuilder(""a"");
+    aBuilder.MergeAttribute(""class"", ""page-link"");
+    if (link.Url == null)
+    {
+        aBuilder.MergeAttribute(""href"", ""#"");
+    }
+    else
+    {
+        aBuilder.MergeAttribute(""href"", link.Url);
+    }
+
+    // Ajax support
+    if (Model.AjaxOptions != null)
+    {
+        foreach (var ajaxOption in Model.AjaxOptions.ToUnobtrusiveHtmlAttributes())
+        {
+            aBuilder.MergeAttribute(ajaxOption.Key, ajaxOption.Value.ToString(), true);
+        }
+    }
+
+    if (link.DisplayText == ""«"")
+    {
+        aBuilder.InnerHtml = ""&laquo;"";
+    }
+    else if (link.DisplayText == ""»"")
+    {
+        aBuilder.InnerHtml = ""&raquo;"";
+    }
+    else
+    {
+        aBuilder.SetInnerText(link.DisplayText);
+    }
+    liBuilder.InnerHtml = aBuilder.ToString();
+
+    @Html.Raw(liBuilder.ToString())
+}";
+
+            sourceModel.ControllerCode = @"
+public ActionResult Bootstrap4(int? page)
+{
+    int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+    return View(this.allProducts.ToPagedList(currentPageIndex, DefaultPageSize));
+}";
+        }
+
+        @Html.Partial("ViewSource", sourceModel)
+
+
+    </div>
+    <!-- /container -->
+</body>
+</html>

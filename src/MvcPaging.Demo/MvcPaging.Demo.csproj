@@ -118,6 +118,7 @@
   <ItemGroup>
     <Content Include="Content\Css\bootstrap.min.css" />
     <Content Include="Content\Css\bootstrap3.min.css" />
+    <Content Include="Content\Css\bootstrap4.3.1.min.css" />
     <Content Include="Content\Css\Site.css" />
     <Content Include="Content\Images\accent.png" />
     <Content Include="Content\Images\bullet.png" />
@@ -199,6 +200,8 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Paging\CustomRouteName.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Bootstrap4Pagination.cshtml" />
+    <Content Include="Views\Paging\Bootstrap4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvcPaging\MvcPaging.csproj">
