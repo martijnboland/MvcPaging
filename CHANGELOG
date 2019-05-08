@@ -1,3 +1,7 @@
+2.1.13 (2019-05-08)
+- Added possibility to specify a more specific DisplayTemplate,
+  see https://github.com/martijnboland/MvcPaging/pull/75.
+
 2.1.12 (2018-11-13)
 - Added new options HideFirstPageNumber and HideLastPageNumber,
   see https://github.com/martijnboland/MvcPaging/pull/77

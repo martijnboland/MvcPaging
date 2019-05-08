@@ -39,7 +39,8 @@ Possible options:
 
 	DisplayTemplate(string displayTemplate)
 		When set, the internal HTML rendering is bypassed and a DisplayTemplate view with the given
-		name is rendered instead. Note that the DisplayTemplate must have a model of type PaginationModel
+		name is rendered instead. Note that the DisplayTemplate must have a model of type PaginationModel.
+		Instead of a template name, it's also possible to specify a complete template path, starting with ~/
 
 	MaxNrOfPages(int maxNrOfPages)
 		Sets the maximum number of pages to show	

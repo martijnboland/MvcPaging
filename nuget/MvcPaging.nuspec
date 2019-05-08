@@ -11,9 +11,9 @@
     <description>A Paging library for ASP.NET MVC.</description>
     <tags>mvc5 mvc4 mvc3 pager asp.net mvc paging</tags>
     <releaseNotes>
-2.1.12 (2018-11-13)
-- Added new options HideFirstPageNumber and HideLastPageNumber,
-  see https://github.com/martijnboland/MvcPaging/pull/77
+2.1.13 (2019-05-08)
+- Added possibility to specify a more specific DisplayTemplate,
+  see https://github.com/martijnboland/MvcPaging/pull/75.
     </releaseNotes>
     <dependencies>
         <dependency id="Microsoft.AspNet.Mvc" version="4.0.30506" />
