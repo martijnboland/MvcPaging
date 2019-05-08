@@ -148,9 +148,14 @@ namespace MvcPaging
         {
             var model = BuildPaginationModel(GeneratePageUrl);
 
-            if (!String.IsNullOrEmpty(this.pagerOptions.DisplayTemplate))
+            if (!string.IsNullOrEmpty(pagerOptions.DisplayTemplate))
             {
-                var templatePath = string.Format("DisplayTemplates/{0}", this.pagerOptions.DisplayTemplate);
+                var templatePath = string.Empty;
+                if (pagerOptions.DisplayTemplate.StartsWith("~"))
+                    templatePath = pagerOptions.DisplayTemplate;
+                else
+                    templatePath = string.Format("DisplayTemplates/{0}", pagerOptions.DisplayTemplate);
+
                 return htmlHelper.Partial(templatePath, model).ToHtmlString();
             }
             else
